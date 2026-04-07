@@ -13,9 +13,12 @@ def order_form(request):
         mrn = request.POST["mrn"].strip()
         first_name = request.POST["first_name"].strip()
         last_name = request.POST["last_name"].strip()
+        dob = request.POST.get("dob", "").strip() or None
         primary_diagnosis = request.POST["primary_diagnosis"].strip()
         medication_name = request.POST["medication_name"].strip()
         additional_diagnoses = request.POST.get("additional_diagnoses", "").strip()
+        weight_kg = request.POST.get("weight_kg", "").strip()
+        allergies = request.POST.get("allergies", "").strip()
         medication_history = request.POST.get("medication_history", "").strip()
         patient_records = request.POST.get("patient_records", "").strip()
 
@@ -28,7 +31,7 @@ def order_form(request):
         # Get or create patient (MRN is the key)
         patient, _ = Patient.objects.get_or_create(
             mrn=mrn,
-            defaults={"first_name": first_name, "last_name": last_name},
+            defaults={"first_name": first_name, "last_name": last_name, "dob": dob},
         )
 
         # Create the order
@@ -38,6 +41,8 @@ def order_form(request):
             primary_diagnosis=primary_diagnosis,
             medication_name=medication_name,
             additional_diagnoses=additional_diagnoses,
+            weight_kg=weight_kg,
+            allergies=allergies,
             medication_history=medication_history,
             patient_records=patient_records,
         )

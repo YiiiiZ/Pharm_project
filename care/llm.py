@@ -5,12 +5,17 @@ from django.conf import settings
 def generate_care_plan(order) -> str:
     client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
 
+    dob_str = order.patient.dob.strftime("%Y-%m-%d") if order.patient.dob else "Not provided"
+
     prompt = f"""You are a clinical pharmacist at a specialty pharmacy generating a care plan for a patient order.
 
 PATIENT INFORMATION
 -------------------
 Name: {order.patient.first_name} {order.patient.last_name}
 MRN: {order.patient.mrn}
+Date of Birth: {dob_str}
+Weight: {order.weight_kg + " kg" if order.weight_kg else "Not provided"}
+Allergies: {order.allergies if order.allergies else "None known"}
 Referring Provider: {order.provider.name} (NPI: {order.provider.npi})
 
 ORDER DETAILS

@@ -13,6 +13,7 @@ class Patient(models.Model):
     mrn = models.CharField(max_length=20, unique=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    dob = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} (MRN: {self.mrn})"
@@ -24,6 +25,8 @@ class Order(models.Model):
     primary_diagnosis = models.CharField(max_length=20)
     medication_name = models.CharField(max_length=200)
     additional_diagnoses = models.TextField(blank=True)
+    weight_kg = models.CharField(max_length=20, blank=True)
+    allergies = models.TextField(blank=True)
     medication_history = models.TextField(blank=True)
     patient_records = models.TextField(blank=True)
     care_plan = models.TextField(blank=True)

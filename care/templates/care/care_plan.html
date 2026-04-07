@@ -41,6 +41,9 @@
       <div class="col-md-2"><span class="text-muted">MRN</span><br><strong>{{ order.patient.mrn }}</strong></div>
       <div class="col-md-4"><span class="text-muted">Provider</span><br><strong>{{ order.provider.name }}</strong></div>
       <div class="col-md-2"><span class="text-muted">NPI</span><br><strong>{{ order.provider.npi }}</strong></div>
+      {% if order.patient.dob %}<div class="col-md-2 mt-2"><span class="text-muted">DOB</span><br><strong>{{ order.patient.dob }}</strong></div>{% endif %}
+      {% if order.weight_kg %}<div class="col-md-2 mt-2"><span class="text-muted">Weight</span><br><strong>{{ order.weight_kg }} kg</strong></div>{% endif %}
+      {% if order.allergies %}<div class="col-md-4 mt-2"><span class="text-muted">Allergies</span><br><strong>{{ order.allergies }}</strong></div>{% endif %}
       <div class="col-md-4 mt-2"><span class="text-muted">Medication</span><br><strong>{{ order.medication_name }}</strong></div>
       <div class="col-md-4 mt-2"><span class="text-muted">Primary Dx</span><br><strong>{{ order.primary_diagnosis }}</strong></div>
       {% if order.additional_diagnoses %}
