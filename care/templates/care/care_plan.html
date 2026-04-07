@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Care Plan — {{ order.patient.first_name }} {{ order.patient.last_name }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f4f6f9; }
+    .card { border: none; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    .care-plan-body { white-space: pre-wrap; font-family: 'Georgia', serif; font-size: .95rem; line-height: 1.7; }
+    .badge-info { background: #e8f4fd; color: #0d6efd; font-weight: 500; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="container py-5" style="max-width:760px">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-start mb-4 no-print">
+    <div>
+      <h4 class="fw-bold mb-0">Care Plan Generated</h4>
+      <p class="text-muted small mb-0">Order #{{ order.pk }} &mdash; {{ order.created_at|date:"N j, Y, g:i a" }}</p>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="{% url 'download_care_plan' order.pk %}" class="btn btn-outline-primary btn-sm">Download .txt</a>
+      <button onclick="window.print()" class="btn btn-outline-secondary btn-sm">Print</button>
+      <a href="{% url 'order_form' %}" class="btn btn-primary btn-sm">New Order</a>
+    </div>
+  </div>
+
+  <!-- Patient summary -->
+  <div class="card mb-3 p-4">
+    <div class="row g-2 small">
+      <div class="col-md-4"><span class="text-muted">Patient</span><br>
+        <strong>{{ order.patient.first_name }} {{ order.patient.last_name }}</strong></div>
+      <div class="col-md-2"><span class="text-muted">MRN</span><br><strong>{{ order.patient.mrn }}</strong></div>
+      <div class="col-md-4"><span class="text-muted">Provider</span><br><strong>{{ order.provider.name }}</strong></div>
+      <div class="col-md-2"><span class="text-muted">NPI</span><br><strong>{{ order.provider.npi }}</strong></div>
+      <div class="col-md-4 mt-2"><span class="text-muted">Medication</span><br><strong>{{ order.medication_name }}</strong></div>
+      <div class="col-md-4 mt-2"><span class="text-muted">Primary Dx</span><br><strong>{{ order.primary_diagnosis }}</strong></div>
+      {% if order.additional_diagnoses %}
+      <div class="col-md-4 mt-2"><span class="text-muted">Additional Dx</span><br>
+        <strong>{{ order.additional_diagnoses }}</strong></div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Care plan -->
+  <div class="card p-4">
+    <div class="care-plan-body">{{ order.care_plan }}</div>
+  </div>
+
+</div>
+</body>
+</html>

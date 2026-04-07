@@ -39,5 +39,9 @@ Thumbs.db
 # Docker
 *.override.yml
 
+# SQLite database
+data/
+*.sqlite3
+
 # Uploads (patient PDFs — never commit PHI)
 uploads/
