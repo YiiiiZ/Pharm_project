@@ -2,32 +2,37 @@
   "cases": [
     {
       "id": "case_001",
-      "description": "Myasthenia Gravis — IVIG treatment, generalized without exacerbation",
+      "description": "Myasthenia Gravis (AChR+, MGFA IIb) — IVIG for rapid symptomatic control",
       "metadata": {
         "medication_category": "IVIG",
-        "primary_diagnosis_code": "G70.00",
-        "primary_diagnosis_label": "Myasthenia gravis, generalized, without exacerbation",
-        "created_date": "2025-10-15"
+        "primary_diagnosis_code": "G70.01",
+        "primary_diagnosis_label": "Myasthenia gravis, generalized, AChR antibody positive, MGFA class IIb",
+        "created_date": "2025-10-15",
+        "fictional": true
       },
       "input": {
         "patient": {
-          "mrn": "001234",
+          "mrn": "00012345",
           "first_name": "A",
           "last_name": "B",
-          "dob": "1979-06-08"
+          "dob": "1979-06-08",
+          "sex": "Female",
+          "age": 46,
+          "note": "Fictional patient"
         },
         "provider": {
           "npi": "1234567",
           "name": "test"
         },
         "order": {
-          "primary_diagnosis": "G70.00",
+          "primary_diagnosis": "G70.01",
+          "primary_diagnosis_label": "Generalized myasthenia gravis, AChR antibody positive, MGFA class IIb",
           "medication_name": "IVIG",
-          "additional_diagnoses": "",
+          "additional_diagnoses": "Hypertension (well controlled), GERD",
           "weight_kg": "72",
-          "allergies": "None known",
-          "medication_history": "Pyridostigmine 60mg q6h PRN, Prednisone 10mg daily, Lisinopril 10mg daily, Omeprazole 20mg daily",
-          "patient_records": "Baseline clinic note (pre-infusion)\n\nDate: 2025-10-15\n\nVitals: BP 128/78, HR 78, RR 16, SpO2 98% RA, Temp 36.7°C\n\nExam: Ptosis bilateral, fatigable proximal weakness (4/5), speech slurred after repeated counting, no respiratory distress.\n\nLabs: CBC WNL; BMP: Na 138, K 4.1, Cl 101, HCO3 24, BUN 12, SCr 0.78, eGFR >90.\n\nIgG baseline: 10 g/L.\n\nBaseline FVC 2.8 L (predicted 4.0 L; ~70% predicted).\n\nPlan: IVIG 2 g/kg total (144 g for 72 kg) given as 0.4 g/kg/day x 5 days.\n\nPremedicate with acetaminophen + diphenhydramine."
+          "allergies": "None known to medications (no IgA deficiency)",
+          "medication_history": "Pyridostigmine 60mg PO q6h PRN, Prednisone 10mg PO daily, Lisinopril 10mg PO daily, Omeprazole 20mg PO daily",
+          "patient_records": "Recent history: Progressive proximal muscle weakness and ptosis over 2 weeks. Neurology recommends IVIG for rapid symptomatic control.\n\nBaseline clinic note (pre-infusion)\n\nDate: 2025-10-15\n\nVitals: BP 128/78, HR 78, RR 16, SpO2 98% RA, Temp 36.7°C\n\nExam: Ptosis bilateral, fatigable proximal weakness (4/5), speech slurred after repeated counting, no respiratory distress.\n\nLabs: CBC WNL; BMP: Na 138, K 4.1, Cl 101, HCO3 24, BUN 12, SCr 0.78, eGFR >90.\n\nIgG baseline: 10 g/L.\n\nBaseline FVC 2.8 L (predicted 4.0 L; ~70% predicted).\n\nPlan: IVIG 2 g/kg total (144 g for 72 kg) given as 0.4 g/kg/day x 5 days.\n\nPremedicate with acetaminophen + diphenhydramine."
         }
       },
       "golden": {
