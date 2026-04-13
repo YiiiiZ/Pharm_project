@@ -4,10 +4,9 @@
       "id": "case_001",
       "description": "Myasthenia Gravis (AChR+, MGFA IIb) — IVIG for rapid symptomatic control",
       "metadata": {
-        "medication_category": "IVIG",
+        "medication": "IVIG",
         "primary_diagnosis_code": "G70.01",
-        "primary_diagnosis_label": "Myasthenia gravis, generalized, AChR antibody positive, MGFA class IIb",
-        "created_date": "2025-10-15",
+        "primary_diagnosis_label": "Generalized myasthenia gravis, AChR antibody positive, MGFA class IIb",
         "fictional": true
       },
       "input": {
@@ -18,6 +17,7 @@
           "dob": "1979-06-08",
           "sex": "Female",
           "age": 46,
+          "weight_kg": 72,
           "note": "Fictional patient"
         },
         "provider": {
@@ -41,26 +41,28 @@
           "Risk of infusion-related reactions",
           "Risk of renal dysfunction or volume overload",
           "Risk of thromboembolic events",
-          "Potential drug-drug interactions",
+          "Drug-drug interactions: avoid β-blockers, fluoroquinolones, aminoglycosides, IV magnesium, and macrolides (can exacerbate MG)",
           "Patient education / adherence gap"
         ],
         "goals": [
-          "Primary: Achieve clinically meaningful improvement in muscle strength within 2 weeks",
-          "Safety goal: No severe infusion reaction, no acute kidney injury",
-          "Process: Complete full 2 g/kg course with documented monitoring"
+          "Achieve clinically meaningful improvement in muscle strength within 2 weeks",
+          "No severe infusion reaction, no acute kidney injury",
+          "Complete full 2 g/kg course (144 g) with documented monitoring"
         ],
         "interventions": [
-          "Dosing & Administration",
-          "Premedication",
-          "Infusion rates & titration",
+          "Total dose: 2 g/kg × 72 kg = 144 g; daily dose: 0.4 g/kg/day × 5 days = 28.8 g/day",
+          "Premedication: Acetaminophen 650 mg + Diphenhydramine 25–50 mg PO 30–60 min pre-infusion",
+          "Initial infusion rate: 0.5 mL/kg/hr × 30 min, then titrate up",
           "Hydration & renal protection",
-          "Monitoring during infusion",
-          "Adverse event management"
+          "Adverse event protocol: mild (slow rate) / severe (stop + epinephrine)",
+          "Product lot number documented",
+          "Thrombosis risk assessment documented"
         ],
         "monitoring": [
-          "Before first infusion: CBC, BMP, baseline vitals",
-          "During each infusion: Vitals q15-30 min",
-          "Post-course (3-7 days): BMP to check renal function"
+          "Vitals q15 min × 1hr, then q30 min during infusion",
+          "FVC baseline and daily",
+          "SCr/BUN pre-course and 3–7 days post-course",
+          "CBC, BMP, baseline vitals before first infusion"
         ]
       },
       "runs": [
@@ -69,58 +71,630 @@
           "timestamp": "2026-04-07T06:55:53",
           "model": "unknown",
           "order_db_id": 4,
+          "golden_version": "v1 (pre-2026-04-13 update — evaluated against original 4-section golden, not current)",
           "care_plan_text": "# CLINICAL CARE PLAN\n**Specialty Pharmacy — Pharmacist-Generated**\n\n## 1. PROBLEM LIST\n\n**1.1 Active Neurological — Primary**\n- Generalized Myasthenia Gravis (G70.00): Clinically active disease evidenced by bilateral ptosis, fatigable proximal upper extremity weakness (4/5 MRC), and dysarthria after repetitive speech. Baseline FVC 2.8 L (70% predicted), indicating subclinical respiratory compromise warranting close surveillance during IVIG course.\n\n**1.2 IVIG Therapy Initiation**\n- Initiating IVIG 2 g/kg total dose (144 g) divided as 0.4 g/kg/day (28.8 g/day) × 5 days per neuromuscular dosing standard. Baseline IgG level 10 g/L (within normal range); post-infusion IgG monitoring warranted to confirm therapeutic exposure.\n\n**1.3 Medication-Related Considerations**\n- Pyridostigmine 60 mg q6h PRN: Cholinesterase inhibitor; risk of cholinergic excess (bradycardia, excess secretions) particularly relevant during IVIG infusion periods.\n- Prednisone 10 mg daily: Long-term corticosteroid use — risk of adrenal suppression, hyperglycemia, immunosuppression, and osteoporosis.\n- Lisinopril 10 mg daily: ACE inhibitor use alongside IVIG carries a recognized risk of hypotension and flushing reactions.\n- Omeprazole 20 mg daily: Appropriate GI prophylaxis; no direct IVIG interaction of concern.\n\n**1.4 IVIG Infusion-Related Risk Factors**\n- Theoretical risk for infusion-related reactions (headache, fever, chills, flushing, hypotension, nausea), aseptic meningitis, hemolysis, thromboembolism, and renal dysfunction.\n- eGFR >90 mL/min/1.73 m² is reassuring; however, sucrose-containing IVIG products should be avoided.\n- Baseline BP 128/78 — acceptable for infusion start.\n\n## 2. GOALS\n\n**2.1 Short-Term Goals (Days 1–5)**\n- Complete all 5 IVIG infusion days (total dose 144 g) without clinically significant adverse events.\n- Maintain hemodynamic stability: SBP ≥90 mmHg, HR 50–110 bpm, SpO2 ≥95% RA.\n- Prevent infusion-related reactions through consistent premedication.\n- Maintain renal function (SCr ≤0.90 mg/dL, eGFR >90) via sucrose-free product and oral hydration.\n- Avoid precipitating myasthenic exacerbation.\n\n**2.2 Medium-Term Goals (Weeks 2–6 Post-Infusion)**\n- Achieve measurable clinical improvement in MG symptom burden at follow-up visit (target: 2–4 weeks post-completion).\n- Demonstrate improvement in respiratory reserve, targeting FVC ≥80% predicted.\n- Confirm therapeutic IgG exposure (target: ≥15–20 g/L at trough).\n- Reassess adequacy of current immunosuppressive regimen.\n\n**2.3 Patient-Centered Goals**\n- Patient will verbalize understanding of IVIG purpose, schedule, and side effects before first infusion.\n- Patient will identify early signs of infusion reactions and MG exacerbation.\n\n## 3. PHARMACIST INTERVENTIONS\n\n**3.1 Product Selection and Order Verification**\n- Verify sucrose-free IVIG product (e.g., Gamunex-C®, Privigen®).\n- Confirm regimen: IVIG 28.8 g IV daily × 5 days (0.4 g/kg/day × 72 kg).\n- Confirm product lot numbers, expiration dates, and cold-chain integrity.\n\n**3.2 Premedication Protocol**\n- Acetaminophen 650–1000 mg PO + Diphenhydramine 25–50 mg PO/IV, 30–60 min prior to each infusion.\n\n**3.3 Infusion Rate Management**\n- 0–30 min: 0.5 mg/kg/min; 30–60 min: 1.0 mg/kg/min; >60 min: titrate to max per labeling.\n- Given concurrent Lisinopril, check BP at baseline, 15 min,",
           "truncated": true,
           "evaluation": {
             "facts_labeled": [
               {"claim": "Active MG with ptosis, weakness, dysarthria — need for IVIG", "label": "CORRECT", "golden_item": "Need for rapid immunomodulation"},
               {"claim": "Baseline FVC 2.8 L (70% predicted)", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Pyridostigmine — cholinergic excess risk during IVIG", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
-              {"claim": "Prednisone — adrenal suppression, hyperglycemia risk", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
-              {"claim": "Lisinopril + IVIG → hypotension/flushing risk", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
-              {"claim": "Omeprazole — no direct IVIG interaction", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
+              {"claim": "Pyridostigmine — cholinergic excess risk during IVIG", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
+              {"claim": "Prednisone — adrenal suppression, hyperglycemia risk", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
+              {"claim": "Lisinopril + IVIG → hypotension/flushing risk", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
+              {"claim": "Omeprazole — no direct IVIG interaction", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
               {"claim": "Risk of infusion-related reactions (headache, fever, chills, nausea)", "label": "CORRECT", "golden_item": "Risk of infusion-related reactions"},
               {"claim": "Risk of aseptic meningitis", "label": "FABRICATED", "golden_item": null},
               {"claim": "Risk of hemolysis", "label": "FABRICATED", "golden_item": null},
               {"claim": "Risk of thromboembolism", "label": "CORRECT", "golden_item": "Risk of thromboembolic events"},
               {"claim": "Risk of renal dysfunction", "label": "CORRECT", "golden_item": "Risk of renal dysfunction or volume overload"},
-              {"claim": "Volume overload risk", "label": "MISSING", "golden_item": "Risk of renal dysfunction or volume overload"},
+              {"claim": "Volume overload risk not mentioned", "label": "MISSING", "golden_item": "Risk of renal dysfunction or volume overload"},
+              {"claim": "β-blockers, fluoroquinolones, aminoglycosides, IV Mg, macrolides interaction not mentioned", "label": "MISSING", "golden_item": "Drug-drug interactions: avoid β-blockers, fluoroquinolones, aminoglycosides, IV magnesium, macrolides"},
               {"claim": "Baseline IgG 10 g/L; post-infusion IgG monitoring warranted", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Complete 5 IVIG infusion days", "label": "CORRECT", "golden_item": "Process: Complete full 2 g/kg course with documented monitoring"},
+              {"claim": "Complete 5 IVIG infusion days", "label": "CORRECT", "golden_item": "Complete full 2 g/kg course with documented monitoring"},
               {"claim": "Hemodynamic targets: SBP ≥90, HR 50–110, SpO2 ≥95%", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Prevent infusion reactions via premedication", "label": "CORRECT", "golden_item": "Safety goal: No severe infusion reaction, no acute kidney injury"},
-              {"claim": "Maintain renal function (SCr ≤0.90, eGFR >90)", "label": "CORRECT", "golden_item": "Safety goal: No severe infusion reaction, no acute kidney injury"},
-              {"claim": "Clinical improvement in MG symptoms at 2–4 weeks post-infusion", "label": "INCORRECT", "golden_item": "Primary: Achieve clinically meaningful improvement in muscle strength within 2 weeks", "note": "Golden specifies within 2 weeks; care plan says 2-4 weeks post-completion"},
+              {"claim": "Prevent infusion reactions via premedication", "label": "CORRECT", "golden_item": "No severe infusion reaction, no acute kidney injury"},
+              {"claim": "Maintain renal function (SCr ≤0.90, eGFR >90)", "label": "CORRECT", "golden_item": "No severe infusion reaction, no acute kidney injury"},
+              {"claim": "Clinical improvement in MG symptoms at 2–4 weeks post-infusion", "label": "INCORRECT", "golden_item": "Achieve clinically meaningful improvement in muscle strength within 2 weeks", "note": "Golden: within 2 weeks; care plan says 2–4 weeks post-completion"},
               {"claim": "FVC ≥80% predicted target", "label": "FABRICATED", "golden_item": null},
               {"claim": "Post-infusion IgG ≥15–20 g/L target", "label": "FABRICATED", "golden_item": null},
               {"claim": "Reassess immunosuppressive regimen long-term", "label": "FABRICATED", "golden_item": null},
               {"claim": "Patient education on IVIG purpose, side effects, when to call", "label": "CORRECT", "golden_item": "Patient education / adherence gap"},
-              {"claim": "Sucrose-free IVIG product selection", "label": "CORRECT", "golden_item": "Dosing & Administration"},
-              {"claim": "Dose verification: 28.8 g/day × 5 days = 144 g", "label": "CORRECT", "golden_item": "Dosing & Administration"},
-              {"claim": "Cold-chain integrity / lot number verification", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Premedication 30–60 min before each infusion", "label": "CORRECT", "golden_item": "Premedication"},
-              {"claim": "Acetaminophen 650–1000 mg + diphenhydramine 25–50 mg", "label": "CORRECT", "golden_item": "Premedication"},
-              {"claim": "Slow-start infusion rate protocol", "label": "CORRECT", "golden_item": "Infusion rates & titration"},
-              {"claim": "BP monitoring given concurrent Lisinopril", "label": "CORRECT", "golden_item": "Monitoring during infusion"},
-              {"claim": "Hydration for renal protection (mentioned in goals only)", "label": "CORRECT", "golden_item": "Hydration & renal protection"},
-              {"claim": "Adverse event management section", "label": "MISSING", "golden_item": "Adverse event management"},
-              {"claim": "Monitoring during infusion section", "label": "MISSING", "golden_item": "Monitoring during infusion"},
-              {"claim": "Pre-infusion labs: CBC, BMP, baseline vitals", "label": "MISSING", "golden_item": "Before first infusion: CBC, BMP, baseline vitals"},
-              {"claim": "During infusion: vitals q15–30 min", "label": "MISSING", "golden_item": "During each infusion: Vitals q15-30 min"},
-              {"claim": "Post-course BMP (3–7 days)", "label": "MISSING", "golden_item": "Post-course (3-7 days): BMP to check renal function"}
+              {"claim": "Sucrose-free IVIG product selection + dose verification 28.8 g/day × 5 days", "label": "CORRECT", "golden_item": "Total dose: 2 g/kg × 72 kg = 144 g; daily dose: 0.4 g/kg/day × 5 days = 28.8 g/day"},
+              {"claim": "Cold-chain integrity / lot number verification", "label": "CORRECT", "golden_item": "Product lot number documented"},
+              {"claim": "Premedication 30–60 min: Acetaminophen 650–1000 mg + diphenhydramine 25–50 mg", "label": "CORRECT", "golden_item": "Premedication: Acetaminophen 650 mg + Diphenhydramine 25–50 mg PO 30–60 min pre-infusion"},
+              {"claim": "Slow-start infusion rate protocol", "label": "CORRECT", "golden_item": "Initial infusion rate: 0.5 mL/kg/hr × 30 min, then titrate up"},
+              {"claim": "BP monitoring given concurrent Lisinopril", "label": "CORRECT", "golden_item": "Vitals q15 min × 1hr, then q30 min during infusion"},
+              {"claim": "Hydration for renal protection mentioned in goals", "label": "CORRECT", "golden_item": "Hydration & renal protection"},
+              {"claim": "Adverse event management section missing (truncated)", "label": "MISSING", "golden_item": "Adverse event protocol: mild (slow rate) / severe (stop + epinephrine)"},
+              {"claim": "Thrombosis risk assessment not documented", "label": "MISSING", "golden_item": "Thrombosis risk assessment documented"},
+              {"claim": "FVC baseline and daily monitoring not mentioned", "label": "MISSING", "golden_item": "FVC baseline and daily"},
+              {"claim": "Pre-infusion CBC, BMP not explicitly ordered", "label": "MISSING", "golden_item": "CBC, BMP, baseline vitals before first infusion"},
+              {"claim": "SCr/BUN post-course monitoring missing (truncated)", "label": "MISSING", "golden_item": "SCr/BUN pre-course and 3–7 days post-course"}
             ],
             "metrics": {
               "TP": 13,
               "FP": 9,
-              "FN": 5,
+              "FN": 7,
               "precision": 0.59,
-              "recall": 0.72,
-              "f1": 0.65
+              "recall": 0.65,
+              "f1": 0.62
             },
-            "notes": "Care plan was truncated — sections on adverse event management, monitoring during infusion, and the lab schedule were cut off. This accounts for most of the FN. The only content error is the 2-4 week vs 2-week timeline for clinical improvement goal."
+            "notes": "Evaluated against v1 golden. Re-evaluated against v2 golden (2026-04-13): FN increases from 5 to 7 due to additional required items (FVC daily, thrombosis risk assessment, specific MG-exacerbating drug interactions). Care plan truncated — accounts for most FN."
           }
         }
       ]
+    },
+    {
+      "id": "case_002",
+      "description": "MRSA bacteremia — Vancomycin, AUC/MIC-guided dosing, renal impairment",
+      "metadata": {
+        "medication": "Vancomycin",
+        "primary_diagnosis_code": "A49.02",
+        "primary_diagnosis_label": "MRSA bacteremia",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00023456",
+          "first_name": "C",
+          "last_name": "D",
+          "dob": "1963-01-01",
+          "sex": "Male",
+          "age": 62,
+          "weight_kg": 85,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "A49.02",
+          "primary_diagnosis_label": "MRSA bacteremia",
+          "medication_name": "Vancomycin",
+          "additional_diagnoses": "",
+          "weight_kg": "85",
+          "allergies": "Penicillin (rash)",
+          "medication_history": "",
+          "patient_records": "Male, 62y, 85 kg. MRSA bacteremia confirmed on blood cultures. Labs: SCr 1.4, eGFR 45 mL/min/1.73m². Allergies: Penicillin (rash)."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "MRSA bacteremia requiring targeted antibiotic therapy",
+          "Renal impairment (eGFR 45) — requires individualized dosing, not simple interval extension",
+          "Risk of nephrotoxicity with vancomycin",
+          "Risk of Red Man Syndrome",
+          "Penicillin allergy documented (rash)"
+        ],
+        "goals": [
+          "AUC/MIC target: 400–600 mg·h/L (assuming MIC 1 mg/L by broth microdilution)",
+          "Minimum 14 days of therapy for bacteremia",
+          "Confirmed blood culture clearance at 48–72h"
+        ],
+        "interventions": [
+          "AUC/MIC-guided dosing per 2020 ASHP/IDSA guidelines — do NOT use simple interval extension for renal adjustment",
+          "Use Bayesian dosing software to calculate individualized dose",
+          "Loading dose: not automatically indicated for eGFR 45 (only if critically ill or on renal replacement therapy)",
+          "Infusion rate: max 10 mg/min to prevent Red Man Syndrome",
+          "Duration: minimum 14 days for bacteremia",
+          "Red Man Syndrome counseling documented"
+        ],
+        "monitoring": [
+          "2 vancomycin levels within same dosing interval for AUC calculation (or single trough if Bayesian)",
+          "SCr q48–72h",
+          "Repeat blood cultures at 48–72h to confirm clearance"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_003",
+      "description": "Acute proximal DVT — Enoxaparin therapeutic anticoagulation, obese patient",
+      "metadata": {
+        "medication": "Enoxaparin",
+        "primary_diagnosis_code": "I82.4",
+        "primary_diagnosis_label": "Acute proximal DVT, no PE",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00034567",
+          "first_name": "E",
+          "last_name": "F",
+          "dob": "1967-01-01",
+          "sex": "Female",
+          "age": 58,
+          "weight_kg": 94,
+          "bmi": 36,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "I82.4",
+          "primary_diagnosis_label": "Acute proximal DVT, no PE",
+          "medication_name": "Enoxaparin",
+          "additional_diagnoses": "",
+          "weight_kg": "94",
+          "allergies": "None",
+          "medication_history": "",
+          "patient_records": "Female, 58y, 94 kg, BMI 36. Acute proximal DVT confirmed on duplex ultrasound, no pulmonary embolism. Labs: SCr 0.9, eGFR 78, anti-Xa not yet drawn. Allergies: None."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Acute proximal DVT requiring therapeutic anticoagulation",
+          "Obesity (BMI 36) — weight-based dosing using actual body weight required",
+          "Risk of HIT (heparin-induced thrombocytopenia)",
+          "Risk of bleeding"
+        ],
+        "goals": [
+          "Anti-Xa target: 0.5–1.0 IU/mL (treatment range)",
+          "Minimum 3 months anticoagulation; transition per plan",
+          "No major bleeding events"
+        ],
+        "interventions": [
+          "Dose: 1 mg/kg SQ q12h using actual body weight → 94 mg SQ q12h (cap at 144 kg only if BMI >40)",
+          "Anti-Xa drawn 4h post-dose; target 0.5–1.0 IU/mL",
+          "Renal check: if eGFR <30 → switch to q24h or UFH",
+          "Bridge to warfarin or continue DOAC per plan; minimum duration 3 months",
+          "Injection site rotation counseling",
+          "Hold protocol for procedures documented"
+        ],
+        "monitoring": [
+          "Anti-Xa level at 4h post-dose (target 0.5–1.0 IU/mL)",
+          "Platelet monitoring for HIT: baseline + day 4–14",
+          "Renal function monitoring"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_004",
+      "description": "Rheumatoid arthritis — Methotrexate DMARD therapy, sulfa allergy",
+      "metadata": {
+        "medication": "Methotrexate",
+        "primary_diagnosis_code": "M05.79",
+        "primary_diagnosis_label": "Rheumatoid arthritis, moderate-severe",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00045678",
+          "first_name": "G",
+          "last_name": "H",
+          "dob": "1973-01-01",
+          "sex": "Female",
+          "age": 52,
+          "weight_kg": 68,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "M05.79",
+          "primary_diagnosis_label": "Rheumatoid arthritis, moderate-severe",
+          "medication_name": "Methotrexate",
+          "additional_diagnoses": "",
+          "weight_kg": "68",
+          "allergies": "Sulfa drugs",
+          "medication_history": "",
+          "patient_records": "Female, 52y, 68 kg. Rheumatoid arthritis, moderate-severe. Labs: ALT 22, AST 18, SCr 0.82, eGFR 82, CBC WNL. Allergies: Sulfa drugs."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Moderate-severe rheumatoid arthritis requiring DMARD therapy",
+          "Hepatotoxicity risk with methotrexate",
+          "Pulmonary toxicity risk",
+          "Teratogenicity risk — contraception required",
+          "Sulfa allergy: trimethoprim-containing drugs contraindicated (folate antagonism)",
+          "Patient education needs"
+        ],
+        "goals": [
+          "Achieve disease control (reduced joint inflammation and symptoms)",
+          "Maintain LFTs within acceptable range — no hepatotoxicity",
+          "Prevent unintended pregnancy during and 3 months post-therapy"
+        ],
+        "interventions": [
+          "Dose: 15 mg PO once weekly (start); may titrate to 25 mg/week",
+          "Folic acid: 1 mg PO daily (confirm timing — every day vs. except MTX day — with prescriber)",
+          "Hepatotoxicity counseling: avoid alcohol, limit NSAIDs",
+          "Pulmonary toxicity counseling: report new cough or dyspnea",
+          "Teratogenicity counseling: contraception required; hold ≥3 months before conception",
+          "Sulfa allergy flagged — trimethoprim-containing drugs contraindicated",
+          "Sick day rule: hold methotrexate if febrile or dehydrated"
+        ],
+        "monitoring": [
+          "CBC + LFTs + SCr at baseline, 4 weeks, then q8–12 weeks"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_005",
+      "description": "Moderate-severe Crohn's disease (ileal) — Infliximab induction, low albumin",
+      "metadata": {
+        "medication": "Infliximab",
+        "primary_diagnosis_code": "K50.00",
+        "primary_diagnosis_label": "Crohn's disease of small intestine, moderate-severe",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00056789",
+          "first_name": "I",
+          "last_name": "J",
+          "dob": "1991-01-01",
+          "sex": "Male",
+          "age": 34,
+          "weight_kg": 78,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "K50.00",
+          "primary_diagnosis_label": "Crohn's disease of small intestine, moderate-severe",
+          "medication_name": "Infliximab",
+          "additional_diagnoses": "",
+          "weight_kg": "78",
+          "allergies": "None",
+          "medication_history": "",
+          "patient_records": "Male, 34y, 78 kg. Moderate-severe Crohn's disease (ileal). Labs: CRP 28, albumin 3.1, SCr 0.91, CBC WNL. TB screening: QuantiFERON negative. Allergies: None."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Moderate-severe Crohn's disease requiring biologic induction therapy",
+          "Infection risk due to immunosuppression",
+          "Risk of infusion reactions",
+          "Low albumin (3.1 g/dL) — increased drug clearance, reduced trough levels expected"
+        ],
+        "goals": [
+          "Clinical remission (reduction in CRP, symptom improvement)",
+          "No severe infusion reaction",
+          "Complete induction regimen (weeks 0, 2, 6)"
+        ],
+        "interventions": [
+          "Induction: 5 mg/kg IV at weeks 0, 2, 6 → 390 mg per infusion (78 kg)",
+          "Maintenance: 5 mg/kg IV q8 weeks",
+          "Infusion time: minimum 2 hours; observe 1–2h post-infusion",
+          "Pre-screening: TB (QuantiFERON — completed), HBV (must document), CBC, LFTs",
+          "Infection risk counseling: avoid live vaccines, report fever or infection immediately",
+          "Infusion reaction protocol: mild (slow rate + antihistamine) / severe (stop + epinephrine)",
+          "Low albumin → monitor trough infliximab level at week 14",
+          "Concomitant immunomodulator (azathioprine) consideration per GI"
+        ],
+        "monitoring": [
+          "Trough infliximab level at week 14 (given low albumin)",
+          "HBV status documented before first infusion",
+          "LFTs and CBC before each infusion"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_006",
+      "description": "ANCA-associated vasculitis (PR3+) — Rituximab, HBV core Ab positive",
+      "metadata": {
+        "medication": "Rituximab",
+        "primary_diagnosis_code": "M31.30",
+        "primary_diagnosis_label": "ANCA-associated vasculitis, PR3 positive",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00067890",
+          "first_name": "K",
+          "last_name": "L",
+          "dob": "1958-01-01",
+          "sex": "Female",
+          "age": 67,
+          "weight_kg": 61,
+          "bsa_m2": 1.67,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "M31.30",
+          "primary_diagnosis_label": "ANCA-associated vasculitis, PR3 positive",
+          "medication_name": "Rituximab",
+          "additional_diagnoses": "",
+          "weight_kg": "61",
+          "allergies": "None",
+          "medication_history": "",
+          "patient_records": "Female, 67y, 61 kg, BSA 1.67 m². ANCA-associated vasculitis (PR3+). Labs: SCr 1.8, eGFR 32, CBC: WBC 6.2, lymphocytes low-normal. HBV: surface Ag negative, core Ab positive (resolved infection). Allergies: None."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "ANCA-associated vasculitis requiring rituximab induction",
+          "HBV reactivation risk — core Ab positive (resolved infection)",
+          "PCP prophylaxis required during immunosuppression",
+          "Risk of infusion reactions",
+          "B-cell depletion — immunoglobulin monitoring required"
+        ],
+        "goals": [
+          "Disease remission (ANCA vasculitis)",
+          "No HBV reactivation",
+          "No severe infusion reaction"
+        ],
+        "interventions": [
+          "Dose option A: 375 mg/m² IV weekly × 4 → 626 mg/dose (1.67 m²)",
+          "Dose option B: 1000 mg IV × 2 doses, 2 weeks apart — confirm with nephrology",
+          "Infusion: start 50 mg/hr, increase by 50 mg/hr q30min to max 400 mg/hr",
+          "Premedication: Methylprednisolone 100 mg IV + Acetaminophen + Diphenhydramine",
+          "HBV reactivation: core Ab positive → antiviral prophylaxis (entecavir) required; monitor HBsAg/HBV DNA q3 months",
+          "PCP prophylaxis: trimethoprim-sulfamethoxazole (check allergy) during and 6–12 months post",
+          "Live vaccines contraindicated for ≥12 months post-rituximab"
+        ],
+        "monitoring": [
+          "Immunoglobulin levels at baseline; CD19/CD20 optional",
+          "HBsAg and HBV DNA q3 months",
+          "CBC monitoring"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_007",
+      "description": "Adult GH deficiency (post-pituitary adenoma resection) — Somatropin replacement",
+      "metadata": {
+        "medication": "Somatropin",
+        "primary_diagnosis_code": "E23.0",
+        "primary_diagnosis_label": "Adult-onset growth hormone deficiency",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00078901",
+          "first_name": "M",
+          "last_name": "N",
+          "dob": "1988-01-01",
+          "sex": "Male",
+          "age": 38,
+          "weight_kg": 82,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "E23.0",
+          "primary_diagnosis_label": "Adult-onset growth hormone deficiency (post-pituitary adenoma resection)",
+          "medication_name": "Somatropin",
+          "additional_diagnoses": "",
+          "weight_kg": "82",
+          "allergies": "None",
+          "medication_history": "",
+          "patient_records": "Male, 38y, 82 kg. Adult-onset GH deficiency following pituitary adenoma resection. Labs: IGF-1 85 ng/mL (low for age/sex), fasting glucose 98 mg/dL, HbA1c 5.6%. Allergies: None."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Adult GH deficiency requiring replacement therapy",
+          "Glucose intolerance risk (borderline HbA1c 5.6%) — GH can worsen insulin resistance",
+          "Active malignancy or intracranial lesion must be ruled out before initiating",
+          "Injection site management (lipohypertrophy risk)"
+        ],
+        "goals": [
+          "IGF-1 in mid-normal range for age and sex",
+          "No hyperglycemia (maintain HbA1c within acceptable range)",
+          "No fluid retention or carpal tunnel symptoms"
+        ],
+        "interventions": [
+          "Starting dose: 0.2 mg SQ daily — NOT weight-based (adult low-dose start)",
+          "Titrate by 0.1–0.2 mg q4–8 weeks based on IGF-1 and tolerability",
+          "Confirm tumor stability — GH is contraindicated with active malignancy or intracranial lesion",
+          "Injection site rotation counseling (lipohypertrophy risk)",
+          "Fluid retention counseling: report edema and carpal tunnel symptoms",
+          "Storage: refrigerated 2–8°C; do not freeze"
+        ],
+        "monitoring": [
+          "IGF-1 at 4–6 weeks after each dose change",
+          "Fasting glucose and HbA1c q6 months"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_008",
+      "description": "Severe persistent allergic asthma — Omalizumab, aspirin sensitivity",
+      "metadata": {
+        "medication": "Omalizumab",
+        "primary_diagnosis_code": "J45.51",
+        "primary_diagnosis_label": "Severe persistent allergic asthma",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00089012",
+          "first_name": "O",
+          "last_name": "P",
+          "dob": "1997-01-01",
+          "sex": "Female",
+          "age": 29,
+          "weight_kg": 71,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "J45.51",
+          "primary_diagnosis_label": "Severe persistent allergic asthma",
+          "medication_name": "Omalizumab",
+          "additional_diagnoses": "",
+          "weight_kg": "71",
+          "allergies": "Aspirin (bronchospasm)",
+          "medication_history": "",
+          "patient_records": "Female, 29y, 71 kg. Severe persistent allergic asthma. Baseline IgE 280 IU/mL, perennial allergen sensitized. Baseline FEV1 68% predicted. Allergies: Aspirin (bronchospasm)."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Severe persistent allergic asthma inadequately controlled on standard therapy",
+          "Anaphylaxis risk post-injection (highest first 3 doses; can occur after 1 year)",
+          "Aspirin/NSAID sensitivity — must reinforce avoidance",
+          "IgE levels unreliable for monitoring during treatment — do not retest"
+        ],
+        "goals": [
+          "Reduce asthma exacerbation frequency",
+          "Improve FEV1 toward normal predicted",
+          "No anaphylaxis event"
+        ],
+        "interventions": [
+          "Dose: 300 mg SQ q4 weeks per FDA dosing table (71 kg + IgE 280 IU/mL) — must verify against current Xolair PI before use",
+          "Administer as 2 SQ injections (max 150 mg per injection site)",
+          "Observation: 30–60 min post each injection; anaphylaxis kit available at site",
+          "Efficacy assessment at 16 weeks — discontinue if no response",
+          "Do not retest IgE during treatment (levels remain elevated up to 1 year post-discontinuation)",
+          "Aspirin and NSAID avoidance reinforced (existing sensitivity)",
+          "Continue inhaled corticosteroid — omalizumab is add-on therapy, not replacement"
+        ],
+        "monitoring": [
+          "Clinical response and exacerbation frequency assessed at 16 weeks",
+          "Parasitic infection monitoring in endemic areas"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_009",
+      "description": "Chronic lung disease of prematurity — Palivizumab RSV prophylaxis (infant)",
+      "metadata": {
+        "medication": "Palivizumab",
+        "primary_diagnosis_code": "P27.1",
+        "primary_diagnosis_label": "Chronic lung disease of prematurity (born 28 weeks GA)",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00090123",
+          "first_name": "Q",
+          "last_name": "R",
+          "dob": "2026-01-13",
+          "sex": "Unknown",
+          "age_months": 3,
+          "weight_kg": 4.2,
+          "note": "Fictional patient — infant"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "P27.1",
+          "primary_diagnosis_label": "Chronic lung disease of prematurity, born at 28 weeks GA",
+          "medication_name": "Palivizumab",
+          "additional_diagnoses": "",
+          "weight_kg": "4.2",
+          "allergies": "None known",
+          "medication_history": "",
+          "patient_records": "Infant, 3 months, 4.2 kg. Born at 28 weeks gestational age. Chronic lung disease of prematurity, currently on supplemental oxygen. Allergies: None known."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "High-risk infant for severe RSV infection (prematurity + chronic lung disease)",
+          "RSV prophylaxis required during RSV season"
+        ],
+        "goals": [
+          "No RSV-related hospitalization during RSV season",
+          "Complete full 5-dose prophylaxis series"
+        ],
+        "interventions": [
+          "Dose: 15 mg/kg IM q month × 5 doses → 63 mg IM per dose (4.2 kg × 15 mg/kg)",
+          "Max volume per injection site: 1 mL — split if >1 mL",
+          "Injection site: anterolateral thigh",
+          "Schedule doses to RSV season (typically November–March)",
+          "Recheck weight before each dose and recalculate (infant weight changes rapidly)",
+          "Document lot number for each dose",
+          "Prophylactic only — does not treat active RSV infection"
+        ],
+        "monitoring": [
+          "Weight before each dose (recalculate dose if significant change)",
+          "Lot number and date documented each administration"
+        ]
+      },
+      "runs": []
+    },
+    {
+      "id": "case_010",
+      "description": "Non-valvular atrial fibrillation — Warfarin initiation, amiodarone interaction",
+      "metadata": {
+        "medication": "Warfarin",
+        "primary_diagnosis_code": "I48.19",
+        "primary_diagnosis_label": "Non-valvular atrial fibrillation",
+        "fictional": true
+      },
+      "input": {
+        "patient": {
+          "mrn": "00001234",
+          "first_name": "S",
+          "last_name": "T",
+          "dob": "1952-01-01",
+          "sex": "Male",
+          "age": 74,
+          "weight_kg": 79,
+          "note": "Fictional patient"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "I48.19",
+          "primary_diagnosis_label": "Non-valvular atrial fibrillation, CHA₂DS₂-VASc = 4",
+          "medication_name": "Warfarin",
+          "additional_diagnoses": "",
+          "weight_kg": "79",
+          "allergies": "None",
+          "medication_history": "Amiodarone 200mg PO daily",
+          "patient_records": "Male, 74y, 79 kg. Non-valvular atrial fibrillation, CHA₂DS₂-VASc = 4. Labs: INR 1.1 (baseline), SCr 1.1, eGFR 58. Current medications: Amiodarone 200 mg daily (CYP2C9 inhibitor — significant warfarin interaction). Allergies: None."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Non-valvular AFib requiring anticoagulation (CHA₂DS₂-VASc = 4 — high stroke risk)",
+          "Major drug interaction: amiodarone inhibits CYP2C9 → significantly potentiates warfarin effect, INR elevation expected over weeks to months",
+          "Bleeding risk in elderly anticoagulated patient",
+          "Fall risk — age 74, anticoagulated"
+        ],
+        "goals": [
+          "Target INR: 2.0–3.0 for non-valvular AF",
+          "No major bleeding events",
+          "Stroke prevention"
+        ],
+        "interventions": [
+          "Starting dose: 2–2.5 mg PO daily (reduced 30–50% from standard 5 mg due to amiodarone/CYP2C9 inhibition)",
+          "Amiodarone interaction explicitly documented — anticipate delayed INR rise over weeks to months (long amiodarone half-life)",
+          "Dietary counseling: consistent vitamin K intake; avoid major fluctuations in leafy greens",
+          "Bleeding risk counseling: report unusual bruising, blood in urine/stool, prolonged bleeding",
+          "Drug interaction alert: NSAIDs, antibiotics, antifungals — counsel to notify before starting any new medication",
+          "Fall risk assessment documented",
+          "HAS-BLED score documented",
+          "CHA₂DS₂-VASc score documented"
+        ],
+        "monitoring": [
+          "INR daily × 3–5 days after initiation, then per titration schedule; stable goal q4 weeks",
+          "Monitor for delayed INR rise due to amiodarone's long half-life"
+        ]
+      },
+      "runs": []
     }
   ]
 }
