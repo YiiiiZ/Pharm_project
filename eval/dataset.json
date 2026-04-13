@@ -76,40 +76,177 @@
           "truncated": true,
           "evaluation": {
             "facts_labeled": [
-              {"claim": "Active MG with ptosis, weakness, dysarthria — need for IVIG", "label": "CORRECT", "golden_item": "Need for rapid immunomodulation"},
-              {"claim": "Baseline FVC 2.8 L (70% predicted)", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Pyridostigmine — cholinergic excess risk during IVIG", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
-              {"claim": "Prednisone — adrenal suppression, hyperglycemia risk", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
-              {"claim": "Lisinopril + IVIG → hypotension/flushing risk", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
-              {"claim": "Omeprazole — no direct IVIG interaction", "label": "CORRECT", "golden_item": "Drug-drug interactions"},
-              {"claim": "Risk of infusion-related reactions (headache, fever, chills, nausea)", "label": "CORRECT", "golden_item": "Risk of infusion-related reactions"},
-              {"claim": "Risk of aseptic meningitis", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Risk of hemolysis", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Risk of thromboembolism", "label": "CORRECT", "golden_item": "Risk of thromboembolic events"},
-              {"claim": "Risk of renal dysfunction", "label": "CORRECT", "golden_item": "Risk of renal dysfunction or volume overload"},
-              {"claim": "Volume overload risk not mentioned", "label": "MISSING", "golden_item": "Risk of renal dysfunction or volume overload"},
-              {"claim": "β-blockers, fluoroquinolones, aminoglycosides, IV Mg, macrolides interaction not mentioned", "label": "MISSING", "golden_item": "Drug-drug interactions: avoid β-blockers, fluoroquinolones, aminoglycosides, IV magnesium, macrolides"},
-              {"claim": "Baseline IgG 10 g/L; post-infusion IgG monitoring warranted", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Complete 5 IVIG infusion days", "label": "CORRECT", "golden_item": "Complete full 2 g/kg course with documented monitoring"},
-              {"claim": "Hemodynamic targets: SBP ≥90, HR 50–110, SpO2 ≥95%", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Prevent infusion reactions via premedication", "label": "CORRECT", "golden_item": "No severe infusion reaction, no acute kidney injury"},
-              {"claim": "Maintain renal function (SCr ≤0.90, eGFR >90)", "label": "CORRECT", "golden_item": "No severe infusion reaction, no acute kidney injury"},
-              {"claim": "Clinical improvement in MG symptoms at 2–4 weeks post-infusion", "label": "INCORRECT", "golden_item": "Achieve clinically meaningful improvement in muscle strength within 2 weeks", "note": "Golden: within 2 weeks; care plan says 2–4 weeks post-completion"},
-              {"claim": "FVC ≥80% predicted target", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Post-infusion IgG ≥15–20 g/L target", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Reassess immunosuppressive regimen long-term", "label": "FABRICATED", "golden_item": null},
-              {"claim": "Patient education on IVIG purpose, side effects, when to call", "label": "CORRECT", "golden_item": "Patient education / adherence gap"},
-              {"claim": "Sucrose-free IVIG product selection + dose verification 28.8 g/day × 5 days", "label": "CORRECT", "golden_item": "Total dose: 2 g/kg × 72 kg = 144 g; daily dose: 0.4 g/kg/day × 5 days = 28.8 g/day"},
-              {"claim": "Cold-chain integrity / lot number verification", "label": "CORRECT", "golden_item": "Product lot number documented"},
-              {"claim": "Premedication 30–60 min: Acetaminophen 650–1000 mg + diphenhydramine 25–50 mg", "label": "CORRECT", "golden_item": "Premedication: Acetaminophen 650 mg + Diphenhydramine 25–50 mg PO 30–60 min pre-infusion"},
-              {"claim": "Slow-start infusion rate protocol", "label": "CORRECT", "golden_item": "Initial infusion rate: 0.5 mL/kg/hr × 30 min, then titrate up"},
-              {"claim": "BP monitoring given concurrent Lisinopril", "label": "CORRECT", "golden_item": "Vitals q15 min × 1hr, then q30 min during infusion"},
-              {"claim": "Hydration for renal protection mentioned in goals", "label": "CORRECT", "golden_item": "Hydration & renal protection"},
-              {"claim": "Adverse event management section missing (truncated)", "label": "MISSING", "golden_item": "Adverse event protocol: mild (slow rate) / severe (stop + epinephrine)"},
-              {"claim": "Thrombosis risk assessment not documented", "label": "MISSING", "golden_item": "Thrombosis risk assessment documented"},
-              {"claim": "FVC baseline and daily monitoring not mentioned", "label": "MISSING", "golden_item": "FVC baseline and daily"},
-              {"claim": "Pre-infusion CBC, BMP not explicitly ordered", "label": "MISSING", "golden_item": "CBC, BMP, baseline vitals before first infusion"},
-              {"claim": "SCr/BUN post-course monitoring missing (truncated)", "label": "MISSING", "golden_item": "SCr/BUN pre-course and 3–7 days post-course"}
+              {
+                "claim": "Active MG with ptosis, weakness, dysarthria — need for IVIG",
+                "label": "CORRECT",
+                "golden_item": "Need for rapid immunomodulation"
+              },
+              {
+                "claim": "Baseline FVC 2.8 L (70% predicted)",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Pyridostigmine — cholinergic excess risk during IVIG",
+                "label": "CORRECT",
+                "golden_item": "Drug-drug interactions"
+              },
+              {
+                "claim": "Prednisone — adrenal suppression, hyperglycemia risk",
+                "label": "CORRECT",
+                "golden_item": "Drug-drug interactions"
+              },
+              {
+                "claim": "Lisinopril + IVIG → hypotension/flushing risk",
+                "label": "CORRECT",
+                "golden_item": "Drug-drug interactions"
+              },
+              {
+                "claim": "Omeprazole — no direct IVIG interaction",
+                "label": "CORRECT",
+                "golden_item": "Drug-drug interactions"
+              },
+              {
+                "claim": "Risk of infusion-related reactions (headache, fever, chills, nausea)",
+                "label": "CORRECT",
+                "golden_item": "Risk of infusion-related reactions"
+              },
+              {
+                "claim": "Risk of aseptic meningitis",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Risk of hemolysis",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Risk of thromboembolism",
+                "label": "CORRECT",
+                "golden_item": "Risk of thromboembolic events"
+              },
+              {
+                "claim": "Risk of renal dysfunction",
+                "label": "CORRECT",
+                "golden_item": "Risk of renal dysfunction or volume overload"
+              },
+              {
+                "claim": "Volume overload risk not mentioned",
+                "label": "MISSING",
+                "golden_item": "Risk of renal dysfunction or volume overload"
+              },
+              {
+                "claim": "β-blockers, fluoroquinolones, aminoglycosides, IV Mg, macrolides interaction not mentioned",
+                "label": "MISSING",
+                "golden_item": "Drug-drug interactions: avoid β-blockers, fluoroquinolones, aminoglycosides, IV magnesium, macrolides"
+              },
+              {
+                "claim": "Baseline IgG 10 g/L; post-infusion IgG monitoring warranted",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Complete 5 IVIG infusion days",
+                "label": "CORRECT",
+                "golden_item": "Complete full 2 g/kg course with documented monitoring"
+              },
+              {
+                "claim": "Hemodynamic targets: SBP ≥90, HR 50–110, SpO2 ≥95%",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Prevent infusion reactions via premedication",
+                "label": "CORRECT",
+                "golden_item": "No severe infusion reaction, no acute kidney injury"
+              },
+              {
+                "claim": "Maintain renal function (SCr ≤0.90, eGFR >90)",
+                "label": "CORRECT",
+                "golden_item": "No severe infusion reaction, no acute kidney injury"
+              },
+              {
+                "claim": "Clinical improvement in MG symptoms at 2–4 weeks post-infusion",
+                "label": "INCORRECT",
+                "golden_item": "Achieve clinically meaningful improvement in muscle strength within 2 weeks",
+                "note": "Golden: within 2 weeks; care plan says 2–4 weeks post-completion"
+              },
+              {
+                "claim": "FVC ≥80% predicted target",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Post-infusion IgG ≥15–20 g/L target",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Reassess immunosuppressive regimen long-term",
+                "label": "FABRICATED",
+                "golden_item": null
+              },
+              {
+                "claim": "Patient education on IVIG purpose, side effects, when to call",
+                "label": "CORRECT",
+                "golden_item": "Patient education / adherence gap"
+              },
+              {
+                "claim": "Sucrose-free IVIG product selection + dose verification 28.8 g/day × 5 days",
+                "label": "CORRECT",
+                "golden_item": "Total dose: 2 g/kg × 72 kg = 144 g; daily dose: 0.4 g/kg/day × 5 days = 28.8 g/day"
+              },
+              {
+                "claim": "Cold-chain integrity / lot number verification",
+                "label": "CORRECT",
+                "golden_item": "Product lot number documented"
+              },
+              {
+                "claim": "Premedication 30–60 min: Acetaminophen 650–1000 mg + diphenhydramine 25–50 mg",
+                "label": "CORRECT",
+                "golden_item": "Premedication: Acetaminophen 650 mg + Diphenhydramine 25–50 mg PO 30–60 min pre-infusion"
+              },
+              {
+                "claim": "Slow-start infusion rate protocol",
+                "label": "CORRECT",
+                "golden_item": "Initial infusion rate: 0.5 mL/kg/hr × 30 min, then titrate up"
+              },
+              {
+                "claim": "BP monitoring given concurrent Lisinopril",
+                "label": "CORRECT",
+                "golden_item": "Vitals q15 min × 1hr, then q30 min during infusion"
+              },
+              {
+                "claim": "Hydration for renal protection mentioned in goals",
+                "label": "CORRECT",
+                "golden_item": "Hydration & renal protection"
+              },
+              {
+                "claim": "Adverse event management section missing (truncated)",
+                "label": "MISSING",
+                "golden_item": "Adverse event protocol: mild (slow rate) / severe (stop + epinephrine)"
+              },
+              {
+                "claim": "Thrombosis risk assessment not documented",
+                "label": "MISSING",
+                "golden_item": "Thrombosis risk assessment documented"
+              },
+              {
+                "claim": "FVC baseline and daily monitoring not mentioned",
+                "label": "MISSING",
+                "golden_item": "FVC baseline and daily"
+              },
+              {
+                "claim": "Pre-infusion CBC, BMP not explicitly ordered",
+                "label": "MISSING",
+                "golden_item": "CBC, BMP, baseline vitals before first infusion"
+              },
+              {
+                "claim": "SCr/BUN post-course monitoring missing (truncated)",
+                "label": "MISSING",
+                "golden_item": "SCr/BUN pre-course and 3–7 days post-course"
+              }
             ],
             "metrics": {
               "TP": 13,
@@ -120,6 +257,108 @@
               "f1": 0.62
             },
             "notes": "Evaluated against v1 golden. Re-evaluated against v2 golden (2026-04-13): FN increases from 5 to 7 due to additional required items (FVC daily, thrombosis risk assessment, specific MG-exacerbating drug interactions). Care plan truncated — accounts for most FN."
+          }
+        },
+        {
+          "run_id": "run_002",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "max_tokens",
+          "truncated": true,
+          "care_plan_text": "# CLINICAL CARE PLAN — SPECIALTY PHARMACY\n---\n**Patient:** A B | **MRN:** 00012345 | **DOB:** 1979-06-08 | **Sex:** Female | **Weight:** 72 kg\n**Diagnosis:** Generalized Myasthenia Gravis, AChR Ab+, MGFA Class IIb (G70.01)\n**Referring Provider:** test (NPI: 1234567)\n**Plan Generated:** 2025-10-15\n**Pharmacist:** [Clinical Pharmacist, Specialty Pharmacy]\n\n---\n\n## 1. PROBLEM LIST\n\n**1. Active Neurological Problem — Generalized Myasthenia Gravis (AChR Ab+, MGFA Class IIb)**\n- Progressive bulbar and proximal limb weakness over 2 weeks with bilateral ptosis, dysarthria after repeated use, and fatigable proximal weakness (4/5 bilaterally)\n- Baseline FVC 2.8 L (70% predicted), indicating subclinical respiratory compromise without current overt distress; warrants close monitoring for impending myasthenic crisis\n- Requires urgent immunomodulatory therapy with IVIG for rapid symptomatic stabilization\n\n**2. IVIG Therapy Initiation — Risk Management**\n- Patient is IVIG-naïve; increased risk of first-infusion systemic reactions (headache, flushing, fever, chills, nausea)\n- Risks of IVIG class-related adverse effects include: aseptic meningitis, hemolysis, thromboembolic events (DVT/PE/stroke), transfusion-related acute lung injury (TRALI), and acute kidney injury (AKI), particularly with sucrose-containing formulations\n- No IgA deficiency identified; anaphylaxis risk from anti-IgA antibodies is not applicable\n- Baseline IgG 10 g/L (normal range); not hypo- or hypergammaglobulinemic at baseline\n\n**3. Respiratory Risk**\n- FVC at 70% predicted; FVC <50% predicted or <1.0 L is a threshold for mechanical ventilation consideration\n- Bulbar involvement (slurred speech) increases aspiration risk and may accelerate respiratory decompensation\n- Patient requires serial pulmonary function monitoring throughout treatment course\n\n**4. Hypertension (Controlled)**\n- Currently managed with Lisinopril 10 mg PO daily; BP 128/78 at baseline (well controlled)\n- IVIG-associated hypertension or hypotension may occur intraprocedurally; hemodynamic changes require vigilance\n- High-dose IVIG may transiently affect blood viscosity and vascular tone\n\n**5. GERD**\n- Managed with Omeprazole 20 mg PO daily\n- High-dose corticosteroid use (Prednisone 10 mg/day) augments GI mucosal risk; current PPI coverage is appropriate\n- Prolonged recumbency during infusion may exacerbate reflux symptoms\n\n**6. Polypharmacy / Drug Interaction Review**\n- Current regimen: Pyridostigmine 60 mg PO q6h PRN, Prednisone 10 mg PO daily, Lisinopril 10 mg PO daily, Omeprazole 20 mg PO daily\n- No absolute contraindications identified with IVIG\n- Pyridostigmine dosing may require reassessment as IVIG effect begins (typically days 3–5); over-cholinergic symptoms (increased secretions, bradycardia, muscle cramps) may emerge if neuromuscular function improves rapidly\n\n---\n\n## 2. GOALS\n\n**Therapeutic Goals**\n\n| # | Goal | Target / Timeframe |\n|---|------|--------------------|\n| 2.1 | Complete full IVIG course safely | 0.4 g/kg/day × 5 days = 28.8 g/day; total dose 144 g over Days 1–5 |\n| 2.2 | Achieve clinical improvement in MG symptoms | Reduction in ptosis, improved fatigable weakness, and improved or stable speech by Day 7–14 |\n| 2.3 | Maintain respiratory stability throughout course | FVC remains ≥50% predicted (≥2.0 L); SpO2 ≥95% on room air |\n| 2.4 | Prevent and promptly identify IVIG-related adverse effects | Zero serious adverse events attributable to IVIG; early detection and management of infusion reactions |\n| 2.5 | Maintain hemodynamic stability during infusions | BP within 20% of baseline; HR 60–100 bpm; no symptomatic hypotension or hypertensive urgency |\n| 2.6 | Preserve renal function | SCr remains within 25% of baseline (≤0.98 mg/dL); adequate hydration maintained |\n| 2.7 | Optimize pyridostigmine utilization as IVIG effect evolves | Avoid cholinergic excess; reassess PRN dosing frequency by Day 5 |\n| 2.8 | Patient education and engagement | Patient verbalizes understanding of IVIG purpose, expected timeline of response, infusion process, and symptoms to report |\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3.1 IVIG Product Selection and Order Verification\n\n- **Select a sucrose-free, low-sodium IVIG formulation** (e.g., Octagam 10%, Gamunex-C 10%, or Privigen 10%) given normal renal function (eGFR >90) but to minimize risk of sucrose-induced osmotic nephropathy as a precautionary best practice\n- **Verify ordered dose:** 0.4 g/kg/day × 72 kg = 28.8 g/day × 5 days = 144 g total — **confirmed accurate; approve as written**\n- Confirm lot number, expiration date, cold-chain integrity, and product appearance prior to each daily dispensing\n- Document product name, manufacturer, lot number, and expiration per regulatory requirements for traceability (per USP <797> and ISMP standards)\n\n### 3.2 Premedication Protocol\n\n- **Acetaminophen 650–1000 mg PO** administered 30–60 minutes prior to each infusion to reduce headache and fever reactions\n- **Diphenhydramine 25–50 mg PO (or IV if needed)** administered 30–60 minutes prior to each infusion to reduce urticarial and flush reactions\n- Counsel infusion nursing staff: premedications are to be administered consistently before **each of the 5 infusions**, not only Day 1\n- Document premedication administration in infusion record daily\n\n### 3.3 Infusion Rate Protocol\n\n- **Day 1 initiation:** Begin at 0.5 mg/kg/min (approximately 36 mg/min or ~21 mL/hr for a 10% solution), increasing incrementally every 30 minutes as tolerated:\n  - 0.5 → 1.0 → 2.0 → 3.0 mg/kg/min (maximum 3–4 mg/kg/min per product labeling)\n- **Days 2–5:** If Day 1 was well tolerated with no reactions, may initiate at 1.0 mg/kg/min and titrate to max rate per protocol, reducing total infusion time\n- Instruct nursing staff to **slow or stop infusion** immediately for systemic reactions (rigors, chest tightness, severe headache, hypotension, desaturation)\n- Infusion rate titration decisions to be coordinated with infusion nursing staff and communicated to pharmacist\n\n### 3.4 Hydration Strategy\n\n- **Encourage oral hydration:** 1.5–2 L/day of water during each infusion day to reduce blood viscosity and mitigate AKI risk\n- If patient is unable to maintain adequate oral intake or demonstrates nausea/vomiting during infusion, coordinate with prescribing neurologist to consider IV hydration supplementation\n- Avoid overhydration (risk of fluid overload not prominent at current cardiac/renal baseline, but note bulbar weakness limits safe oral intake speed)\n\n### 3.5 Thromboembolic Prophylaxis\n\n- Assess DVT risk: patient is female, on high-dose IVIG (increases blood viscosity), bulbar/limb weakness (reduces mobility); IVIG-induced hypercoagulability is a recognized class risk\n- **Discuss with neurologist:** need for pharmacologic DVT prophylaxis (e.g., low-dose aspirin 81 mg or LMWH) during 5-day course, particularly given reduced mobility from limb weakness\n- Encourage ambulation where safe; advise nursing staff on compression stockings during prolonged infusion sessions\n- Document prophylaxis decision and rationale in care plan\n\n### 3.6 Drug Interaction and Regimen Management\n\n- **Pyridostigmine:** Confirm patient continues PRN dosing; educate patient that IVIG clinical effect may not be apparent until Days 5–14 post-initiation; advise against abrupt reduction of pyridostigmine without neurologist guidance\n- **Prednisone:** No interaction with IVIG; continue at current dose; note GI protection with Omeprazole is appropriate — no change needed\n- **Lisinopril:** Monitor BP closely during infusions; hold dose on infusion days only if symptomatic hypotension occurs (consult physician before holding)\n- **Live vaccines:** Flag in chart — IVIG will interfere with live-attenuated vaccine immunogenicity for approximately 3–11 months post-administration; defer any scheduled live vaccines accordingly\n\n### 3.7 Patient Education\n\nProvide verbal and written education (literacy-appropriate) covering:\n\n- **Purpose of IVIG:** Explanation that IVIG is a blood-derived protein product used to modulate the immune system; it does not permanently treat MG but provides rapid, temporary symptom control (weeks to months) while long-term immunotherapy (e.g., prednisone, steroidsparing agents) is optimized\n- **Expected timeline of response:** Clinical improvement is typically observed within 1–4 weeks; full effect may take up to 4–6 weeks\n- **Infusion process:** Each infusion will take approximately 4–6 hours; patient should remain with the infusion nurse throughout; IV access will be placed at each visit\n- **Common side effects to expect:** Headache, fatigue, flushing, nausea — typically mild and managed with premedications and rate reduction\n- **Symptoms requiring immediate reporting:** Severe headache (aseptic meningitis), chest pain or shortness of breath (thromboembolic event or TRALI), decreased urine output or flank pain (AKI), rash or hives (allergic reaction), worsening weakness or difficulty breathing (disease progression/myasthenic crisis)\n- **Pyridostigmine use during IVIG course:** Continue PRN as directed; do not self-adjust without consulting neurology\n- Provide pharmacy 24/7 on-call contact number for after-hours questions or concerns\n\n---\n\n## 4. MONITORING PLAN\n\n### 4.1 Pre-Infusion Assessment (Each Day, Days 1–5)\n\n| Parameter | Action / Threshold |\n|-----------|-------------------|\n| **Vital signs** (BP, HR, RR, SpO2, Temp) | Document; hold infusion if SBP >180 or <90, HR >110 or <50, SpO2 <93%, or Temp >38.5°C; notify physician |\n| **Symptom review** | Assess for new or worsening weakness, dyspnea, dysphagia, or voice change; escalate to neurology if FVC concern |\n| **IV access patency** | Verify before each infusion; peripheral IV preferred; document gauge and site |\n| **Premedication administration** | Confirm acetaminophen and diphenhydramine given 30–60 min prior; document |\n| **Weight** | Record daily; sudden gain (>1–2 kg/day) may indicate fluid retention |\n| **Pyridostigmine use log** | Review PRN use frequency; flag if use increasing (worsening MG) or decreasing (improvement or toxicity) |\n\n### 4.2 Intra-Infusion Monitoring (Each Infusion Day)\n\n| Parameter | Frequency | Threshold for Action |\n|-----------|-----------|----------------------|\n| **BP and HR** | Every 30 min during rate escalation; every 60 min at stable rate | SBP change >20% from baseline → slow rate; SBP >180 or <90 → stop, notify physician |\n| **SpO2** | Continuous pulse oximetry | SpO2 <93% → stop infusion, assess airway, notify physician immediately |\n| **Infusion site** | Each rate change | Erythema, swelling, extravasation → discontinue at site, restart new IV |\n| **Symptom assessment** | Each nurse check (q30–60 min) | Rigors, flushing, severe headache, chest tightness → slow or stop infusion; administer rescue antihistamine ± corticosteroid per protocol |\n| **Rate escalation documentation** | Real-time | Document each rate change, time, and patient tolerance |\n\n### 4.3 Post-Infusion Assessment (Day of Infusion, Before Discharge)\n\n- Vital signs stable at baseline for ≥30 minutes post-infusion completion before discharge\n- Reassess IV site; document condition\n- Patient verbalizes no new symptoms; review warning signs before each discharge\n- Document infusion completion time, total volume, product lot number\n\n### 4.4 Laboratory Monitoring\n\n| Lab | Timing | Rationale |\n|-----|--------|-----------|\n| **SCr / BUN / eGFR** | Baseline (done: SCr 0.78, eGFR >90), Day 3, Day 5, and 7 days post-completion | Detect IVIG-associated AKI; >25% rise from baseline warrants nephrology consultation and product reassessment |\n| **CBC with differential** | Baseline (WNL), Day 5 or if clinically indicated | Monitor for IVIG-associated hemolysis (hemoglobin drop, reticulocytosis), neutropenia |\n| **Hemolysis workup** (LDH, haptoglobin, direct Coombs, reticulocyte count) | Only if Hgb drops ≥1 g/dL from baseline | IVIG-associated hemolytic anemia, more common with blood groups A, B, or AB at high cumulative doses |\n| **IgG trough level** | 4 weeks post-completion | Verify adequate IgG rise; assess need for repeat dosing based on clinical response |\n| **BMP** | Day 3, Day 5 | Electrolyte stability, particularly sodium (pseudohyponatremia possible with high protein load); renal function |\n\n### 4.5 Neurological / Functional Monitoring\n\n| Parameter | Timing | Method |\n|-----------|--------|--------|\n| **MG symptom severity** | Daily Days 1–5; then Day 14 and Day 28 post-completion | QMG score or MG-ADL scale; document ptosis, diplopia, dysarthria, limb strength, swallowing |\n| **Pulmonary function (FVC)** | Baseline (2.8 L, 70%), Day 3, Day 5, Day 14 | FVC <50% predicted (<2.0 L) or rapid decline → urgent neurology notification; consider hospital-level monitoring |\n| **Bulbar function** | Each visit | Assess speech clarity, swallowing safety; consult speech therapy if worsening dysphagia noted |\n| **Respiratory distress screen** | Each visit and intra-infusion | Paradoxical breathing, accessory muscle use, inability to count to 20 in single breath → emergent escalation |\n\n### 4.6 Thromboembolic Monitoring\n\n- Assess for signs/symptoms of DVT (unilateral leg swelling, erythema, pain) and PE (chest pain, dyspnea, tachycardia) at each pre-infusion assessment and at Day 14 follow-up\n- Document mobility status daily; encourage movement during infusion as clinically safe\n- If thromboembolic event suspected: stop infusion, notify physician, initiate urgent workup (Doppler ultrasound, CT-PA as indicated)\n\n### 4.7 Follow-Up and Longitudinal Plan\n\n| Timeframe | Action |\n|-----------|--------|\n| **Day 5** | Final infusion completed; full pharmacist and nursing review; communicate course summary to referring neurologist (Dr. test) |\n| **Day 7 post-completion** | Phone follow-up by pharmacist: assess for delayed reactions (aseptic meningitis, hemolysis), medication adherence, symptom trajectory |\n| **Day 14** | Neu",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Need for rapid immunomodulation to reduce myasthenic symptoms",
+                "covered": false
+              },
+              {
+                "item": "Risk of infusion-related reactions",
+                "covered": true
+              },
+              {
+                "item": "Risk of renal dysfunction or volume overload",
+                "covered": true
+              },
+              {
+                "item": "Risk of thromboembolic events",
+                "covered": true
+              },
+              {
+                "item": "Drug-drug interactions: avoid β-blockers, fluoroquinolones, aminoglycosides, IV magnesium, and macrolides (can exacerbate MG)",
+                "covered": false
+              },
+              {
+                "item": "Patient education / adherence gap",
+                "covered": true
+              },
+              {
+                "item": "Achieve clinically meaningful improvement in muscle strength within 2 weeks",
+                "covered": true
+              },
+              {
+                "item": "No severe infusion reaction, no acute kidney injury",
+                "covered": true
+              },
+              {
+                "item": "Complete full 2 g/kg course (144 g) with documented monitoring",
+                "covered": true
+              },
+              {
+                "item": "Total dose: 2 g/kg × 72 kg = 144 g; daily dose: 0.4 g/kg/day × 5 days = 28.8 g/day",
+                "covered": true
+              },
+              {
+                "item": "Premedication: Acetaminophen 650 mg + Diphenhydramine 25–50 mg PO 30–60 min pre-infusion",
+                "covered": true
+              },
+              {
+                "item": "Initial infusion rate: 0.5 mL/kg/hr × 30 min, then titrate up",
+                "covered": true
+              },
+              {
+                "item": "Hydration & renal protection",
+                "covered": true
+              },
+              {
+                "item": "Adverse event protocol: mild (slow rate) / severe (stop + epinephrine)",
+                "covered": false
+              },
+              {
+                "item": "Product lot number documented",
+                "covered": true
+              },
+              {
+                "item": "Thrombosis risk assessment documented",
+                "covered": false
+              },
+              {
+                "item": "Vitals q15 min × 1hr, then q30 min during infusion",
+                "covered": true
+              },
+              {
+                "item": "FVC baseline and daily",
+                "covered": true
+              },
+              {
+                "item": "SCr/BUN pre-course and 3–7 days post-course",
+                "covered": true
+              },
+              {
+                "item": "CBC, BMP, baseline vitals before first infusion",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 16,
+              "FP": 9,
+              "FN": 4,
+              "precision": 0.64,
+              "recall": 0.8,
+              "f1": 0.71
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
           }
         }
       ]
@@ -186,7 +425,98 @@
           "Repeat blood cultures at 48–72h to confirm clearance"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** C D | **MRN:** 00023456 | **DOB:** 1963-01-01 | **Sex:** Male | **Weight:** 85 kg\n**Diagnosis:** A49.02 — MRSA Bacteremia | **Referring Provider:** test (NPI: 1234567)\n**Allergies:** Penicillin (rash)\n**Date Generated:** 2025-07-14\n\n---\n\n## 1. PROBLEM LIST\n\n| # | Problem | Relevance |\n|---|---------|-----------|\n| 1 | **MRSA Bacteremia** (confirmed blood cultures) | Primary indication for vancomycin therapy |\n| 2 | **Chronic Kidney Disease / Renal Impairment** | SCr 1.4 mg/dL; eGFR 45 mL/min/1.73m² — Stage 3a CKD; increases risk of vancomycin accumulation and nephrotoxicity |\n| 3 | **Vancomycin Dosing Complexity** | Requires AUC-guided dosing given CKD; standard weight-based dosing without adjustment risks toxicity |\n| 4 | **Penicillin Allergy (Rash)** | Documented allergy; alternative beta-lactam adjuncts (e.g., anti-staphylococcal penicillins) are contraindicated; vancomycin is appropriate first-line agent |\n| 5 | **Risk for Nephrotoxicity** | Baseline renal impairment combined with vancomycin therapy significantly elevates risk of further AKI |\n| 6 | **Risk for Vancomycin-Associated Ototoxicity** | Particularly relevant if supratherapeutic exposure occurs |\n| 7 | **Source Control Unknown** | No documentation of echocardiogram, line removal, or infectious source evaluation in provided records |\n\n---\n\n## 2. GOALS\n\n### Short-Term Goals (0–72 hours)\n- **Achieve target AUC/MIC of 400–600 mg·h/L** per ASHP/IDSA/SIDP 2020 consensus guidelines for serious MRSA infections, using AUC-guided monitoring\n- **Initiate vancomycin at a dose adjusted for renal function** to prevent early supratherapeutic exposure\n- **Obtain vancomycin levels (Bayesian-estimated AUC)** with first steady-state levels drawn after dose 3–4 (or earlier per Bayesian software recommendation)\n- **Confirm MRSA susceptibility** — obtain vancomycin MIC via broth microdilution; target organism MIC ≤ 1 mg/L for optimal AUC/MIC attainment\n\n### Intermediate Goals (72 hours–2 weeks)\n- **Maintain stable renal function** — prevent vancomycin-associated AKI (defined as SCr increase ≥ 0.5 mg/dL or ≥ 50% above baseline on ≥ 2 consecutive measurements)\n- **Confirm blood culture clearance** — repeat blood cultures every 24–48 hours until two consecutive negative sets are documented\n- **Complete recommended duration of therapy** — minimum **14 days** from first negative blood culture for uncomplicated MRSA bacteremia; extended duration (4–6 weeks) if endocarditis, septic emboli, or metastatic infection is identified\n- **Coordinate with Infectious Disease** for evaluation of source (echocardiography, vascular access review, musculoskeletal imaging as indicated)\n\n### Long-Term Goals\n- **Resolution of MRSA bacteremia** with no relapse or metastatic complications\n- **Preserve renal function** — return SCr/eGFR to baseline or prevent further decline\n- **Successful transition planning** — assess feasibility and safety of outpatient parenteral antibiotic therapy (OPAT) when clinically stable\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### A. Vancomycin Dosing — AUC-Guided Strategy\n\n**Initial Dose Calculation (Renal-Adjusted):**\n\n| Parameter | Value |\n|-----------|-------|\n| Weight | 85 kg |\n| SCr | 1.4 mg/dL |\n| Age | 62 years |\n| Estimated CrCl (Cockcroft-Gault) | ~42 mL/min |\n| Estimated Vd | ~0.7 L/kg → ~59.5 L |\n| Target AUC₂₄ | 400–600 mg·h/L |\n\n> **Recommended Initial Regimen:**\n> - **Loading Dose:** Vancomycin **25 mg/kg IV × 1** = **2,125 mg** (round to **2,000–2,125 mg**); infuse over 3–4 hours to reduce infusion-related reactions\n> - **Maintenance Dose:** Vancomycin **1,000–1,250 mg IV q24h** (extended interval given eGFR ~45 mL/min)\n> - Infuse each maintenance dose over a minimum of **60–90 minutes per 500 mg** (never exceed 10–15 mg/min rate)\n> - Adjust based on Bayesian pharmacokinetic modeling (preferred method per 2020 guidelines)\n\n> ⚠️ *Note: Exact dose should be confirmed/refined using institution-approved Bayesian software (e.g., DoseMeRx, InsightRx, JPKD) incorporating patient-specific PK parameters.*\n\n### B. Allergy Review\n- Penicillin allergy (rash) documented — **no cross-reactivity concern with vancomycin**\n- Vancomycin is the **appropriate and safe first-line agent** for MRSA bacteremia in this patient\n- If adjunctive therapy is considered (e.g., rifampin for complex infections), ensure no additional allergy conflicts; document allergy assessment in the care plan\n\n### C. Clinical Recommendations to Prescriber\n1. **Request Infectious Disease (ID) consultation** if not already engaged — essential for management of MRSA bacteremia, source evaluation, and duration guidance\n2. **Order transthoracic echocardiogram (TTE)** — recommended for all patients with MRSA bacteremia to rule out infective endocarditis (IE); transesophageal echocardiogram (TEE) preferred if TTE is non-diagnostic or high clinical suspicion\n3. **Remove or replace any central venous catheters** — catheter-related bloodstream infection should be presumed until excluded; remove tunneled lines or ports in the setting of MRSA bacteremia\n4. **Repeat blood cultures every 24–48 hours** until documented clearance\n5. **Order baseline audiogram** if prolonged course (>2 weeks) is anticipated, given baseline renal impairment and ototoxicity risk\n\n### D. Patient / Caregiver Education (OPAT Preparation)\n- Educate patient on:\n  - Purpose of vancomycin and importance of completing full course\n  - Signs and symptoms of infusion reactions (flushing, rash — \"Red Man Syndrome\") and to slow/stop infusion and contact pharmacy/provider\n  - Signs of nephrotoxicity (decreased urine output, edema, fatigue) and when to seek care\n  - Signs of ototoxicity (tinnitus, hearing changes, dizziness)\n  - Proper vascular access care and infection prevention (if discharged on OPAT)\n  - Importance of keeping lab appointments for monitoring\n\n### E. Medication Reconciliation\n- No current medication history on file — **contact patient and/or prescriber** to obtain complete medication list\n- Screen for concomitant nephrotoxins (NSAIDs, aminoglycosides, IV contrast, ACE inhibitors/ARBs, diuretics) and assess for drug interactions\n- Flag and recommend discontinuation or avoidance of nephrotoxic agents where clinically feasible\n\n---\n\n## 4. MONITORING PLAN\n\n### Vancomycin Pharmacokinetic Monitoring\n\n| Parameter | Target | Frequency |\n|-----------|--------|-----------|\n| AUC/MIC (Bayesian-estimated) | 400–600 mg·h/L | At steady state (after dose 3–4); repeat with any dose change or clinical change |\n| Two-level PK sampling (if no Bayesian software) | Per PK calculation | Peak ~1–2 hr post-infusion; trough within 30 min prior to next dose |\n| Trough (if AUC monitoring unavailable) | 15–20 mg/L (use with caution; not preferred method) | Per institution protocol |\n\n### Renal Function Monitoring\n\n| Lab | Frequency | Action Threshold |\n|-----|-----------|-----------------|\n| Serum Creatinine (SCr) | Every 48–72 hours (minimum) | Increase ≥ 0.5 mg/dL or ≥ 50% above baseline → hold/reduce dose, reassess |\n| BUN | Every 48–72 hours | Trending upward → evaluate hydration, nephrotoxin exposure |\n| Urine output | Daily assessment | < 0.5 mL/kg/hr sustained → escalate to provider |\n| eGFR (CKD-EPI) | With each SCr | Trend for trajectory; recalculate CrCl for dose adjustment |\n\n### Hematologic and Hepatic Monitoring\n\n| Lab | Frequency | Rationale |\n|-----|-----------|-----------|\n| CBC with differential | Weekly (or more frequently if prolonged course) | Vancomycin-associated neutropenia with prolonged use (>2 weeks) |\n| LFTs (AST, ALT, Alk Phos, Total Bilirubin) | Baseline, then every 2 weeks | Monitor for hepatotoxicity, particularly with adjunctive agents |\n\n### Infectious Disease Monitoring\n\n| Parameter | Frequency | Goal |\n|-----------|-----------|------|\n| Blood cultures | Every 24–48 hours | ×2 consecutive negative sets to confirm clearance |\n| Clinical response assessment | Daily | Resolution of fever, leukocytosis, hemodynamic stability |\n| Vancomycin MIC (broth microdilution) | Once — at baseline | Confirm MIC ≤ 1 mg/L; if MIC ≥ 2 mg/L, discuss alternative therapy (e.g., daptomycin) with ID |\n| Duration of therapy | Determined by ID | Minimum 14 days from first negative culture (uncomplicated); 4–6 weeks if IE or metastatic foci |\n\n### Safety Monitoring\n\n| Adverse Effect | Monitoring Parameter | Threshold / Action |\n|----------------|---------------------|--------------------|\n| Nephrotoxicity | SCr, urine output | SCr ↑ ≥ 0.5 mg/dL or ≥ 50% baseline → dose hold/reduction |\n| Ototoxicity | Patient-reported symptoms (tinnitus, vertigo, hearing loss) | Symptom onset → audiogram, consider therapy modification |\n| Infusion-related reactions / Red Man Syndrome | Vital signs during infusion | Slow infusion rate; administer diphenhydramine pre-infusion if recurrent |\n| Neutropenia | CBC | ANC < 1,000/mm³ → notify ID/provider |\n| Thrombocytopenia | Platelet count | Platelets < 100,000/mm³ → evaluate cause |\n\n### Follow-Up and Communication Schedule\n\n| Timeframe | Action |\n|-----------|--------|\n| **24–48 hours** | Confirm loading dose tolerated; review first blood culture results; confirm ID consult placed |\n| **72–96 hours** | First pharmacokinetic assessment; dose adjustment if indicated; review blood culture clearance |\n| **Day 7** | Comprehensive labs (SCr, BUN, CBC, LFTs); echocardiogram result review; assess clinical response |\n| **Day 14** | Reassess total duration with ID; confirm blood culture clearance; evaluate OPAT vs. continued inpatient therapy |\n| **At therapy completion** | Final SCr; assess renal recovery; patient counseling on follow-up |\n\n---\n\n> **Prepared by:** Clinical Pharmacist, Specialty Pharmacy\n> **Date:** 2025-07-14\n> **References:** ASHP/IDSA/SIDP Vancomycin Consensus Guidelines (2020); IDSA MRSA Guidelines (Liu et al., 2011); KDIGO AKI Guidelines\n\n> ⚠️ *This care plan is generated based on available clinical information at the time of review. Clinical judgment, direct patient assessment, and coordination with the treating team are essential. This plan does not replace individualized clinical decision-making.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "MRSA bacteremia requiring targeted antibiotic therapy",
+                "covered": true
+              },
+              {
+                "item": "Renal impairment (eGFR 45) — requires individualized dosing, not simple interval extension",
+                "covered": true
+              },
+              {
+                "item": "Risk of nephrotoxicity with vancomycin",
+                "covered": true
+              },
+              {
+                "item": "Risk of Red Man Syndrome",
+                "covered": true
+              },
+              {
+                "item": "Penicillin allergy documented (rash)",
+                "covered": true
+              },
+              {
+                "item": "AUC/MIC target: 400–600 mg·h/L (assuming MIC 1 mg/L by broth microdilution)",
+                "covered": true
+              },
+              {
+                "item": "Minimum 14 days of therapy for bacteremia",
+                "covered": true
+              },
+              {
+                "item": "Confirmed blood culture clearance at 48–72h",
+                "covered": true
+              },
+              {
+                "item": "AUC/MIC-guided dosing per 2020 ASHP/IDSA guidelines — do NOT use simple interval extension for renal adjustment",
+                "covered": true
+              },
+              {
+                "item": "Use Bayesian dosing software to calculate individualized dose",
+                "covered": true
+              },
+              {
+                "item": "Loading dose: not automatically indicated for eGFR 45 (only if critically ill or on renal replacement therapy)",
+                "covered": true
+              },
+              {
+                "item": "Infusion rate: max 10 mg/min to prevent Red Man Syndrome",
+                "covered": false
+              },
+              {
+                "item": "Duration: minimum 14 days for bacteremia",
+                "covered": true
+              },
+              {
+                "item": "Red Man Syndrome counseling documented",
+                "covered": true
+              },
+              {
+                "item": "2 vancomycin levels within same dosing interval for AUC calculation (or single trough if Bayesian)",
+                "covered": true
+              },
+              {
+                "item": "SCr q48–72h",
+                "covered": true
+              },
+              {
+                "item": "Repeat blood cultures at 48–72h to confirm clearance",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 16,
+              "FP": 4,
+              "FN": 1,
+              "precision": 0.8,
+              "recall": 0.94,
+              "f1": 0.86
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_003",
@@ -250,7 +580,94 @@
           "Renal function monitoring"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** E F | **MRN:** 00034567 | **DOB:** 1967-01-01 | **Date:** [Current Date]\n**Referring Provider:** Test (NPI: 1234567) | **Pharmacist:** [Pharmacist Name], PharmD\n\n---\n\n## 1. PROBLEM LIST\n\n| # | Problem | ICD-10 | Status |\n|---|---------|--------|--------|\n| 1 | Acute proximal deep vein thrombosis (DVT), lower extremity, no pulmonary embolism confirmed | I82.4 | Active |\n| 2 | Obesity (BMI 36) — impacts enoxaparin pharmacokinetics; weight-based dosing requires careful consideration at extremes of body weight | E66.9 | Active |\n| 3 | Mildly reduced renal function (eGFR 78 mL/min/1.73m²) — warrants monitoring; not yet at threshold for dose reduction but should be followed | N18.2 | Active — Monitor |\n| 4 | Anti-Xa level not yet established — therapeutic drug monitoring baseline absent at initiation | — | Pending |\n| 5 | Absence of documented oral anticoagulant transition plan — long-term anticoagulation strategy not yet defined | — | Pending |\n\n---\n\n## 2. GOALS\n\n**Short-Term Goals (Days 1–7)**\n\n- Achieve and confirm therapeutic anticoagulation with enoxaparin, targeting anti-Xa peak levels of **0.6–1.0 IU/mL** (therapeutic BID dosing range) within 48–72 hours of initiation\n- Prevent thrombus propagation and pulmonary embolism during the acute treatment phase\n- Ensure accurate weight-based dosing using **total body weight (TBW)** per ACCP/ASH guidelines, with consideration for obesity-related dosing nuances\n- Educate patient on proper subcutaneous self-injection technique, site rotation, and storage prior to discharge or first home administration\n- Identify and address any barriers to adherence (cost, injection anxiety, support at home)\n\n**Intermediate Goals (Weeks 1–4)**\n\n- Confirm therapeutic anti-Xa levels and adjust dose if indicated\n- Facilitate transition to an appropriate long-term oral anticoagulant (e.g., rivaroxaban, apixaban, or warfarin) per prescriber decision and patient preference, within 5–10 days of therapy initiation if clinically appropriate\n- Monitor renal function trajectory; reassess eGFR at 4 weeks\n\n**Long-Term Goals (Months 1–3+)**\n\n- Complete minimum **3-month anticoagulation course** for provoked proximal DVT per ACCP 2021 guidelines\n- Prevent post-thrombotic syndrome through appropriate anticoagulation and compression therapy guidance\n- Reassess need for extended anticoagulation at 3 months based on etiology, recurrence risk, and patient preference\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3.1 Dose Verification and Optimization\n\n- **Verify prescribed dose** against weight-based calculation:\n  - Standard therapeutic dosing: **Enoxaparin 1 mg/kg SubQ every 12 hours**\n  - For this patient (TBW = 94 kg): **Target dose = 94 mg SubQ Q12H**\n  - ⚠️ *Obesity consideration:* At BMI 36 and TBW 94 kg, use of TBW for dosing is supported by current evidence and ACCP guidelines; however, anti-Xa monitoring is strongly recommended to confirm therapeutic exposure, as obese patients may exhibit altered volume of distribution\n  - Confirm that the ordered dose aligns with 94 mg Q12H; flag any discrepancy to the prescriber\n- **Renal dosing assessment:** eGFR 78 mL/min — standard therapeutic dosing appropriate; **no dose reduction warranted at this time** (dose reduction typically considered at eGFR <30 mL/min for therapeutic dosing). Continue to monitor.\n- **Confirm formulation and concentration:** Use appropriate prefilled syringe concentration (100 mg/mL preferred for accuracy; 150 mg/mL available if needed). Counsel patient accordingly.\n\n### 3.2 Anti-Xa Level Ordering and Interpretation\n\n- **Initiate anti-Xa monitoring protocol:**\n  - Draw **peak anti-Xa level 4 hours after the 3rd or 4th dose** (once steady state approached) for BID therapeutic dosing\n  - Therapeutic target: **0.6–1.0 IU/mL** (peak, anti-Xa, BID regimen)\n  - Communicate order/recommendation to referring provider if not yet placed; document in care plan\n- Establish process for result review: pharmacist to review anti-Xa result upon receipt and contact provider with dose adjustment recommendation if out of range\n\n**Anti-Xa Dose Adjustment Guidance (BID Therapeutic Dosing):**\n\n| Anti-Xa Peak (IU/mL) | Action |\n|---|---|\n| < 0.35 | Increase dose by 25%; recheck anti-Xa in 24h |\n| 0.35–0.59 | Increase dose by 10–15%; recheck anti-Xa in 24h |\n| **0.6–1.0** | **No change — therapeutic; recheck per protocol** |\n| 1.01–1.5 | Decrease dose by 20%; recheck anti-Xa in 24h |\n| > 1.5 | Hold dose × 3h, decrease by 30%; recheck anti-Xa prior to next dose |\n\n### 3.3 Transition Planning\n\n- **Contact prescriber within 48–72 hours** to initiate discussion regarding transition to long-term oral anticoagulation:\n  - **Preferred agents for DVT (ACCP/ASH 2021):** Direct oral anticoagulants (DOACs) — apixaban or rivaroxaban (no bridging required); or dabigatran/edoxaban (require parenteral lead-in with enoxaparin × ≥5–10 days)\n  - If warfarin selected: overlap enoxaparin until INR ≥2.0 for ≥24 hours on ≥2 consecutive days; target INR 2.0–3.0\n  - Document transition plan and target duration in care plan once determined\n- Assess **patient preference, cost/insurance coverage, and adherence factors** to inform DOAC selection recommendation\n\n### 3.4 Patient and Caregiver Education\n\nProvide comprehensive injection training and written materials covering:\n\n- [ ] **Subcutaneous injection technique:** abdominal site preferred (2 inches from navel), rotate sites, pinch skin, 90° angle, do not rub after injection\n- [ ] **Proper storage:** room temperature (up to 25°C/77°F); do not freeze; protect from light\n- [ ] **Dose schedule:** administer every 12 hours at same times daily; what to do if a dose is missed (administer as soon as remembered unless within 2 hours of next dose)\n- [ ] **Signs and symptoms of bleeding:** unusual bruising, blood in urine/stool, prolonged bleeding from cuts, hemoptysis — instruct to seek emergency care immediately\n- [ ] **Signs and symptoms of HIT** (heparin-induced thrombocytopenia): new pain/swelling in extremities, skin changes at injection sites, darkening/necrosis — though low risk with enoxaparin, counsel on when to call\n- [ ] **Signs of PE:** sudden chest pain, shortness of breath, hemoptysis — instruct to call 911 immediately\n- [ ] **Drug interactions:** Avoid NSAIDs, aspirin (unless prescribed), other anticoagulants without provider guidance\n- [ ] **Labs:** Explain purpose of anti-Xa monitoring and upcoming CBC check\n- [ ] **Sharps disposal:** Provide guidance on use of FDA-cleared sharps container; local disposal resources\n- Assess health literacy and provide language-appropriate materials as needed\n- Document education provided and patient/caregiver verbalization of understanding\n\n### 3.5 Additional Interventions\n\n- **Review complete medication history** — currently none documented; confirm with patient at first contact; screen for antiplatelet agents, NSAIDs, SSRIs, or herbals that may increase bleeding risk\n- **Compression stockings:** Recommend graduated compression stockings (30–40 mmHg) for affected extremity to reduce acute DVT symptoms and reduce risk of post-thrombotic syndrome; communicate recommendation to prescriber\n- **Prior authorization / insurance verification:** Confirm coverage for enoxaparin; address any barriers; initiate PA if required; identify copay assistance or manufacturer programs if needed (e.g., Sanofi patient assistance for Lovenox)\n- **Establish follow-up schedule** with specialty pharmacy care team\n\n---\n\n## 4. MONITORING PLAN\n\n### 4.1 Efficacy Monitoring\n\n| Parameter | Target | Frequency |\n|---|---|---|\n| Anti-Xa peak level (4h post-dose) | 0.6–1.0 IU/mL (BID therapeutic) | Draw after 3rd–4th dose; repeat per dose adjustment; then weekly if stable |\n| Clinical symptoms of DVT | Resolution of pain, swelling, erythema | Each patient contact |\n| Signs/symptoms of PE | Absence of dyspnea, chest pain, hemoptysis | Each patient contact |\n| Thrombus extension | Clinical symptom assessment; repeat duplex if clinically indicated | Per provider discretion; if symptoms worsen |\n\n### 4.2 Safety Monitoring\n\n| Parameter | Threshold / Action | Frequency |\n|---|---|---|\n| Complete Blood Count (CBC) with platelet count | Baseline → If platelets drop >50% from baseline or fall below 100,000/µL: **stop enoxaparin, evaluate for HIT** | Baseline; Day 3–5; then every 3–5 days during therapy |\n| Serum creatinine / eGFR | If eGFR falls to 30–44: reassess dosing; if <30: switch to unfractionated heparin (UFH) or reduce enoxaparin dose to 1 mg/kg Q24H with anti-Xa monitoring | Baseline confirmed; repeat at Day 7 and Day 30 |\n| Hemoglobin / Hematocrit | Monitor for ≥2 g/dL drop from baseline — assess for occult bleeding | With each CBC |\n| Signs/symptoms of bleeding | Hematoma at injection site, GI bleeding, hematuria — hold dose and notify provider | Each patient contact; instruct patient to report immediately |\n| Injection site assessment | Erythema, induration, necrosis — site rotation review | Each patient contact |\n| Stool guaiac (if clinically indicated) | Positive → evaluate for GI bleeding | Per provider discretion / if symptoms present |\n\n### 4.3 Patient Contact and Follow-Up Schedule\n\n| Timepoint | Contact Type | Purpose |\n|---|---|---|\n| **Day 1–2** | Phone call (pharmacist) | Confirm receipt of medication, verify dose, injection technique, answer questions, confirm anti-Xa order in place |\n| **Day 3–5** | Phone call (pharmacist) | Review anti-Xa result; assess for bleeding/injection site concerns; confirm platelet check ordered |\n| **Day 5–10** | Phone call + provider communication | Review transition plan to oral anticoagulant; confirm prescriber orders; reinforce education |\n| **Week 4** | Phone call | Assess for post-thrombotic syndrome symptoms; confirm adherence; review labs; assess renal function |\n| **Month 3** | Outreach / coordinate with provider | Reassess indication for continued anticoagulation; ensure prescriber review for extended therapy decision |\n\n### 4.4 Documentation and Communication\n\n- All anti-Xa results, dose adjustments, and patient contacts to be documented in the specialty pharmacy patient management system and communicated to referring provider (NPI: 1234567)\n- Urgent findings (bleeding, platelet drop, supratherapeutic anti-Xa >1.5 IU/mL) communicated to provider **within 1 hour** via direct phone contact with documented callback\n\n---\n\n**Care Plan Prepared By:** [Pharmacist Name], PharmD, BCCP\n**Date:** [Date] | **Next Review:** Day 3–5 or upon receipt of anti-Xa result\n**Referring Provider Notification:** Pending — to be transmitted upon care plan finalization\n\n---\n*This care plan is based on current ACCP (2021), ASH (2020), and clinical pharmacokinetic literature for enoxaparin use in VTE. All clinical decisions should be individualized and confirmed with the treating provider.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Acute proximal DVT requiring therapeutic anticoagulation",
+                "covered": true
+              },
+              {
+                "item": "Obesity (BMI 36) — weight-based dosing using actual body weight required",
+                "covered": true
+              },
+              {
+                "item": "Risk of HIT (heparin-induced thrombocytopenia)",
+                "covered": true
+              },
+              {
+                "item": "Risk of bleeding",
+                "covered": true
+              },
+              {
+                "item": "Anti-Xa target: 0.5–1.0 IU/mL (treatment range)",
+                "covered": true
+              },
+              {
+                "item": "Minimum 3 months anticoagulation; transition per plan",
+                "covered": true
+              },
+              {
+                "item": "No major bleeding events",
+                "covered": false
+              },
+              {
+                "item": "Dose: 1 mg/kg SQ q12h using actual body weight → 94 mg SQ q12h (cap at 144 kg only if BMI >40)",
+                "covered": true
+              },
+              {
+                "item": "Anti-Xa drawn 4h post-dose; target 0.5–1.0 IU/mL",
+                "covered": true
+              },
+              {
+                "item": "Renal check: if eGFR <30 → switch to q24h or UFH",
+                "covered": true
+              },
+              {
+                "item": "Bridge to warfarin or continue DOAC per plan; minimum duration 3 months",
+                "covered": true
+              },
+              {
+                "item": "Injection site rotation counseling",
+                "covered": true
+              },
+              {
+                "item": "Hold protocol for procedures documented",
+                "covered": false
+              },
+              {
+                "item": "Anti-Xa level at 4h post-dose (target 0.5–1.0 IU/mL)",
+                "covered": true
+              },
+              {
+                "item": "Platelet monitoring for HIT: baseline + day 4–14",
+                "covered": true
+              },
+              {
+                "item": "Renal function monitoring",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 14,
+              "FP": 4,
+              "FN": 2,
+              "precision": 0.78,
+              "recall": 0.88,
+              "f1": 0.83
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_004",
@@ -314,7 +731,98 @@
           "CBC + LFTs + SCr at baseline, 4 weeks, then q8–12 weeks"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Specialty Pharmacy Services**\n\n| | |\n|---|---|\n| **Patient:** G H | **MRN:** 00045678 |\n| **DOB:** 1973-01-01 (Age: 52) | **Sex:** Female |\n| **Weight:** 68 kg | **Allergies:** Sulfa drugs |\n| **Referring Provider:** test (NPI: 1234567) | **Diagnosis:** M05.79 — RA, Moderate-Severe |\n\n---\n\n## 1. PROBLEM LIST\n\n1. **Moderate-to-severe rheumatoid arthritis (M05.79)** — Active disease requiring disease-modifying therapy; initiating or continuing methotrexate as anchor DMARD.\n2. **Methotrexate-associated hepatotoxicity risk** — Baseline hepatic transaminases within normal limits (ALT 22 U/L, AST 18 U/L); ongoing risk with cumulative dosing requires surveillance.\n3. **Methotrexate-associated myelosuppression risk** — Baseline CBC within normal limits; risk increases with renal impairment, folate deficiency, and drug interactions.\n4. **Mild renal impairment / reduced clearance risk** — eGFR 82 mL/min/1.73m² (CKD Stage G2); methotrexate is renally cleared; reduced clearance may increase systemic exposure and toxicity risk.\n5. **Folate deficiency risk** — Methotrexate inhibits dihydrofolate reductase; concomitant folic acid supplementation required to mitigate mucosal, hematologic, and hepatic toxicity.\n6. **Medication adherence and safety knowledge deficit** — Patient education required regarding dosing schedule, teratogenicity, alcohol avoidance, and signs/symptoms of toxicity.\n7. **Drug interaction risk** — Sulfa drug allergy noted; trimethoprim-sulfamethoxazole (a sulfa agent and known folate antagonist/methotrexate potentiator) is contraindicated; vigilance required for other interacting agents (NSAIDs, PPIs at high dose, other nephrotoxins).\n\n---\n\n## 2. GOALS\n\n1. **Disease control:** Achieve low disease activity or clinical remission of rheumatoid arthritis within **3–6 months** of optimized methotrexate therapy, as measured by validated disease activity tools (e.g., DAS28, CDAI).\n2. **Hepatic safety:** Maintain ALT and AST within ≤2× the upper limit of normal (ULN) throughout therapy; dose-hold or dose-reduce if transaminases exceed 2–3× ULN on repeat testing.\n3. **Hematologic safety:** Maintain WBC ≥3,500/µL, ANC ≥1,500/µL, and platelets ≥100,000/µL throughout therapy; promptly identify and manage any cytopenias.\n4. **Renal preservation:** Monitor eGFR at regular intervals; dose-adjust or hold methotrexate if eGFR declines to <60 mL/min/1.73m² (use with caution 30–60; generally avoid <30).\n5. **Folate repletion:** Ensure patient is taking folic acid **1 mg orally daily** (on non-methotrexate days at minimum, or daily per prescriber preference) to reduce mucosal, hematologic, and GI adverse effects.\n6. **Teratogenicity prevention:** Confirm patient is using reliable contraception; counsel that methotrexate is **Pregnancy Category X** and must be discontinued ≥3 months prior to any planned conception.\n7. **Patient empowerment:** Patient will verbalize correct once-weekly dosing schedule, signs and symptoms requiring immediate medical attention, and the importance of avoiding alcohol and nephrotoxic/folate-antagonist medications.\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3a. Therapy Verification & Safety Checks\n- **Confirm dosing regimen** with referring provider: standard initiation for RA is methotrexate **10–15 mg orally once weekly**, with planned titration to **15–25 mg/week** over 4–8 weeks based on response and tolerability. Clarify target dose and route (oral vs. subcutaneous).\n- **Verify folic acid co-prescription:** If not already prescribed, contact provider to obtain an order for **folic acid 1 mg orally once daily**. Document in patient profile.\n- **Confirm contraception status:** Counsel patient and, if appropriate, document discussion with provider regarding pregnancy prevention requirements during therapy and the mandatory washout period prior to conception.\n- **Allergy reconciliation:** Flag sulfa drug allergy in dispensing system. Ensure trimethoprim-sulfamethoxazole (Bactrim/Septra) is hard-stopped in pharmacy profile due to (1) allergy and (2) pharmacokinetic/pharmacodynamic interaction with methotrexate (displaced protein binding, reduced renal tubular secretion, additive folate antagonism → severe myelosuppression risk).\n\n### 3b. Drug Interaction Screening\n- Screen active medication list for the following high-priority interactions:\n  - **NSAIDs** (e.g., ibuprofen, naproxen) — reduce renal methotrexate clearance; advise caution and limit use; coordinate with prescriber.\n  - **High-dose proton pump inhibitors** — may reduce renal tubular secretion of methotrexate.\n  - **Nephrotoxic agents** (e.g., aminoglycosides, contrast media) — additive renal clearance reduction.\n  - **Live vaccines** — contraindicated during methotrexate therapy; coordinate immunization review with provider.\n  - **Alcohol** — strict avoidance required; synergistic hepatotoxicity risk.\n- Document all interactions identified and communicate clinically significant findings to the referring provider with recommended management.\n\n### 3c. Baseline Laboratory Review\n- Review and document baseline values prior to first dispense:\n\n| Lab | Patient Value | Reference Range | Assessment |\n|---|---|---|---|\n| ALT | 22 U/L | 7–56 U/L | ✅ Normal |\n| AST | 18 U/L | 10–40 U/L | ✅ Normal |\n| SCr | 0.82 mg/dL | 0.5–1.1 mg/dL | ✅ Normal |\n| eGFR | 82 mL/min/1.73m² | ≥60 | ✅ Stage G2 — monitor |\n| CBC | WNL | — | ✅ Acceptable for initiation |\n\n- **Dispensing clearance confirmed** — Baseline labs acceptable for initiation. Note eGFR of 82; use standard dosing with close renal monitoring.\n- Confirm baseline chest X-ray and/or pulmonary function (per ACR guidelines) has been ordered if clinically indicated (patients with pulmonary symptoms or history).\n\n### 3d. Patient Education (Documented Counseling)\nProvide comprehensive counseling at therapy initiation, covering the following points:\n\n- **Dosing schedule:** Methotrexate is taken **once weekly on the same day each week** — NOT daily. Emphasize this distinction clearly; daily dosing errors have resulted in fatal toxicity. Use pill organizer or calendar reminder.\n- **Folic acid:** Take folic acid **every day** as directed. Explain its role in reducing mouth sores, nausea, and protecting blood counts.\n- **Alcohol:** **Completely avoid alcohol** during methotrexate therapy due to markedly increased liver damage risk.\n- **Signs and symptoms requiring immediate contact:**\n  - Fever, chills, unusual bruising/bleeding (myelosuppression)\n  - Persistent nausea, vomiting, abdominal pain, jaundice (hepatotoxicity)\n  - Shortness of breath, new dry cough (pulmonary toxicity/pneumonitis)\n  - Mouth sores (stomatitis — notify pharmacy/provider; may indicate toxicity vs. folate deficiency)\n  - Unusual infections (immunosuppression)\n- **Contraception / pregnancy:** Do **not** become pregnant while taking methotrexate. Use **two reliable forms of contraception.** Notify provider immediately if pregnancy is suspected. Do not breastfeed.\n- **Sun protection:** Mild photosensitivity possible; use SPF 30+ sunscreen.\n- **OTC medications:** Do not take NSAIDs (ibuprofen, naproxen, aspirin ≥325 mg) without consulting the provider/pharmacist. Avoid new vitamins or supplements without checking for interactions.\n- **Sick-day rules:** If significantly ill, dehydrated, or being prescribed antibiotics — contact provider before continuing methotrexate.\n- Provide and review **written educational materials**; confirm patient understanding via teach-back method. Document counseling in patient profile.\n\n### 3e. Care Coordination\n- Communicate care plan to referring provider (NPI: 1234567) including: therapy initiation confirmation, folic acid recommendation (if not prescribed), monitoring schedule, and any identified drug interactions.\n- Establish 30-day follow-up phone call schedule with clinical pharmacist.\n- Enroll patient in specialty pharmacy patient management program if available (adherence support, lab tracking, refill coordination).\n\n---\n\n## 4. MONITORING PLAN\n\n### 4a. Laboratory Monitoring Schedule\n\n| Parameter | Baseline | Months 1–3 | Months 4–6 | Maintenance (>6 months) |\n|---|---|---|---|---|\n| **CBC with differential** | ✅ Completed | Every 4 weeks | Every 4–8 weeks | Every 8–12 weeks |\n| **ALT / AST** | ✅ Completed | Every 4 weeks | Every 4–8 weeks | Every 8–12 weeks |\n| **Serum Creatinine / eGFR** | ✅ Completed | Every 4 weeks | Every 4–8 weeks | Every 8–12 weeks |\n| **Albumin** | At baseline | Every 3 months | Every 3 months | Every 6 months |\n| **Hepatitis B/C serology** | At baseline (if not on file) | — | — | Per clinical need |\n\n> *Frequency should be increased if dose is escalated, toxicity is suspected, or eGFR declines.*\n\n### 4b. Clinical Monitoring Parameters\n\n| Parameter | Threshold / Action Required |\n|---|---|\n| **ALT / AST** | >2× ULN: repeat in 2–4 weeks; >3× ULN on repeat: hold dose, notify provider; investigate for alternative causes |\n| **WBC** | <3,500/µL: hold dose, notify provider |\n| **ANC** | <1,500/µL: hold dose, notify provider immediately |\n| **Platelets** | <100,000/µL: hold dose, notify provider |\n| **Hemoglobin** | <10 g/dL: notify provider, evaluate for cause |\n| **eGFR** | <60: reassess dosing with provider (reduce dose or increase interval); <30: generally contraindicated — hold and notify |\n| **SCr increase** | >25% increase from baseline: notify provider, hold if clinically indicated |\n| **Pulmonary symptoms** | New dyspnea, dry cough, hypoxia: hold MTX immediately, refer for urgent pulmonary evaluation |\n| **Hepatic symptoms** | Jaundice, RUQ pain, fatigue with elevated LFTs: hold MTX, urgent provider notification |\n\n### 4c. Efficacy Monitoring\n\n- Assess **disease activity** at each follow-up using standardized scoring (DAS28-CRP, CDAI, or SDAI) as communicated from the rheumatology team.\n- Evaluate **patient-reported outcomes:** pain level (NRS 0–10), morning stiffness duration, functional status (HAQ-DI), and quality of life at 4–8 week intervals.\n- If **inadequate response** (no improvement in disease activity by 3 months, or failure to achieve low disease activity/remission by 6 months at maximum tolerated dose ≥15–20 mg/week), document and communicate to provider to discuss addition of a biologic or targeted synthetic DMARD (e.g., TNF inhibitor, JAK inhibitor).\n\n### 4d. Adherence & Safety Follow-Up\n\n- **30-day pharmacist phone call:** Assess tolerability (GI side effects, mouth sores, fatigue), confirm correct once-weekly dosing, confirm folic acid adherence, screen for new medications or OTC use, address barriers to adherence.\n- **Refill review:** At each refill, verify lab results are current per monitoring schedule before dispensing. **Do not dispense** if required labs are overdue (per institutional policy).\n- **Annual review:** Reassess cumulative methotrexate dose; per ACR/ACG guidance, consider rheumatology/GI consultation for liver biopsy if cumulative dose approaches **3.5–4 g** in patients with additional hepatotoxicity risk factors (obesity, diabetes, alcohol use — not currently identified in this patient, but document baseline risk).\n- Document all monitoring activities, interventions, and communications in the patient's specialty pharmacy record.\n\n---\n\n**Care Plan Prepared By:** Clinical Pharmacist, Specialty Pharmacy Services\n**Date:** *(Date of generation)*\n**Next Scheduled Pharmacist Contact:** 30 days from dispensing date\n\n> *This care plan is intended to support, not replace, clinical judgment of the treating physician. All significant findings will be communicated to the referring provider promptly.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Moderate-severe rheumatoid arthritis requiring DMARD therapy",
+                "covered": true
+              },
+              {
+                "item": "Hepatotoxicity risk with methotrexate",
+                "covered": true
+              },
+              {
+                "item": "Pulmonary toxicity risk",
+                "covered": true
+              },
+              {
+                "item": "Teratogenicity risk — contraception required",
+                "covered": true
+              },
+              {
+                "item": "Sulfa allergy: trimethoprim-containing drugs contraindicated (folate antagonism)",
+                "covered": true
+              },
+              {
+                "item": "Patient education needs",
+                "covered": true
+              },
+              {
+                "item": "Achieve disease control (reduced joint inflammation and symptoms)",
+                "covered": true
+              },
+              {
+                "item": "Maintain LFTs within acceptable range — no hepatotoxicity",
+                "covered": true
+              },
+              {
+                "item": "Prevent unintended pregnancy during and 3 months post-therapy",
+                "covered": true
+              },
+              {
+                "item": "Dose: 15 mg PO once weekly (start); may titrate to 25 mg/week",
+                "covered": true
+              },
+              {
+                "item": "Folic acid: 1 mg PO daily (confirm timing — every day vs. except MTX day — with prescriber)",
+                "covered": true
+              },
+              {
+                "item": "Hepatotoxicity counseling: avoid alcohol, limit NSAIDs",
+                "covered": true
+              },
+              {
+                "item": "Pulmonary toxicity counseling: report new cough or dyspnea",
+                "covered": true
+              },
+              {
+                "item": "Teratogenicity counseling: contraception required; hold ≥3 months before conception",
+                "covered": true
+              },
+              {
+                "item": "Sulfa allergy flagged — trimethoprim-containing drugs contraindicated",
+                "covered": true
+              },
+              {
+                "item": "Sick day rule: hold methotrexate if febrile or dehydrated",
+                "covered": true
+              },
+              {
+                "item": "CBC + LFTs + SCr at baseline, 4 weeks, then q8–12 weeks",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 17,
+              "FP": 3,
+              "FN": 0,
+              "precision": 0.85,
+              "recall": 1.0,
+              "f1": 0.92
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_005",
@@ -379,7 +887,102 @@
           "LFTs and CBC before each infusion"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Specialty Pharmacy Services**\n\n| | |\n|---|---|\n| **Patient:** I J | **MRN:** 00056789 |\n| **DOB:** 1991-01-01 | **Age/Sex:** 34M |\n| **Weight:** 78 kg | **Allergies:** NKDA |\n| **Referring Provider:** Test (NPI: 1234567) | **Date:** 2025-07-14 |\n| **Primary Dx:** K50.00 — Crohn's Disease of Small Intestine, Moderate-Severe | |\n\n---\n\n## 1. PROBLEM LIST\n\n| # | Problem | Relevant Data |\n|---|---------|---------------|\n| 1 | **Active moderate-to-severe ileal Crohn's disease** | CRP 28 mg/L (elevated), albumin 3.1 g/dL (borderline low), consistent with active inflammatory burden |\n| 2 | **Hypoalbuminemia (mild)** | Albumin 3.1 g/dL; may impact infliximab pharmacokinetics (increased drug clearance, reduced trough levels) and reflects disease-related protein loss/malnutrition |\n| 3 | **Biologic-naïve status / Medication history unknown** | No prior biologic or immunomodulator therapy documented; combination therapy strategy requires clarification |\n| 4 | **Infection risk associated with anti-TNF therapy initiation** | Latent TB screen (QuantiFERON) negative; additional pre-biologic infectious screening status pending verification |\n\n---\n\n## 2. GOALS\n\n| # | Goal | Target / Timeline |\n|---|------|-------------------|\n| 1 | **Achieve clinical response and remission** | ≥70-point decrease in CDAI or HBI improvement; target clinical remission (CDAI <150 or HBI ≤4) by Week 14 (after induction) |\n| 2 | **Achieve biochemical remission** | CRP normalization (<5 mg/L) and fecal calprotectin <250 µg/g by Week 14–26 |\n| 3 | **Optimize infliximab trough levels to maximize efficacy** | Target infliximab trough ≥5 µg/mL during maintenance; goal ≥3–7 µg/mL minimum; consider higher targets (≥7–10 µg/mL) given elevated inflammatory burden and low albumin |\n| 4 | **Correct hypoalbuminemia and support nutritional status** | Albumin ≥3.5 g/dL through disease control and nutritional optimization within 8–12 weeks |\n| 5 | **Prevent infusion reactions and serious adverse events** | Zero serious infusion-related reactions; patient education completed prior to first infusion |\n| 6 | **Prevent opportunistic and serious infections** | Maintain up-to-date vaccination status; no serious infections during therapy |\n| 7 | **Ensure medication adherence and minimize treatment interruption** | 100% adherence to infusion schedule; no unplanned therapy gaps >8 weeks |\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3a. Pre-Treatment Verification & Coordination\n\n- **Confirm completion of pre-biologic infectious screening** prior to first infusion:\n  - ✅ Latent TB (QuantiFERON-Gold): **Negative** — documented\n  - ⬜ Hepatitis B panel (HBsAg, anti-HBc total, anti-HBs): **Obtain/verify results** — anti-TNF therapy may reactivate HBV; prophylactic antiviral therapy (e.g., entecavir) required if HBsAg+ or anti-HBc+ with low anti-HBs\n  - ⬜ HIV screening: Verify or obtain\n  - ⬜ Hepatitis C antibody: Verify or obtain\n- **Confirm vaccination status** and recommend catch-up vaccines prior to biologic initiation (minimum 2 weeks before for live vaccines, 4 weeks preferred; inactivated vaccines may be given at any time):\n  - Influenza (inactivated) — annual\n  - Pneumococcal (PCV20 or PCV15 → PPSV23)\n  - Hepatitis A and B series (if non-immune)\n  - Tdap/Td booster if due\n  - COVID-19 (updated formulation)\n  - **Avoid live vaccines** (MMR, Varicella, Live Attenuated Influenza) once therapy initiated\n- **Clarify prior medication history** with referring provider — determine if patient is truly biologic-naïve and whether concurrent immunomodulator (azathioprine, 6-mercaptopurine, or methotrexate) is planned as combination therapy to reduce immunogenicity\n- **Confirm prior authorization (PA) and benefit verification** are complete; coordinate hub/specialty pharmacy enrollment and copay assistance if applicable\n- **Verify infusion site** (hospital, infusion center, or home infusion) and confirm pre-medication orders are in place\n\n### 3b. Infliximab Dosing Verification\n\n- **Confirm prescribed induction regimen:**\n  - Standard: **Infliximab 5 mg/kg IV** at **Weeks 0, 2, and 6**, followed by maintenance **5 mg/kg IV every 8 weeks**\n  - Dose check (78 kg): 5 mg/kg × 78 kg = **390 mg per infusion** ✅\n- **Flag clinical consideration to prescriber:** Given elevated CRP (28 mg/L) and low albumin (3.1 g/dL), patient is at higher risk for accelerated infliximab clearance and subtherapeutic troughs. Recommend:\n  - Proactive therapeutic drug monitoring (TDM) at Week 14 trough\n  - Discussion of higher target trough (≥7–10 µg/mL) and potential dose escalation to 10 mg/kg or interval shortening to every 6 weeks if troughs subtherapeutic\n- **Assess combination therapy with immunomodulator** (e.g., azathioprine 2.5 mg/kg/day or 6-MP 1.5 mg/kg/day) to reduce anti-drug antibody (ADA) formation — discuss with provider; check TPMT/NUDT15 genotype prior to thiopurine initiation\n\n### 3c. Pre-Medication Orders\n\n- Confirm pre-medication protocol for infusion reactions is ordered:\n  - Diphenhydramine 25–50 mg IV/PO 30 minutes prior\n  - Acetaminophen 650–1000 mg PO 30 minutes prior\n  - Methylprednisolone 25–100 mg IV (if history of infusion reactions; may omit for first infusion per institutional protocol — verify with provider)\n- Ensure emergency medications (epinephrine, corticosteroids, antihistamines) are available at infusion site\n\n### 3d. Patient Education\n\nProvide comprehensive education prior to first infusion, covering:\n\n| Topic | Key Points |\n|-------|-----------|\n| **Mechanism & Purpose** | Anti-TNF biologic; reduces intestinal inflammation; induction phase critical for establishing response |\n| **Infusion schedule** | Week 0, 2, 6 → then every 8 weeks; adherence to schedule is critical to prevent immunogenicity |\n| **Infusion reactions** | Acute: flushing, chest tightness, dyspnea, urticaria (during/within 2 hours); Delayed: myalgia, rash, fever (1–14 days post-infusion); instruct to report immediately |\n| **Infection risk** | Increased susceptibility to bacterial, fungal, opportunistic infections; report fever ≥100.4°F, chills, productive cough, skin infections, or wounds that won't heal immediately |\n| **TB and fungal risk** | Avoid prolonged contact with active TB; avoid endemic fungal areas (e.g., caves, construction sites with Histoplasma/Coccidioides risk) |\n| **Skin changes / malignancy** | Annual skin exam recommended; report new skin lesions, nodules, or lymphadenopathy |\n| **Do not administer live vaccines** while on therapy |  |\n| **Medication interactions** | Avoid concurrent abatacept, rituximab, anakinra (combination biologic use contraindicated) |\n| **Pregnancy/Family planning** | Infliximab crosses placenta; if patient planning to father children — no restriction identified, though counsel regarding disease management; counsel regarding partner pregnancy if relevant |\n| **When to hold infusion** | Active infection (hold until resolved), upcoming surgery (discuss with provider), hospitalization |\n\n---\n\n## 4. MONITORING PLAN\n\n### 4a. Efficacy Monitoring\n\n| Parameter | Frequency | Target |\n|-----------|-----------|--------|\n| **Clinical symptoms** (stool frequency, abdominal pain, general well-being — Harvey-Bradshaw Index or CDAI) | Every infusion visit (Weeks 0, 2, 6, then every 8 weeks) | HBI ≤4 (remission); CDAI <150 |\n| **CRP** | Weeks 6, 14, then every 3–6 months | <5 mg/L |\n| **Fecal calprotectin** (if obtainable) | Weeks 14, 26, then every 6 months | <250 µg/g (ideally <100 µg/g) |\n| **Albumin** | Weeks 6, 14, then every 3–6 months | ≥3.5 g/dL |\n| **Colonoscopy / cross-sectional imaging** | Week 26–52 (mucosal healing assessment) | Mucosal healing (SES-CD ≤2 or deep remission) |\n\n### 4b. Therapeutic Drug Monitoring (TDM)\n\n| Parameter | Timing | Target | Action if Subtherapeutic |\n|-----------|--------|--------|--------------------------|\n| **Infliximab trough level** | End of induction — **prior to Week 14 (Week 14 pre-dose)** | ≥5 µg/mL (minimum); ≥7–10 µg/mL preferred given disease burden | Escalate dose to 10 mg/kg or shorten interval to every 6 weeks |\n| **Infliximab trough level** | Maintenance — every 6–12 months (or sooner if clinical worsening) | ≥5 µg/mL | TDM-guided dose optimization |\n| **Anti-drug antibodies (ADA)** | If trough subtherapeutic or loss of response | <3.0 AU/mL (or undetectable) | If high ADA + low trough: consider switching mechanism of action; if low ADA + low trough: consider dose escalation + optimize combo therapy |\n\n### 4c. Safety Monitoring\n\n| Parameter | Frequency | Threshold / Action |\n|-----------|-----------|-------------------|\n| **CBC with differential** | Baseline, Week 6, then every 3–6 months | WBC <3.5 × 10³/µL or ANC <1.5 × 10³/µL: hold infusion, notify provider; platelets <100 × 10³/µL: evaluate |\n| **CMP (LFTs, SCr, electrolytes)** | Baseline, Week 6, then every 3–6 months | LFTs >3× ULN: hold, investigate drug-induced liver injury; SCr — monitor renal function trend |\n| **HBV DNA / LFTs** | If anti-HBc positive at baseline: HBV DNA every 3 months | Reactivation: hold infliximab, initiate antiviral (entecavir), consult hepatology |\n| **Tuberculosis (TB) screening** | Annually (QuantiFERON or TST) | New conversion: hold infliximab, initiate LTBI treatment (9 months INH), restart biologic after 1–2 months of therapy |\n| **Infusion reaction assessment** | During and 1 hour post each infusion | Acute reaction: slow/stop infusion; manage per severity protocol; document and report |\n| **Infection screening** | Every visit — clinical inquiry | Active serious infection: hold infliximab until fully resolved |\n| **Skin examination** | Annually | New lesions → dermatology referral; NMSC risk elevated with anti-TNF |\n| **Malignancy screening** | Per age/sex-appropriate guidelines | New lymphadenopathy, unexplained weight loss, night sweats — evaluate for lymphoma |\n| **Neurological symptoms** | Every visit — clinical inquiry | New demyelinating symptoms (vision changes, weakness, paresthesias): hold infliximab immediately, neurology consult |\n| **Heart failure assessment** | If applicable | New/worsening dyspnea, edema: anti-TNF contraindicated in NYHA Class III–IV HF |\n\n### 4d. Follow-Up Schedule Summary\n\n| Timepoint | Key Actions |\n|-----------|-------------|\n| **Pre-treatment (now)** | Confirm infectious screening, vaccinations, PA, patient education, baseline labs |\n| **Week 0** | First infusion (390 mg IV); confirm pre-medications administered; education reinforced |\n| **Week 2** | Second induction infusion; assess tolerability and early symptom response |\n| **Week 6** | Third induction infusion; labs (CBC, CMP, CRP, albumin); assess symptom response |\n| **Week 14** | Pre-dose trough level + ADA; CBC, CMP, CRP, albumin; assess clinical response — escalate if needed |\n| **Week 22 (q8w maintenance)** | Maintenance infusion; clinical assessment |\n| **Week 26–30** | Consider endoscopic/imaging assessment for mucosal healing |\n| **Every 3–6 months (ongoing)** | CBC, CMP, CRP, albumin; TDM annually or with loss of response; TB screen annually; clinical response review |\n\n---\n\n**Pharmacist Signature:** _________________________ **Date:** 2025-07-14\n**RPh/PharmD, Specialty Pharmacy Services**\n\n> *This care plan is intended to support, not replace, clinical judgment. All interventions and monitoring recommendations should be coordinated with the referring provider and care team.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Moderate-severe Crohn's disease requiring biologic induction therapy",
+                "covered": true
+              },
+              {
+                "item": "Infection risk due to immunosuppression",
+                "covered": true
+              },
+              {
+                "item": "Risk of infusion reactions",
+                "covered": true
+              },
+              {
+                "item": "Low albumin (3.1 g/dL) — increased drug clearance, reduced trough levels expected",
+                "covered": true
+              },
+              {
+                "item": "Clinical remission (reduction in CRP, symptom improvement)",
+                "covered": true
+              },
+              {
+                "item": "No severe infusion reaction",
+                "covered": true
+              },
+              {
+                "item": "Complete induction regimen (weeks 0, 2, 6)",
+                "covered": true
+              },
+              {
+                "item": "Induction: 5 mg/kg IV at weeks 0, 2, 6 → 390 mg per infusion (78 kg)",
+                "covered": true
+              },
+              {
+                "item": "Maintenance: 5 mg/kg IV q8 weeks",
+                "covered": true
+              },
+              {
+                "item": "Infusion time: minimum 2 hours; observe 1–2h post-infusion",
+                "covered": true
+              },
+              {
+                "item": "Pre-screening: TB (QuantiFERON — completed), HBV (must document), CBC, LFTs",
+                "covered": true
+              },
+              {
+                "item": "Infection risk counseling: avoid live vaccines, report fever or infection immediately",
+                "covered": true
+              },
+              {
+                "item": "Infusion reaction protocol: mild (slow rate + antihistamine) / severe (stop + epinephrine)",
+                "covered": true
+              },
+              {
+                "item": "Low albumin → monitor trough infliximab level at week 14",
+                "covered": true
+              },
+              {
+                "item": "Concomitant immunomodulator (azathioprine) consideration per GI",
+                "covered": true
+              },
+              {
+                "item": "Trough infliximab level at week 14 (given low albumin)",
+                "covered": true
+              },
+              {
+                "item": "HBV status documented before first infusion",
+                "covered": true
+              },
+              {
+                "item": "LFTs and CBC before each infusion",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 18,
+              "FP": 4,
+              "FN": 0,
+              "precision": 0.82,
+              "recall": 1.0,
+              "f1": 0.9
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_006",
@@ -445,7 +1048,102 @@
           "CBC monitoring"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "max_tokens",
+          "truncated": true,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** K L | **MRN:** 00067890 | **DOB:** 1958-01-01 | **Sex:** Female\n**Weight:** 61 kg | **BSA:** 1.67 m² | **Referring Provider:** Test (NPI: 1234567)\n**Diagnosis:** ANCA-Associated Vasculitis, PR3+ (M31.30)\n**Medication:** Rituximab\n**Date Generated:** 2025-07-14\n\n---\n\n## 1. PROBLEM LIST\n\n**P1 — ANCA-Associated Vasculitis, PR3+ (Active)**\nSystemic autoimmune vasculitis with positive PR3-ANCA; initiating rituximab for induction or maintenance therapy.\n\n**P2 — Chronic Kidney Disease, Stage 3b (eGFR 32 mL/min/1.73 m²)**\nSCr 1.8 mg/dL; likely secondary to ANCA vasculitis with renal involvement. Increased susceptibility to nephrotoxins and infection; reduced drug clearance potential. Renal function requires close surveillance during immunosuppressive therapy.\n\n**P3 — Resolved Hepatitis B Infection with Reactivation Risk**\nHBsAg negative, HBcAb positive — consistent with prior resolved HBV infection. Rituximab (anti-CD20, B-cell depleting therapy) carries a **high risk of HBV reactivation** (estimated 3–10% in HBcAb+ patients). This is a **critical safety concern requiring prophylaxis prior to rituximab initiation**.\n\n**P4 — Immunosuppression-Related Infection Risk**\nBaseline low-normal lymphocytes prior to B-cell depleting therapy. Rituximab will result in profound and prolonged B-cell depletion (median depletion 6–9 months), increasing risk for bacterial, viral (including PJP, CMV), and opportunistic infections. Risk compounded by CKD.\n\n**P5 — Infusion-Related Reaction (IRR) Risk**\nRituximab is associated with IRRs in up to 77% of patients during the first infusion, ranging from mild (flushing, urticaria) to severe (bronchospasm, hypotension, anaphylaxis). Premedication protocol and monitoring are required.\n\n**P6 — Immunoglobulin Depletion (Anticipated)**\nRituximab causes hypogammaglobulinemia over time with repeat dosing, further increasing susceptibility to encapsulated organisms and recurrent sinopulmonary infections.\n\n---\n\n## 2. GOALS\n\n**G1 — Therapeutic Goals**\n- Achieve and maintain clinical remission of ANCA-associated vasculitis as evidenced by resolution of systemic symptoms, stabilization or improvement of renal function (SCr/eGFR), and decline in PR3-ANCA titers.\n- Prevent relapse with appropriate rituximab dosing strategy (induction vs. maintenance per prescriber protocol, e.g., 375 mg/m² × 4 weekly doses OR 1,000 mg × 2 doses separated by 2 weeks, per RAVE/RITUXVAS guidance).\n\n**G2 — Renal Protection**\n- Prevent further decline in eGFR; target stabilization of SCr ≤ 1.8 mg/dL or improvement toward baseline.\n- Avoid concomitant nephrotoxic agents (NSAIDs, IV contrast without precautions, aminoglycosides) throughout the treatment course.\n\n**G3 — HBV Reactivation Prevention**\n- Initiate antiviral prophylaxis **prior to first rituximab infusion** and continue for a minimum of **12 months after the last rituximab dose** (extended duration required due to prolonged B-cell depletion with anti-CD20 therapy, per AASLD and ACR guidelines).\n\n**G4 — Infection Prevention and Patient Safety**\n- Minimize risk of opportunistic and serious infections through prophylaxis, vaccination optimization, and patient education.\n- Ensure no live vaccines are administered during or within 12 months of completing rituximab therapy.\n\n**G5 — IRR Prevention and Safe Infusion Administration**\n- Administer standardized premedication regimen prior to each infusion and ensure appropriate infusion rate titration per protocol to prevent and manage IRRs.\n\n**G6 — Patient Engagement and Self-Management**\n- Patient able to verbalize purpose of therapy, signs/symptoms requiring urgent reporting (infection, bleeding, neurologic changes), and adherence to follow-up schedule within 1 visit.\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3a. HBV Reactivation Prophylaxis — HIGH PRIORITY / TIME-SENSITIVE\n- **Action:** Contact referring provider immediately to recommend initiation of antiviral prophylaxis **before the first rituximab infusion**.\n- **Recommended agent:** Entecavir 0.5 mg orally once daily *(preferred over lamivudine due to superior resistance profile; dose adjustment required for renal impairment — eGFR 32 mL/min falls in range requiring dose reduction: Entecavir 0.25 mg PO daily OR 0.5 mg every 48 hours per manufacturer labeling for CrCl 10–30 mL/min — verify and confirm with provider)*.\n  - **Alternative:** Tenofovir alafenamide (TAF) 25 mg daily — no renal dose adjustment needed for eGFR ≥ 15 mL/min; may be preferred given CKD (favorable renal safety profile vs. TDF); confirm with provider/hepatology.\n- **Duration:** Continue prophylaxis throughout rituximab therapy and for a minimum of **12 months following the last rituximab dose**.\n- **Document** prescriber acknowledgment of HBV reactivation risk and acceptance of prophylaxis plan in patient record.\n\n### 3b. Dose Verification and Order Review\n- **Confirm rituximab dosing regimen** with prescribing provider (induction vs. maintenance context):\n  - *Induction (RAVE protocol):* Rituximab 375 mg/m² IV weekly × 4 doses → calculated dose: **375 mg/m² × 1.67 m² = ~626 mg/dose**, rounded per institutional policy.\n  - *Alternative induction:* 1,000 mg IV × 2 doses, 2 weeks apart (RITUXVAS/European protocol).\n  - *Maintenance:* 500 mg IV every 6 months (post-remission).\n- Verify and document final regimen, schedule, and number of planned infusions in the care plan.\n- **Confirm no dose adjustment is required for CKD** — rituximab is not renally cleared; no dose modification needed for eGFR 32; document rationale.\n\n### 3c. Premedication Protocol\nRecommend and ensure the following premedications are ordered and administered **30–60 minutes prior to each infusion**:\n| Premedication | Dose/Route | Timing |\n|---|---|---|\n| Acetaminophen | 650–1,000 mg PO | 30–60 min pre-infusion |\n| Diphenhydramine | 25–50 mg IV/PO | 30–60 min pre-infusion |\n| Methylprednisolone | 100 mg IV (or equivalent) | 30 min pre-infusion |\n\n*(Corticosteroid premedication also aligns with concurrent vasculitis management; confirm with prescriber if systemic steroid taper is ongoing to avoid redundancy or adjust accordingly.)*\n\n### 3d. Infusion Rate Protocol\n- **First infusion:** Initiate at **50 mg/hr**; if no IRR after 30 minutes, escalate by 50 mg/hr every 30 minutes to a **maximum of 400 mg/hr**.\n- **Subsequent infusions (if no Grade ≥ 2 IRR on infusion 1):** May initiate at **100 mg/hr**, escalating by 100 mg/hr every 30 minutes to maximum 400 mg/hr.\n- Ensure infusion nursing staff are aware of IRR management protocol; epinephrine, diphenhydramine, corticosteroids, and resuscitative equipment must be immediately available at infusion site.\n\n### 3e. Infection Prophylaxis Assessment\n- **PCP (Pneumocystis jirovecii) Prophylaxis:** Strongly recommend to prescriber given combination of rituximab + presumed concurrent corticosteroid use in the setting of CKD-associated immune compromise.\n  - *Preferred:* Trimethoprim-sulfamethoxazole (TMP-SMX) SS 1 tablet PO daily *(monitor renal function — TMP-SMX may cause transient SCr increase via inhibition of tubular creatinine secretion; not necessarily true GFR decline)*.\n  - *Alternative (if sulfa intolerance):* Dapsone 100 mg PO daily (check G6PD before initiation) or Atovaquone 1,500 mg PO daily with food.\n  - Continue for duration of rituximab therapy + 6 months or until CD4/lymphocyte recovery — per prescriber guidance.\n- **No routine CMV prophylaxis** required unless lymphocyte counts decline significantly or patient receives high-dose steroids; reassess at each cycle.\n\n### 3f. Vaccination Review and Optimization\n- Review vaccination records; administer any indicated **inactivated vaccines at least 4 weeks prior to rituximab initiation** if not already given:\n  - Influenza (inactivated, annual)\n  - Pneumococcal (PCV20 or PCV15 + PPSV23 series)\n  - COVID-19 (updated formulation)\n  - Zoster (Shingrix — 2-dose series; administer **before** rituximab if not completed, as live attenuated vaccine is contraindicated post-initiation)\n  - Hepatitis A/B series — note: HBcAb+ patient; reconfirm HBsAb titer; if anti-HBs < 10 IU/L, discuss with provider whether booster is warranted prior to initiation (limited efficacy post-rituximab).\n- **Contraindicate all live attenuated vaccines** during therapy and for ≥ 12 months after last dose (or until B-cell recovery confirmed).\n- Document vaccination status in the chart.\n\n### 3g. Concomitant Medication Review\n- Review full medication list for:\n  - Nephrotoxic agents (NSAIDs, aminoglycosides, IV contrast — flag and counsel to avoid or use with caution)\n  - Concurrent immunosuppressants (cyclophosphamide, azathioprine, mycophenolate, methotrexate — document and assess additive immunosuppression risk; confirm if transitioning therapy)\n  - ACE inhibitor/ARB use — appropriate and recommended for proteinuria/CKD in ANCA vasculitis if not already prescribed; recommend to provider if absent\n- No known drug interactions specific to rituximab that require modification identified at this time; reassess with full medication reconciliation.\n\n### 3h. Patient Counseling — Key Topics to Address\nProvide verbal and written counseling at or before first infusion on the following:\n\n1. **Purpose of rituximab** and expected timeline for therapeutic effect (weeks to months)\n2. **Infusion-related reactions** — what to expect, when to alert nursing staff (fever, chills, shortness of breath, chest tightness, hives)\n3. **Infection risk** — hand hygiene, avoid sick contacts, when to call provider (fever ≥ 100.4°F, productive cough, dysuria, any unusual symptoms)\n4. **HBV reactivation** — importance of antiviral prophylaxis adherence; do not discontinue without provider approval\n5. **Avoid live vaccines** during and after treatment\n6. **Pregnancy and contraception** — rituximab is **Pregnancy Category C / associated with neonatal B-cell depletion**; counsel to use effective contraception during therapy and for **12 months after last dose**; notify provider immediately if pregnancy occurs\n7. **Follow-up labs** — importance of scheduled bloodwork and infusion visits\n8. **Emergency contacts** — provide pharmacy and provider contact numbers; when to go to the emergency department\n\n---\n\n## 4. MONITORING PLAN\n\n### 4a. Prior to Each Rituximab Infusion\n| Parameter | Action |\n|---|---|\n| Vital signs | Obtain baseline BP, HR, temp, SpO₂ |\n| CBC with differential | Monitor WBC, ANC, lymphocytes; hold infusion if ANC < 1,000/μL (discuss with provider) |\n| Comprehensive metabolic panel | Monitor SCr, BUN, electrolytes, LFTs |\n| HBV viral load (HBV DNA) | Confirm undetectable prior to initiation; recheck every 3 months during treatment (or per hepatology guidance) |\n| Serum IgG level | Baseline before first dose; repeat every 3–6 months |\n| PR3-ANCA titer | Baseline; reassess at 3–6 months to evaluate treatment response |\n| Urinalysis with microscopy | Monitor for hematuria, proteinuria, cellular casts (renal vasculitis activity) |\n| Antiviral prophylaxis | Confirm entecavir/TAF is active prescription and patient-adherent |\n\n### 4b. During Each Infusion\n| Parameter | Frequency | Threshold for Action |\n|---|---|---|\n| Vital signs (BP, HR, SpO₂, temp) | Every 15 min for first hour; every 30 min thereafter | Any change from baseline: slow/stop infusion per IRR protocol |\n| Symptom assessment | Continuous nursing monitoring | Any IRR symptom (urticaria, bronchospasm, hypotension): hold infusion, notify provider, initiate IRR management |\n| Infusion rate | Per protocol titration | Slow or stop if Grade ≥ 2 IRR; do not re-escalate if Grade 3–4 |\n\n**IRR Management Protocol (if applicable):**\n- Grade 1–2: Pause infusion, administer additional diphenhydramine ± hydrocortisone 100 mg IV; resume at 50% prior rate when resolved\n- Grade 3–4: Discontinue infusion permanently for that encounter; administer epinephrine 0.3 mg IM if anaphylaxis; initiate emergency protocol; notify prescriber\n\n### 4c. Ongoing / Between Cycles\n| Parameter | Frequency | Target / Threshold |\n|---|---|---|\n| SCr / eGFR | Every 4–8 weeks | Stable or improving; flag > 25% decline from baseline for provider review |\n| CBC with differential | Every 4–8 weeks | ANC > 1,500/μL; lymphocytes trending; flag Grade 3–4 cytopenias |\n| LFTs | Every 3 months | Monitor for hepatitis flare; AST/ALT > 3× ULN → urgent hepatology referral |\n| HBV DNA (viral load) | Every 3 months during therapy, monthly if detectable | Target undetectable; any detectable HBV DNA → urgent hepatology consultation, do not hold antiviral without guidance |\n| HBsAg | Every 3 months | Any seroconversion to HBsAg+ → hepatology consultation immediately |\n| Serum IgG | Every 3–6 months | IgG < 400 mg/dL → consider IVIG replacement; discuss with provider |\n| PR3-ANCA titer | Every 3–6 months | Declining titer = treatment response; rising titer may indicate relapse |\n| Urinalysis + urine protein:creatinine ratio | Every 3 months | Monitor for proteinuria, hematuria; worsening = possible disease flare |\n| CD19/CD20 B-cell count | Optional; at 6 months and prior to re-dosing | B-cell depletion confirms pharmacodynamic effect; B-cell recovery may guide re-dosing schedule |\n| Blood pressure | Each visit | Target BP < 130/80 mmHg given CKD |\n| Infection assessment | Each visit | Screen for signs/symptoms of bacterial, viral, fungal, or opportunistic infections |\n\n### 4d. Post-Treatment / Long-Term Follow-Up\n- Continue **HBV monitoring** (HBV DNA, LFTs) for **≥ 12 months after last rituximab dose** and maintain antiviral prophylaxis for the same duration.\n- Continue **PCP prophylaxis** for ≥ 6 months post last dose or until lymphocyte recovery.\n- Monitor for **late-onset neutropenia** (LON) — can occur 3–6 months post-rituxim",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "ANCA-associated vasculitis requiring rituximab induction",
+                "covered": true
+              },
+              {
+                "item": "HBV reactivation risk — core Ab positive (resolved infection)",
+                "covered": true
+              },
+              {
+                "item": "PCP prophylaxis required during immunosuppression",
+                "covered": true
+              },
+              {
+                "item": "Risk of infusion reactions",
+                "covered": true
+              },
+              {
+                "item": "B-cell depletion — immunoglobulin monitoring required",
+                "covered": true
+              },
+              {
+                "item": "Disease remission (ANCA vasculitis)",
+                "covered": true
+              },
+              {
+                "item": "No HBV reactivation",
+                "covered": true
+              },
+              {
+                "item": "No severe infusion reaction",
+                "covered": true
+              },
+              {
+                "item": "Dose option A: 375 mg/m² IV weekly × 4 → 626 mg/dose (1.67 m²)",
+                "covered": true
+              },
+              {
+                "item": "Dose option B: 1000 mg IV × 2 doses, 2 weeks apart — confirm with nephrology",
+                "covered": false
+              },
+              {
+                "item": "Infusion: start 50 mg/hr, increase by 50 mg/hr q30min to max 400 mg/hr",
+                "covered": true
+              },
+              {
+                "item": "Premedication: Methylprednisolone 100 mg IV + Acetaminophen + Diphenhydramine",
+                "covered": true
+              },
+              {
+                "item": "HBV reactivation: core Ab positive → antiviral prophylaxis (entecavir) required; monitor HBsAg/HBV DNA q3 months",
+                "covered": true
+              },
+              {
+                "item": "PCP prophylaxis: trimethoprim-sulfamethoxazole (check allergy) during and 6–12 months post",
+                "covered": true
+              },
+              {
+                "item": "Live vaccines contraindicated for ≥12 months post-rituximab",
+                "covered": true
+              },
+              {
+                "item": "Immunoglobulin levels at baseline; CD19/CD20 optional",
+                "covered": true
+              },
+              {
+                "item": "HBsAg and HBV DNA q3 months",
+                "covered": true
+              },
+              {
+                "item": "CBC monitoring",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 17,
+              "FP": 3,
+              "FN": 1,
+              "precision": 0.85,
+              "recall": 0.94,
+              "f1": 0.89
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_007",
@@ -507,7 +1205,90 @@
           "Fasting glucose and HbA1c q6 months"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n\n**Patient:** M N | **MRN:** 00078901 | **DOB:** 1988-01-01 | **Sex:** Male | **Weight:** 82 kg\n**Referring Provider:** Test (NPI: 1234567) | **Primary Dx:** E23.0 — Adult-onset GH deficiency (post-pituitary adenoma resection)\n**Plan Generated By:** Clinical Pharmacist, Specialty Pharmacy\n\n---\n\n## 1. PROBLEM LIST\n\n| # | Problem | Clinical Detail |\n|---|---------|-----------------|\n| 1 | **Adult-onset growth hormone deficiency (AGHD)** | Post-surgical hypopituitarism following pituitary adenoma resection; confirmed by low IGF-1 of 85 ng/mL (expected reference range for a 38-year-old male: approximately 115–307 ng/mL) |\n| 2 | **Somatropin therapy initiation** | Patient is a new start on recombinant human growth hormone (rhGH) requiring comprehensive counseling, injection training, and baseline safety assessment |\n| 3 | **Impaired glucose metabolism risk** | Fasting glucose 98 mg/dL (high-normal/impaired fasting glucose threshold) and HbA1c 5.6% (pre-diabetic range per ADA criteria: 5.7–6.4%); somatropin may further antagonize insulin action and worsen glycemic status |\n| 4 | **Post-pituitary adenoma resection — potential co-existing hormonal deficiencies** | Patients with pituitary adenoma resection are at risk for concurrent central hypothyroidism, secondary adrenal insufficiency, and hypogonadotropic hypogonadism; medication history is unavailable and co-management status is unclear |\n| 5 | **Medication history unverified** | No prior or current medications documented; unable to assess for drug interactions, adherence barriers, or hormonal replacement co-therapy at this time |\n\n---\n\n## 2. GOALS\n\n### Short-Term Goals (0–3 Months)\n\n- **Normalize IGF-1** toward the mid-normal range for age and sex (target: approximately 150–250 ng/mL) through careful dose titration of somatropin, avoiding supraphysiologic levels (IGF-1 > 2 SD above mean) to minimize adverse effects\n- **Achieve safe therapy initiation** with patient demonstrating competent and independent self-injection technique using the prescribed delivery device (pen or vial/syringe) prior to dispensing the first fill\n- **Establish glycemic baseline and awareness** — educate patient on somatropin's insulin-antagonizing effects; maintain fasting glucose < 100 mg/dL and HbA1c stable at or below 5.6%\n- **Clarify pituitary hormone replacement status** — confirm with referring provider whether the patient is receiving adequate cortisol, thyroid, and testosterone replacement, as unmanaged deficiencies may confound GH therapy response and increase risk\n\n### Long-Term Goals (3–12 Months and Ongoing)\n\n- **Improve body composition** — reduce visceral adiposity and improve lean body mass, consistent with expected clinical response to rhGH in AGHD\n- **Improve patient-reported quality of life** — use validated tools (e.g., QoL-AGHD or Adult GHD Assessment [AGHDA] questionnaire) to document functional and symptomatic improvement over time\n- **Sustain safe, cost-effective pharmacotherapy** — maintain adherence ≥ 80%, minimize treatment-related adverse effects (fluid retention, arthralgia, carpal tunnel symptoms, glucose dysregulation), and support prior authorization renewals through thorough clinical documentation\n- **Prevent progression to type 2 diabetes** — given borderline pre-diabetic labs at baseline, monitor closely and coordinate with prescriber for lifestyle modification referral or pharmacologic intervention if glycemic parameters worsen during therapy\n- **Ongoing cancer surveillance coordination** — given history of pituitary adenoma, ensure the referring provider maintains appropriate surveillance imaging; pharmacist role includes flagging any new signs/symptoms reported during care plan follow-up calls that may warrant urgent evaluation\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### 3a. Prescriber Communication / Clinical Clarification\n\n- [ ] **Contact referring provider (NPI: 1234567)** to clarify:\n  - Intended starting dose and titration schedule (standard AGHD initiation: 0.1–0.2 mg/day SC, with dose increases of 0.1–0.2 mg every 4–8 weeks based on IGF-1 response, tolerability, and clinical response; lower starting doses may be appropriate given borderline glycemic status)\n  - Confirm whether other anterior pituitary axis hormones (thyroid, adrenal, gonadal) have been assessed and are being adequately replaced — note that untreated hypothyroidism or adrenal insufficiency can blunt GH response\n  - Clarify chosen somatropin formulation/brand and delivery device (e.g., Genotropin, Norditropin, Humatrope, Saizen, Omnitrope) to ensure appropriate device counseling and storage instruction\n  - Obtain complete medication history to perform a comprehensive drug interaction review\n  - Given fasting glucose 98 mg/dL and HbA1c 5.6%, recommend prescriber consideration of enhanced glycemic monitoring frequency during initial titration phase; communicate diabetes risk\n  - Document medical necessity narrative for prior authorization purposes\n\n- [ ] **Clarify diagnosis confirmation methodology** — confirm that GH deficiency was formally confirmed via stimulation testing (e.g., insulin tolerance test, glucagon stimulation test) or accepted post-surgical exception criteria per Endocrine Society guidelines, as this is required for insurance authorization\n\n### 3b. Prior Authorization and Access\n\n- [ ] **Initiate prior authorization (PA)** with patient's insurance plan — prepare clinical documentation including:\n  - IGF-1 result (85 ng/mL with laboratory reference range)\n  - Confirmed pituitary adenoma resection history and ICD-10 code E23.0\n  - GH stimulation test results (if available) or surgical exception criteria documentation\n  - Prescriber attestation of diagnosis\n- [ ] **Identify patient assistance programs** if PA is denied or cost-sharing is prohibitive (e.g., manufacturer copay cards, PAP programs available through Pfizer [Genotropin], Novo Nordisk [Norditropin], Merck [Saizen], Sandoz [Omnitrope])\n- [ ] **Coordinate cold-chain shipping** — confirm patient has appropriate refrigerated storage (2–8°C / 36–46°F) at home prior to first dispensing; educate on temporary room-temperature stability limits per product-specific labeling\n\n### 3c. Patient Education and Counseling\n\n- [ ] **Injection technique training** — provide hands-on or video-assisted training for SC self-injection using the prescribed delivery device; confirm patient can independently:\n  - Prepare and prime the device\n  - Select and rotate injection sites (abdomen, thigh, upper arm — rotating to prevent lipohypertrophy)\n  - Administer the injection with appropriate technique\n  - Safely dispose of sharps (provide sharps container information)\n\n- [ ] **Medication administration counseling:**\n  - Administer somatropin **subcutaneously, once daily, in the evening** (evening dosing aligns with physiologic GH secretion pattern and may improve tolerability)\n  - Do not shake the reconstituted product (if applicable); gently swirl\n  - If a dose is missed, administer as soon as remembered that day; if the next day, skip the missed dose — do not double dose\n\n- [ ] **Storage and handling:**\n  - Store unreconstituted/in-use cartridges/pens per product-specific labeling (most require refrigeration; some allow limited room-temperature storage after first use)\n  - Protect from freezing and light\n  - Discard any unused portions per labeled expiration after first use\n\n- [ ] **Adverse effect counseling — instruct patient to monitor for and report:**\n  - **Fluid retention** (peripheral edema, swelling in hands/feet) — common at initiation, often transient; notify pharmacy/provider if persistent\n  - **Arthralgia and myalgia** — particularly during dose titration\n  - **Carpal tunnel syndrome** symptoms (numbness/tingling in hands) — more common at higher doses\n  - **Headache** — may indicate intracranial hypertension (rare but serious; requires prompt evaluation)\n  - **Visual changes or papilledema** — rare; instruct immediate reporting\n  - **Signs of hyperglycemia** (increased thirst, urination, fatigue) — given pre-diabetic baseline, this is an elevated concern for this patient\n  - **Injection site reactions** (redness, swelling, lipohypertrophy) — emphasize site rotation\n\n- [ ] **Glycemic risk counseling** — educate patient that somatropin can increase blood glucose by opposing insulin action; given HbA1c 5.6% and fasting glucose 98 mg/dL at baseline, emphasize importance of glycemic monitoring, dietary awareness, and reporting any new hyperglycemic symptoms\n\n- [ ] **Lifestyle counseling:**\n  - Encourage regular physical activity (resistance and aerobic exercise) to complement rhGH therapy benefits on body composition\n  - Reinforce healthy dietary patterns to support glycemic control and cardiovascular health\n  - Counsel on avoidance of alcohol excess\n\n- [ ] **Adherence and expectations counseling:**\n  - Set realistic expectations — clinical benefits (body composition, energy, QoL improvement) may take **3–6 months** to become apparent; adherence is critical\n  - Provide specialty pharmacy contact information for 24/7 clinical support line\n  - Schedule first pharmacist follow-up call at **30 days**\n\n### 3d. Drug Interaction Review\n\n- [ ] **Pending complete medication history** — upon receipt, review for the following clinically significant interactions with somatropin:\n  - **Glucocorticoids (especially supraphysiologic doses):** may inhibit somatropin response; if patient is on hydrocortisone for adrenal insufficiency (likely given pituitary history), dose optimization may be needed\n  - **Insulin/oral antidiabetic agents:** somatropin may reduce insulin sensitivity — dose adjustments may be needed\n  - **Thyroid hormone (levothyroxine):** somatropin may unmask or worsen central hypothyroidism; thyroid function must be monitored, and levothyroxine dose may require upward adjustment\n  - **Sex hormone replacement (testosterone):** androgen replacement may influence IGF-1 levels; document if patient is on TRT\n  - **Anticonvulsants (CYP3A4 inducers):** may reduce somatropin efficacy\n  - **Cyclosporine:** somatropin may alter cyclosporine levels\n\n---\n\n## 4. MONITORING PLAN\n\n### Laboratory Monitoring\n\n| Parameter | Frequency | Target / Action Threshold | Rationale |\n|-----------|-----------|--------------------------|-----------|\n| **IGF-1** | Baseline (confirmed); recheck 4–6 weeks after each dose change; every 6 months once stable | Mid-normal range for age/sex (~150–250 ng/mL); hold/reduce dose if IGF-1 > 2 SD above age-sex mean | Primary efficacy and safety marker for dose titration |\n| **Fasting plasma glucose** | Baseline (98 mg/dL — documented); recheck at 4–6 weeks, then every 3 months | Goal: < 100 mg/dL; escalate monitoring if ≥ 100 mg/dL; refer to PCP/endocrinology if progressing to IFG or diabetes | Somatropin has insulin-antagonizing effects; patient has pre-diabetic baseline |\n| **HbA1c** | Baseline (5.6% — documented); recheck every 3–6 months | Goal: stable at ≤ 5.6%; alert prescriber if HbA1c rises to ≥ 5.7% (pre-diabetic range) or ≥ 6.5% | Longitudinal glycemic surveillance; borderline baseline warrants close monitoring |\n| **Thyroid function (TSH, free T4)** | At therapy initiation (to confirm euthyroid status); every 6 months thereafter, or after dose changes | TSH and free T4 within normal reference ranges | Somatropin may unmask central hypothyroidism; post-pituitary patients at high risk |\n| **Cortisol / adrenal axis** | Confirm adequate replacement at baseline (coordinate with prescriber) | No formal threshold — confirm adequate glucocorticoid replacement | Adrenal insufficiency common post-pituitary resection; unmanaged adrenal insufficiency blunts GH response and poses safety risk |\n| **Lipid panel** | Baseline; at 6 months; annually | Improvement in LDL-C and total cholesterol expected with effective AGHD treatment | AGHD associated with dyslipidemia; monitor for favorable response |\n| **Testosterone (total)** | Baseline (if not already assessed) | Age-appropriate normal range | Document gonadal axis status; hypogonadism common post-pituitary surgery and may confound body composition response |\n| **Bone mineral density (DXA)** | Baseline; repeat at 12–24 months | T-score trending toward normal; no significant loss | AGHD associated with reduced BMD; rhGH therapy expected to improve bone density over time |\n\n### Clinical / Safety Monitoring\n\n| Parameter | Frequency | Action |\n|-----------|-----------|--------|\n| **Injection site assessment** | Every follow-up contact | Reinforce site rotation technique if lipohypertrophy or site reactions reported |\n| **Fluid retention / edema** | Each pharmacist follow-up call | If persistent or severe, notify prescriber — may require dose reduction |\n| **Arthralgia / myalgia** | Each follow-up | If dose-limiting, coordinate with prescriber for dose reduction or temporary hold |\n| **Carpal tunnel symptoms** | Each follow-up | If present, notify prescriber — dose reduction usually resolves symptoms |\n| **Neurologic symptoms / headache / visual changes** | Each follow-up; urgent reporting as needed | If new persistent headache or visual disturbance, instruct patient to seek immediate medical evaluation (rule out intracranial hypertension) |\n| **Hyperglycemia symptoms** | Each follow-up | If symptomatic or FPG confirmed > 126 mg/dL or HbA1c ≥ 6.5%, notify prescriber promptly; may require dose adjustment or antidiabetic therapy |\n| **Quality of life / functional status** | At 3 months, 6 months, 12 months | Use validated QoL assessment tool (e.g., AGHDA) to document clinical benefit; supports PA renewals and therapy continuation decisions |\n| **Adherence** | Each pharmacist follow-up call | Document adherence; address barriers (cost, injection anxiety, side effects); calculate proportion of days covered (PDC) at refill |\n\n### Pharmacist Follow-Up Schedule\n\n| Timepoint | Contact Type | Focus |\n|-----------|-------------|-------|\n| **Day 3–5 post-initiation** | Phone call | Confirm successful first injection, address injection technique questions, assess early tolerability |\n| **Week 4 (Month 1)** | Structured phone call | Adherence, tolerability, glucose symptoms, injection site issues; confirm lab draw scheduled |\n| **Month 2–3** | Phone call + lab review | IGF-1 and FPG result review with prescriber; document dose titration if applicable |\n| **Month 6** | Comprehensive review call | Full monitoring parameter review (IGF-1, HbA1c, lipids, TSH); QoL assessment; PA renewal documentation |\n| **Month 12 and annually thereafter** | Annual comprehensive review | Full clinical review; DXA coordination; PA renewal; therapy continuation justification |\n\n---\n\n> **Pharmacist Attestation:** This care plan was generated by a clinical pharmacist based on available clinical documentation. All clinical decisions regarding dosing, titration, and co-management require prescriber review and approval. This plan is intended to support, not replace, physician-directed care.\n>\n> *Specialty Pharmacy Clinical Team*\n> *Date Generated: [Auto-populated on finalization]*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Adult GH deficiency requiring replacement therapy",
+                "covered": true
+              },
+              {
+                "item": "Glucose intolerance risk (borderline HbA1c 5.6%) — GH can worsen insulin resistance",
+                "covered": true
+              },
+              {
+                "item": "Active malignancy or intracranial lesion must be ruled out before initiating",
+                "covered": false
+              },
+              {
+                "item": "Injection site management (lipohypertrophy risk)",
+                "covered": true
+              },
+              {
+                "item": "IGF-1 in mid-normal range for age and sex",
+                "covered": true
+              },
+              {
+                "item": "No hyperglycemia (maintain HbA1c within acceptable range)",
+                "covered": true
+              },
+              {
+                "item": "No fluid retention or carpal tunnel symptoms",
+                "covered": true
+              },
+              {
+                "item": "Starting dose: 0.2 mg SQ daily — NOT weight-based (adult low-dose start)",
+                "covered": true
+              },
+              {
+                "item": "Titrate by 0.1–0.2 mg q4–8 weeks based on IGF-1 and tolerability",
+                "covered": true
+              },
+              {
+                "item": "Confirm tumor stability — GH is contraindicated with active malignancy or intracranial lesion",
+                "covered": false
+              },
+              {
+                "item": "Injection site rotation counseling (lipohypertrophy risk)",
+                "covered": true
+              },
+              {
+                "item": "Fluid retention counseling: report edema and carpal tunnel symptoms",
+                "covered": true
+              },
+              {
+                "item": "Storage: refrigerated 2–8°C; do not freeze",
+                "covered": true
+              },
+              {
+                "item": "IGF-1 at 4–6 weeks after each dose change",
+                "covered": true
+              },
+              {
+                "item": "Fasting glucose and HbA1c q6 months",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 13,
+              "FP": 4,
+              "FN": 2,
+              "precision": 0.76,
+              "recall": 0.87,
+              "f1": 0.81
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_008",
@@ -570,7 +1351,94 @@
           "Parasitic infection monitoring in endemic areas"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** O P | **MRN:** 00089012 | **DOB:** 1997-01-01 | **Date:** 2025-07-14\n**Referring Provider:** test (NPI: 1234567) | **Pharmacist:** Clinical Pharmacist, Specialty Pharmacy\n\n---\n\n## 1. PROBLEM LIST\n\n1. **Severe persistent allergic asthma (J45.51)** — Baseline FEV₁ 68% predicted, indicating moderate-to-severe airflow obstruction; perennial allergen sensitized with elevated baseline total IgE of 280 IU/mL, confirming IgE-mediated atopic phenotype appropriate for biologic therapy.\n\n2. **Suboptimal asthma control on conventional therapy** — Patient meets clinical criteria for omalizumab initiation, implying inadequate disease control despite presumed medium-to-high dose inhaled corticosteroid (ICS) ± long-acting beta-agonist (LABA); prior step therapy should be confirmed and documented.\n\n3. **Aspirin hypersensitivity (bronchospasm)** — Aspirin-exacerbated respiratory disease (AERD) or aspirin-induced bronchospasm on file; cross-reactivity risk with NSAIDs must be addressed. All NSAIDs (ibuprofen, naproxen, ketorolac, etc.) should be avoided. Acetaminophen is a safe alternative for analgesia/antipyresis.\n\n4. **Incomplete medication history** — No prior or concurrent medication regimen documented in the order. Baseline controller and rescue therapy must be clarified to ensure appropriate ongoing management alongside omalizumab.\n\n5. **Risk of anaphylaxis associated with omalizumab administration** — Black Box Warning: Anaphylaxis has been reported with omalizumab (Xolair®); delayed reactions (up to 24 hours or beyond) have occurred. Requires structured post-injection observation protocol.\n\n---\n\n## 2. GOALS\n\n1. **Reduce asthma exacerbation frequency** — Achieve ≥50% reduction in the number of severe exacerbations (requiring systemic corticosteroids, ED visits, or hospitalizations) within the first 6 months of omalizumab therapy.\n\n2. **Improve lung function** — Target improvement in FEV₁ toward ≥80% predicted within 6–12 months of treatment initiation, as measured by serial spirometry.\n\n3. **Improve symptom control** — Achieve a validated Asthma Control Test (ACT) score ≥20 or Asthma Control Questionnaire (ACQ) score <0.75 within 16 weeks of initiating omalizumab.\n\n4. **Reduce rescue bronchodilator use** — Decrease short-acting beta-agonist (SABA; e.g., albuterol) use to <2 days per week as a marker of well-controlled disease.\n\n5. **Minimize oral corticosteroid (OCS) burden** — Eliminate or substantially reduce systemic corticosteroid exposure to mitigate long-term OCS-related toxicity (osteoporosis, adrenal suppression, metabolic effects).\n\n6. **Safe omalizumab administration** — Patient completes all required post-injection observation periods without anaphylaxis or serious adverse events; patient and caregiver demonstrate competency in anaphylaxis recognition and emergency response.\n\n7. **NSAID avoidance and safe analgesic use** — Patient verbalizes understanding of aspirin/NSAID avoidance and identifies acetaminophen as the appropriate first-line OTC analgesic.\n\n8. **Adherence and persistence** — Patient maintains ≥80% adherence to the omalizumab dosing schedule and completes biologic therapy evaluation at 16 weeks per GINA/NAEPP guidelines.\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### A. Omalizumab Dosing Verification & Initiation\n- **Confirm dosing per prescribing table** based on baseline total IgE (280 IU/mL) and body weight (71 kg):\n  - Per FDA-approved dosing table: **300 mg subcutaneously every 4 weeks (Q4W)** is the appropriate dose for IgE 200–300 IU/mL at 60–90 kg body weight.\n  - *(Cross-reference with official Xolair® prescribing information dosing table to confirm; contact prescriber if discrepancy identified.)*\n- Verify patient meets all eligibility criteria:\n  - Age ≥6 years ✓\n  - Moderate-to-severe persistent allergic asthma ✓\n  - IgE 30–700 IU/mL ✓ (IgE = 280 IU/mL)\n  - Perennial allergen sensitivity confirmed ✓\n  - Inadequate control on ICS ± LABA *(to be confirmed with prescriber)*\n- **Obtain complete medication history** — Contact referring provider and/or patient to document current controller therapy (ICS/LABA agent and dose), rescue inhaler use, OCS use, and any prior biologic exposure.\n- **Clarify step therapy and prior authorization requirements** — Confirm payer-specific step therapy requirements are met and prior authorization is in place before dispensing.\n\n### B. Allergy and Drug Interaction Review\n- Document aspirin hypersensitivity (bronchospasm) prominently in the patient's pharmacy profile.\n- Counsel patient explicitly to avoid all NSAIDs (aspirin, ibuprofen, naproxen, ketorolac, diclofenac, celecoxib, indomethacin, meloxicam, etc.) due to high cross-reactivity risk in aspirin-exacerbated respiratory disease.\n- Recommend **acetaminophen (≤3 g/day)** as the safe first-line OTC analgesic/antipyretic alternative.\n- No known direct drug-drug interactions with omalizumab (monoclonal antibody; not renally or hepatically metabolized via CYP450); however, review full medication list once obtained.\n\n### C. Patient Education\nProvide comprehensive education prior to first dose and reinforce at subsequent refills:\n- **Mechanism of action:** Omalizumab is an anti-IgE monoclonal antibody that binds free IgE, preventing mast cell and basophil activation; it reduces the allergic inflammatory cascade driving asthma symptoms.\n- **Administration:** Subcutaneous injection administered by a healthcare professional at the pharmacy or clinic; patient is NOT to self-inject at home.\n- **Onset of effect:** Clinical benefit may not be apparent for 12–16 weeks; adherence is critical during this period even if symptoms have not improved.\n- **Anaphylaxis risk and observation period:**\n  - Instruct patient to remain in the clinic/pharmacy for **at least 30–60 minutes after each injection** (particularly for the first 3 injections, where risk is highest; facility protocol may extend monitoring per institutional policy).\n  - Educate patient to seek emergency care **immediately** if they experience urticaria, angioedema, throat tightness, wheezing, hypotension, or dizziness after discharge.\n  - Prescribe or confirm patient has an **epinephrine auto-injector (e.g., EpiPen 0.3 mg)** at home; instruct on proper use.\n- **Do NOT stop controller inhalers:** Omalizumab is add-on therapy; ICS ± LABA must be continued until the treating physician determines it is appropriate to step down therapy.\n- **NSAID/aspirin avoidance** (reiterate; see above).\n- **Refill schedule:** Emphasize that missing doses undermines efficacy; assist patient with refill reminders and schedule.\n\n### D. Coordination of Care\n- Contact referring provider (test, NPI: 1234567) to:\n  1. Confirm current controller and rescue medication regimen.\n  2. Verify spirometry report (FEV₁ 68% predicted) and confirm perennial allergen sensitization (specific IgE or skin prick testing results).\n  3. Communicate dosing verification (300 mg SC Q4W) for co-signature or acknowledgment.\n  4. Establish a shared monitoring and reassessment plan at 16 weeks.\n- Coordinate administration scheduling; confirm whether injections will occur at the specialty pharmacy or the provider's clinic.\n- Document all clinical interventions, prescriber communications, and patient education encounters in the pharmacy care plan record.\n\n---\n\n## 4. MONITORING PLAN\n\n### A. Efficacy Monitoring\n\n| Parameter | Frequency | Target |\n|---|---|---|\n| Asthma Control Test (ACT) or ACQ score | Every visit (Q4W at injection); formal assessment at 16 weeks | ACT ≥20 or ACQ <0.75 |\n| Exacerbation rate (OCS bursts, ED visits, hospitalizations) | Every 3 months | ≥50% reduction from baseline |\n| Rescue SABA use (days/week) | Every visit | <2 days/week |\n| Nocturnal awakenings due to asthma | Every visit | <2 nights/month |\n| Spirometry (FEV₁, FVC, FEV₁/FVC) | At 16-week evaluation; then every 6–12 months | FEV₁ trending toward ≥80% predicted |\n| **Formal efficacy assessment at 16 weeks** | One-time milestone | Determine continuation vs. discontinuation of omalizumab per GINA/NAEPP guidance |\n\n> ⚠️ **If no meaningful clinical response is observed at 16 weeks**, recommend reassessment of diagnosis, adherence, allergen exposure, and comorbidities (e.g., GERD, sinusitis, vocal cord dysfunction); communicate to prescriber to consider alternative biologic therapy (e.g., dupilumab, mepolizumab).\n\n### B. Safety Monitoring\n\n| Parameter | Frequency | Action Threshold |\n|---|---|---|\n| **Post-injection observation for anaphylaxis/hypersensitivity** | After EVERY injection (minimum 30 min; 60 min for first 3 injections) | Any sign of anaphylaxis → administer epinephrine, activate emergency services, notify prescriber immediately |\n| Injection site reactions (erythema, induration, pain) | Every visit | Grade ≥2 reaction → document, apply topical management, notify prescriber |\n| Serum IgE monitoring | **Do NOT recheck total IgE to guide dosing** — omalizumab elevates total IgE levels due to bound IgE; repeat IgE is NOT clinically useful post-initiation | N/A |\n| Signs/symptoms of malignancy | Annually and as clinically indicated | Omalizumab carries a small numerical imbalance in malignancy in clinical trials; inquire at each annual review |\n| Eosinophilic conditions (Churg-Strauss/EGPA) | As clinically indicated (new rash, neuropathy, cardiac symptoms, worsening asthma despite omalizumab) | Refer to prescriber urgently; may be unmasked by OCS reduction |\n| Helminth (parasitic) infections | If patient travels to or resides in endemic areas | Assess at each visit for travel history; temporarily interrupt omalizumab if systemic helminth infection confirmed |\n\n### C. Adherence and Persistence Monitoring\n- Track and document all scheduled and missed injection appointments.\n- Contact patient proactively if a dose is missed; omalizumab has no formal \"make-up\" dosing protocol — consult prescriber if dose gap >2 weeks.\n- Assess barriers to adherence at each visit (transportation, financial, adverse effects, beliefs).\n- Connect patient to the **Xolair® XOLAIR® Co-pay Card / Genentech Access Solutions** or applicable financial assistance programs if cost is a barrier.\n\n### D. Comorbidity and Concurrent Medication Monitoring\n- At each visit, screen for:\n  - Worsening rhinitis, nasal polyps, or sinusitis (common in allergic asthma/AERD)\n  - GERD symptoms (asthma trigger)\n  - Anxiety/depression (asthma comorbidity affecting control and adherence)\n- Review medication list at each refill for addition of any **NSAIDs or aspirin-containing products** and immediately flag if identified.\n- If OCS burden reduction is achieved, coordinate with prescriber to assess for adrenal insufficiency if patient received frequent or prolonged OCS courses.\n\n---\n\n**Plan Prepared By:** Clinical Pharmacist, Specialty Pharmacy\n**Date:** 2025-07-14\n**Next Scheduled Review:** 16-week efficacy evaluation (estimated: 2025-11-04)\n\n> *This care plan is intended to supplement, not replace, the clinical judgment of the treating physician. All significant findings and interventions will be communicated to the referring provider.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Severe persistent allergic asthma inadequately controlled on standard therapy",
+                "covered": true
+              },
+              {
+                "item": "Anaphylaxis risk post-injection (highest first 3 doses; can occur after 1 year)",
+                "covered": true
+              },
+              {
+                "item": "Aspirin/NSAID sensitivity — must reinforce avoidance",
+                "covered": true
+              },
+              {
+                "item": "IgE levels unreliable for monitoring during treatment — do not retest",
+                "covered": true
+              },
+              {
+                "item": "Reduce asthma exacerbation frequency",
+                "covered": true
+              },
+              {
+                "item": "Improve FEV1 toward normal predicted",
+                "covered": true
+              },
+              {
+                "item": "No anaphylaxis event",
+                "covered": true
+              },
+              {
+                "item": "Dose: 300 mg SQ q4 weeks per FDA dosing table (71 kg + IgE 280 IU/mL) — must verify against current Xolair PI before use",
+                "covered": true
+              },
+              {
+                "item": "Administer as 2 SQ injections (max 150 mg per injection site)",
+                "covered": false
+              },
+              {
+                "item": "Observation: 30–60 min post each injection; anaphylaxis kit available at site",
+                "covered": true
+              },
+              {
+                "item": "Efficacy assessment at 16 weeks — discontinue if no response",
+                "covered": true
+              },
+              {
+                "item": "Do not retest IgE during treatment (levels remain elevated up to 1 year post-discontinuation)",
+                "covered": false
+              },
+              {
+                "item": "Aspirin and NSAID avoidance reinforced (existing sensitivity)",
+                "covered": true
+              },
+              {
+                "item": "Continue inhaled corticosteroid — omalizumab is add-on therapy, not replacement",
+                "covered": true
+              },
+              {
+                "item": "Clinical response and exacerbation frequency assessed at 16 weeks",
+                "covered": true
+              },
+              {
+                "item": "Parasitic infection monitoring in endemic areas",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 14,
+              "FP": 3,
+              "FN": 2,
+              "precision": 0.82,
+              "recall": 0.88,
+              "f1": 0.85
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_009",
@@ -630,7 +1498,82 @@
           "Lot number and date documented each administration"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** Q R | **MRN:** 00090123 | **DOB:** 2026-01-13\n**Weight:** 4.2 kg | **Age:** 3 months | **Referring Provider:** test (NPI: 1234567)\n**Medication:** Palivizumab | **Diagnosis:** P27.1 — Chronic Lung Disease of Prematurity (28 weeks GA)\n**Plan Generated By:** Clinical Pharmacist, Specialty Pharmacy\n\n---\n\n## 1. PROBLEM LIST\n\n1. **Extreme prematurity** — Born at 28 weeks gestational age; significantly elevated baseline risk for severe respiratory syncytial virus (RSV) lower respiratory tract infection (LRTI)\n2. **Chronic lung disease of prematurity (CLD/BPD)** — Active diagnosis per ICD-10 P27.1; currently requiring supplemental oxygen, further increasing risk of RSV-related morbidity and hospitalization\n3. **RSV prophylaxis indication** — Meets AAP/ACIP high-risk criteria for palivizumab (monoclonal antibody) prophylaxis based on gestational age ≤28 weeks AND active CLD requiring supplemental oxygen within 6 months prior to RSV season\n4. **Low body weight** — 4.2 kg at 3 months of age; weight-based dosing requires precise calculation and verification at each monthly administration\n5. **No documented medication history** — Baseline vaccination record, concurrent medications, and prior palivizumab exposure unknown; requires clarification before first dose\n\n---\n\n## 2. GOALS\n\n1. **Prevent severe RSV-associated LRTI** — Reduce risk of RSV-related hospitalization, ICU admission, and mechanical ventilation through timely and consistent monthly palivizumab prophylaxis throughout the RSV season\n2. **Achieve therapeutic dosing** — Administer palivizumab at the correct weight-based dose (15 mg/kg IM) at each monthly interval, recalculating dose prior to every administration to account for weight gain\n3. **Minimize injection site complications** — Administer via correct IM technique in the anterolateral thigh, using the smallest appropriate volume per site to reduce local adverse effects\n4. **Ensure adherence to full prophylaxis course** — Complete all scheduled monthly doses (typically up to 5 doses per RSV season) to maintain protective serum palivizumab concentrations ≥40 mcg/mL throughout the season\n5. **Coordinate multidisciplinary care** — Maintain clear communication with the referring provider and primary care team regarding dose administration, weight updates, and any clinical changes in respiratory status\n6. **Educate caregiver(s)** — Ensure parent/guardian understands the purpose of prophylaxis, administration schedule, what to monitor at home, and when to seek emergent care\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n### Dosing & Verification\n- **Calculate and verify dose prior to dispensing:**\n  - Palivizumab: **15 mg/kg IM once monthly**\n  - Current dose: 15 mg/kg × 4.2 kg = **63 mg IM** (rounded per clinical judgment; available as 50 mg/0.5 mL and 100 mg/1 mL vials)\n  - Recommended: Use **one 50 mg vial + a partial draw from a second 50 mg vial** to achieve 63 mg, OR dispense per prescriber/institutional rounding protocol\n  - ⚠️ **Recalculate dose at each subsequent monthly visit using updated weight**\n\n### Medication History Clarification\n- Contact referring provider/care team to obtain:\n  - Complete current medication list (e.g., diuretics, caffeine, postnatal corticosteroids, inhaled bronchodilators common in CLD)\n  - Immunization record (ensure RSV vaccine [nirsevimab] has NOT already been administered — concurrent use with palivizumab is not recommended; nirsevimab is preferred per updated 2024 AAP guidance but palivizumab remains appropriate if ordered)\n  - Confirm no prior palivizumab doses received this season\n\n### Drug Interaction & Contraindication Screening\n- No known drug interactions with palivizumab\n- Confirm allergy history remains negative; palivizumab is a humanized monoclonal antibody — counsel caregiver to report any signs of hypersensitivity post-injection\n\n### Dispensing & Storage Instructions\n- Dispense palivizumab as single-use vials; **do not reuse or pool vials**\n- Verify cold chain integrity: **store at 2–8°C (36–46°F); do not freeze**\n- Administer within **6 hours** of removal from refrigerator if using reconstituted lyophilized product (liquid formulation does not require reconstitution)\n- Provide administration site with proper handling and IM injection instructions (anterolateral thigh preferred in infants; volume >1 mL should be split between two sites)\n\n### Caregiver Education\nProvide verbal and written education to parent/guardian covering:\n- **What palivizumab is and is not:** It is a preventive antibody, NOT a treatment for active RSV infection; does not replace infection control measures\n- **Schedule:** One injection per month during RSV season (typically November–March, regionally variable); emphasize that missing or delaying doses significantly reduces protection\n- **Signs of RSV infection to report immediately:** Increased work of breathing, worsening oxygen requirement, feeding intolerance, fever, cyanosis → seek emergency care\n- **Injection site reactions:** Expected mild local redness/swelling; report severe swelling, fever, or signs of anaphylaxis (rash, hives, breathing difficulty) immediately\n- **Infection control measures:** Hand hygiene, avoid exposure to ill contacts, limit crowded indoor environments during RSV season\n- **Supplemental oxygen:** Reinforce compliance with home oxygen therapy as prescribed; do not adjust without provider guidance\n\n### Prior Authorization & Coordination\n- Confirm prior authorization is active for all anticipated doses this RSV season\n- Document lot number, expiration date, dose administered, injection site, and patient weight at each administration\n- Transmit administration records to referring provider after each dose\n\n---\n\n## 4. MONITORING PLAN\n\n### At Each Monthly Palivizumab Visit (Prior to Administration)\n| Parameter | Action |\n|---|---|\n| **Current weight (kg)** | Obtain and recalculate dose (15 mg/kg); update dispensing order accordingly |\n| **Respiratory status** | Review oxygen requirement, respiratory rate, work of breathing with caregiver; notify provider if clinically worsening |\n| **Adherence/missed doses** | Confirm date of last dose; if >35 days since last dose, contact provider before administering (monthly interval should not exceed 30–35 days) |\n| **Injection site assessment** | Inspect prior injection site(s) for signs of infection, abscess, or unresolved local reaction |\n| **Adverse event screening** | Ask caregiver about post-injection reactions since last dose (fever, rash, irritability, feeding changes) |\n| **Concurrent medications** | Update medication history; screen for any new additions |\n| **Immunization status** | Verify no nirsevimab administered; confirm routine pediatric vaccines are up to date per provider |\n\n### Laboratory/Clinical Monitoring\n- **No routine serum palivizumab level monitoring required** in standard clinical practice\n- If RSV infection is suspected despite prophylaxis:\n  - Notify referring provider immediately\n  - Palivizumab does **not** treat active RSV; supportive care and hospitalization decisions per clinical team\n  - Consider RSV PCR/rapid antigen testing as directed by provider\n- Monitor **weight gain and nutritional status** longitudinally — poor weight gain in CLD infants may signal worsening respiratory or feeding compromise\n\n### End-of-Season Assessment\n- Document total number of doses administered, dates, doses (mg), lot numbers, and any adverse events\n- Communicate season summary to referring provider and primary care team\n- Reassess need for prophylaxis in subsequent RSV season at ~12 months prior to next season based on updated AAP guidelines and patient's clinical status (CLD, oxygen dependence, age)\n\n---\n\n> **⚠️ Clinical Note:** Per updated AAP guidance (2023–2024), **nirsevimab (Beyfortus)** is now the preferred RSV prophylaxis agent for most high-risk infants, including those with CLD of prematurity. Palivizumab remains appropriate when nirsevimab is unavailable or contraindicated. **Pharmacist should contact the referring provider to confirm intentional selection of palivizumab over nirsevimab and document rationale in the patient record.**\n\n---\n\n*Care plan generated by Clinical Pharmacist — Specialty Pharmacy. This plan is intended to supplement, not replace, the clinical judgment of the treating provider. All interventions should be coordinated with the referring provider (NPI: 1234567).*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "High-risk infant for severe RSV infection (prematurity + chronic lung disease)",
+                "covered": true
+              },
+              {
+                "item": "RSV prophylaxis required during RSV season",
+                "covered": true
+              },
+              {
+                "item": "No RSV-related hospitalization during RSV season",
+                "covered": true
+              },
+              {
+                "item": "Complete full 5-dose prophylaxis series",
+                "covered": true
+              },
+              {
+                "item": "Dose: 15 mg/kg IM q month × 5 doses → 63 mg IM per dose (4.2 kg × 15 mg/kg)",
+                "covered": true
+              },
+              {
+                "item": "Max volume per injection site: 1 mL — split if >1 mL",
+                "covered": true
+              },
+              {
+                "item": "Injection site: anterolateral thigh",
+                "covered": true
+              },
+              {
+                "item": "Schedule doses to RSV season (typically November–March)",
+                "covered": true
+              },
+              {
+                "item": "Recheck weight before each dose and recalculate (infant weight changes rapidly)",
+                "covered": true
+              },
+              {
+                "item": "Document lot number for each dose",
+                "covered": true
+              },
+              {
+                "item": "Prophylactic only — does not treat active RSV infection",
+                "covered": true
+              },
+              {
+                "item": "Weight before each dose (recalculate dose if significant change)",
+                "covered": true
+              },
+              {
+                "item": "Lot number and date documented each administration",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 13,
+              "FP": 2,
+              "FN": 0,
+              "precision": 0.87,
+              "recall": 1.0,
+              "f1": 0.93
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     },
     {
       "id": "case_010",
@@ -694,7 +1637,98 @@
           "Monitor for delayed INR rise due to amiodarone's long half-life"
         ]
       },
-      "runs": []
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-13T07:54:25",
+          "model": "claude-sonnet-4-6",
+          "max_tokens": 4096,
+          "stop_reason": "end_turn",
+          "truncated": false,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Patient:** S T | **MRN:** 00001234 | **DOB:** 1952-01-01\n**Sex:** Male | **Weight:** 79 kg | **Age:** 74 years\n**Referring Provider:** test (NPI: 1234567)\n**Medication:** Warfarin | **Diagnosis:** Non-valvular atrial fibrillation (I48.19), CHA₂DS₂-VASc = 4\n**Date Generated:** 2025-07-14\n\n---\n\n## 1. PROBLEM LIST\n\n**Problem 1 — Thromboembolic Risk: Non-Valvular Atrial Fibrillation (High Risk)**\nCHA₂DS₂-VASc score of 4 confers an estimated annual stroke risk of approximately 4–6%. Anticoagulation is strongly indicated per ACC/AHA guidelines. Warfarin initiated; therapeutic INR target range 2.0–3.0.\n\n**Problem 2 — Clinically Significant Drug–Drug Interaction: Warfarin + Amiodarone**\nAmiodarone is a potent inhibitor of CYP2C9 (the primary enzyme responsible for S-warfarin metabolism) and CYP3A4. This interaction is well-documented and results in substantially elevated warfarin plasma concentrations, prolonged INR response, and increased bleeding risk. The interaction may be delayed in onset (weeks to months) due to amiodarone's extremely long half-life (40–55 days), and its effect on INR may persist for months after any dose change or discontinuation of amiodarone.\n\n**Problem 3 — Subtherapeutic Anticoagulation at Baseline**\nCurrent INR is 1.1 (subtherapeutic), indicating no meaningful anticoagulant effect at the time of warfarin initiation. The patient is at elevated stroke risk during the period before therapeutic INR is achieved.\n\n**Problem 4 — Stage G3a Chronic Kidney Disease (CKD)**\neGFR of 58 mL/min/1.73 m² is consistent with mild-to-moderately decreased kidney function (CKD Stage G3a). While warfarin does not require renal dose adjustment, CKD independently increases both thromboembolic and bleeding risk and may affect INR stability.\n\n**Problem 5 — Advanced Age (74 years)**\nOlder patients exhibit increased sensitivity to warfarin due to decreased CYP2C9 activity, reduced albumin, and altered pharmacodynamics. This further amplifies the amiodarone–warfarin interaction and increases bleeding risk.\n\n---\n\n## 2. GOALS\n\n**Goal 1 — Achieve and Maintain Therapeutic Anticoagulation**\nAchieve a target INR of 2.0–3.0 within approximately 5–10 days of initiation, accounting for the expected warfarin dose potentiation by amiodarone. Maintain time in therapeutic range (TTR) ≥ 65–70% on an ongoing basis to optimize stroke prevention and minimize bleeding risk.\n\n**Goal 2 — Prevent and Detect Amiodarone-Potentiated Supratherapeutic Anticoagulation**\nProactively reduce the empiric warfarin starting dose by 30–50% relative to a standard initiation dose to account for amiodarone-mediated CYP2C9 inhibition. Prevent INR from exceeding 3.5 (supratherapeutic) during dose titration and maintenance.\n\n**Goal 3 — Stroke and Systemic Embolism Prevention**\nReduce the patient's absolute annual stroke risk through consistent therapeutic anticoagulation. Per guideline data, well-managed warfarin therapy with TTR >65% reduces stroke risk by approximately 60–70% compared to no therapy in high-risk non-valvular AF.\n\n**Goal 4 — Minimize Bleeding Risk**\nAvoid prolonged supratherapeutic INR (>3.0), particularly major bleeding events (intracranial hemorrhage, GI bleed). Educate patient on bleeding precautions, signs and symptoms requiring urgent evaluation, and the importance of INR monitoring adherence.\n\n**Goal 5 — Patient Engagement and Medication Adherence**\nEnsure patient understanding of warfarin's mechanism, dietary interactions (vitamin K), drug interactions, INR monitoring schedule, and when to contact the clinic. Establish patient self-management competency.\n\n---\n\n## 3. PHARMACIST INTERVENTIONS\n\n**Intervention 1 — Empiric Warfarin Dose Reduction for Amiodarone Interaction**\nDo **not** initiate warfarin at a standard dose (e.g., 5–10 mg/day). Given concurrent amiodarone therapy, initiate warfarin at a **30–50% reduced empiric dose**, consistent with published dosing algorithms and ACC/AHA anticoagulation guidance for this interaction.\n\n> **Recommended Starting Dose:** Warfarin **2–2.5 mg PO once daily**, administered in the evening. Re-evaluate and titrate based on INR response at each follow-up.\n\n**Rationale:** Amiodarone inhibits CYP2C9-mediated S-warfarin metabolism, significantly increasing warfarin exposure. Standard doses will predictably cause supratherapeutic INR. The interaction intensifies over weeks as amiodarone accumulates and will persist for months given its prolonged half-life.\n\n---\n\n**Intervention 2 — Contact Referring Provider Regarding Drug Interaction**\nDocument and communicate the amiodarone–warfarin interaction to the referring provider (NPI: 1234567). Provide written notification confirming:\n- The clinical significance of CYP2C9 inhibition by amiodarone\n- The rationale for the reduced empiric starting dose\n- The requirement for frequent INR monitoring during initiation and any future amiodarone dose changes\n\nObtain confirmation of the agreed-upon warfarin starting dose and monitoring plan.\n\n---\n\n**Intervention 3 — Dietary Vitamin K Counseling**\nCounsel patient on the importance of consistent (not necessarily zero) dietary vitamin K intake. Advise against drastic changes in consumption of vitamin K–rich foods (leafy green vegetables such as spinach, kale, broccoli, Brussels sprouts). Sudden increases in vitamin K intake will lower INR; sudden decreases will raise INR. Consistency is the key principle.\n\n---\n\n**Intervention 4 — Comprehensive Drug Interaction Review**\nReview the complete medication list for additional warfarin interactions. Flag any new prescriptions (including OTC medications, NSAIDs, aspirin, antibiotics, antifungals, supplements such as fish oil, vitamin E, or herbal products including St. John's Wort) as potential interacting agents. Instruct patient to notify the pharmacist and prescriber before starting any new medication or supplement.\n\n---\n\n**Intervention 5 — Patient Education Session**\nConduct a structured patient education session covering:\n- **What warfarin is and why it is prescribed** (stroke prevention in AF)\n- **INR monitoring:** what it measures, target range (2.0–3.0), why frequent checks are necessary at first\n- **Signs and symptoms of bleeding** requiring urgent care: unusual bruising, prolonged bleeding from cuts, blood in urine/stool, coffee-ground emesis, severe headache, vision changes\n- **Signs and symptoms of thromboembolism/stroke:** facial drooping, arm weakness, speech difficulty, sudden severe headache (FAST criteria)\n- **Missed dose protocol:** take missed dose same day if remembered; do not double-dose\n- **Alcohol:** limit to ≤1–2 drinks/day; heavy alcohol use significantly affects INR\n- **Pharmacy contact information** for dose questions and INR result follow-up\n\nProvide written educational materials. Document counseling in patient record.\n\n---\n\n**Intervention 6 — Evaluate Appropriateness of DOAC Therapy (Clinical Recommendation)**\nGiven the complexity of managing warfarin in the setting of amiodarone co-administration, advanced age, and CKD Stage G3a, communicate to the referring provider that a **direct oral anticoagulant (DOAC)** — specifically **apixaban** — may represent a preferred alternative per 2023 ACC/AHA AF guidelines and the American Society of Hematology (ASH) anticoagulation guidelines.\n\n**Apixaban considerations for this patient:**\n- eGFR 58 mL/min/1.73 m²: standard dosing is appropriate; dose-reduction criteria (≥2 of 3: age ≥80, weight ≤60 kg, SCr ≥1.5) — patient meets only 1 criterion (age ≥80 not met); **standard dose: apixaban 5 mg PO BID**\n- No clinically significant interaction with amiodarone (minimal CYP2C9 dependence)\n- Favorable efficacy/safety profile in elderly patients\n- Does not require routine INR monitoring\n\n**Document provider response.** If warfarin is intentionally continued (e.g., due to patient preference, cost, or clinical indication), proceed with the warfarin management plan above.\n\n---\n\n## 4. MONITORING PLAN\n\n### INR Monitoring Schedule\n\n| Time Point | INR Monitoring Frequency | Action |\n|---|---|---|\n| **Days 3–5 post-initiation** | Check INR | Dose adjust if INR <1.5 or >2.5 |\n| **Days 7–10 post-initiation** | Check INR | Titrate toward target 2.0–3.0 |\n| **Weeks 2–4** | Every 5–7 days until 2 consecutive therapeutic INRs | Continue titration |\n| **Months 1–3** | Every 1–2 weeks | Monitor for delayed amiodarone effect |\n| **Months 3–6** | Every 2–4 weeks if stable | Confirm INR stability with amiodarone at steady-state |\n| **Stable maintenance (>6 months, consistent TTR)** | Every 4 weeks (maximum interval) | Reassess if any medication or dietary change occurs |\n\n> ⚠️ **Critical Note:** Due to amiodarone's prolonged half-life (~40–55 days), the full potentiating effect on warfarin may not be apparent for **4–6 weeks** after initiation or dose change. INR must be monitored **more frequently than standard** during the first 3 months of concurrent therapy and following **any change in amiodarone dose.**\n\n---\n\n### Laboratory Monitoring\n\n| Parameter | Frequency | Rationale |\n|---|---|---|\n| **INR** | Per schedule above | Warfarin dose titration and safety |\n| **Serum Creatinine / eGFR** | Every 3–6 months | CKD Stage G3a surveillance; CKD progression affects bleeding risk |\n| **CBC (Hemoglobin/Hematocrit)** | At baseline, then every 6–12 months | Detect occult or subclinical bleeding |\n| **Liver Function Tests (AST/ALT)** | At baseline, then annually | Hepatic metabolism of warfarin; amiodarone hepatotoxicity monitoring |\n| **Thyroid Function (TSH)** | Per amiodarone monitoring protocol (every 3–6 months) | Amiodarone-induced hypo/hyperthyroidism alters INR significantly |\n\n> ⚠️ **Thyroid Alert:** Amiodarone-induced **hyperthyroidism** will cause markedly elevated INR (increased catabolism of clotting factors); **hypothyroidism** will decrease INR. Any change in thyroid status must prompt immediate INR reassessment and warfarin dose re-evaluation.\n\n---\n\n### Clinical Monitoring\n\n| Parameter | Frequency | Action Threshold |\n|---|---|---|\n| **Bleeding symptoms** (bruising, hematuria, melena, hemoptysis, neurological changes) | Each patient contact | Any major bleed → hold warfarin, notify provider, consider reversal with Vitamin K ± 4-factor PCC depending on severity |\n| **Thromboembolic symptoms** (stroke symptoms, limb ischemia) | Each patient contact | Immediate emergency referral |\n| **Medication changes** (new Rx, OTC, supplements) | Each patient contact | Re-evaluate interaction profile; adjust monitoring frequency |\n| **Dietary changes** (vitamin K intake)| Each patient contact | Counsel and adjust monitoring if significant change reported |\n| **Falls / Trauma risk** | Each patient contact; formal falls assessment at 3 months | Consider formal falls risk evaluation; high fall risk may prompt reassessment of anticoagulation strategy |\n| **TTR Calculation** | Monthly (using Rosendaal or standard method) | TTR <65% → investigate cause, consider DOAC reassessment |\n\n---\n\n### INR Management Thresholds (Quick Reference)\n\n| INR Value | Action |\n|---|---|\n| **< 2.0** | Increase warfarin dose by 10–15%; recheck INR in 5–7 days |\n| **2.0 – 3.0** | Therapeutic — continue current dose; monitor per schedule |\n| **3.1 – 3.5** | Decrease dose by 10–15%; recheck INR in 5–7 days |\n| **3.6 – 4.9** (no bleeding) | Hold 1 dose; reduce weekly dose by 10–20%; recheck in 3–5 days |\n| **≥ 5.0** (no bleeding) | Hold warfarin; consider low-dose oral Vitamin K (1–2.5 mg PO); recheck INR in 24–48 hours; notify provider |\n| **Any INR + active major bleeding** | Hold warfarin immediately; administer Vitamin K 10 mg IV + 4-factor PCC or FFP; **emergency consultation** |\n\n---\n\n*Care plan generated by Clinical Pharmacist — Specialty Pharmacy*\n*This plan is intended to support clinical decision-making and does not replace provider judgment. All dose changes and clinical decisions should be confirmed with the referring provider.*",
+          "evaluation": {
+            "item_coverage": [
+              {
+                "item": "Non-valvular AFib requiring anticoagulation (CHA₂DS₂-VASc = 4 — high stroke risk)",
+                "covered": true
+              },
+              {
+                "item": "Major drug interaction: amiodarone inhibits CYP2C9 → significantly potentiates warfarin effect, INR elevation expected over weeks to months",
+                "covered": true
+              },
+              {
+                "item": "Bleeding risk in elderly anticoagulated patient",
+                "covered": true
+              },
+              {
+                "item": "Fall risk — age 74, anticoagulated",
+                "covered": true
+              },
+              {
+                "item": "Target INR: 2.0–3.0 for non-valvular AF",
+                "covered": true
+              },
+              {
+                "item": "No major bleeding events",
+                "covered": true
+              },
+              {
+                "item": "Stroke prevention",
+                "covered": true
+              },
+              {
+                "item": "Starting dose: 2–2.5 mg PO daily (reduced 30–50% from standard 5 mg due to amiodarone/CYP2C9 inhibition)",
+                "covered": true
+              },
+              {
+                "item": "Amiodarone interaction explicitly documented — anticipate delayed INR rise over weeks to months (long amiodarone half-life)",
+                "covered": true
+              },
+              {
+                "item": "Dietary counseling: consistent vitamin K intake; avoid major fluctuations in leafy greens",
+                "covered": true
+              },
+              {
+                "item": "Bleeding risk counseling: report unusual bruising, blood in urine/stool, prolonged bleeding",
+                "covered": true
+              },
+              {
+                "item": "Drug interaction alert: NSAIDs, antibiotics, antifungals — counsel to notify before starting any new medication",
+                "covered": true
+              },
+              {
+                "item": "Fall risk assessment documented",
+                "covered": true
+              },
+              {
+                "item": "HAS-BLED score documented",
+                "covered": false
+              },
+              {
+                "item": "CHA₂DS₂-VASc score documented",
+                "covered": true
+              },
+              {
+                "item": "INR daily × 3–5 days after initiation, then per titration schedule; stable goal q4 weeks",
+                "covered": true
+              },
+              {
+                "item": "Monitor for delayed INR rise due to amiodarone's long half-life",
+                "covered": true
+              }
+            ],
+            "metrics": {
+              "TP": 16,
+              "FP": 3,
+              "FN": 1,
+              "precision": 0.84,
+              "recall": 0.94,
+              "f1": 0.89
+            },
+            "note": "FP estimated; TP/FN auto-scored via keyword matching."
+          }
+        }
+      ]
     }
   ]
 }
