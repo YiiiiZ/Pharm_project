@@ -1,0 +1,121 @@
+{
+  "cases": [
+    {
+      "id": "case_001",
+      "description": "Myasthenia Gravis — IVIG treatment, generalized without exacerbation",
+      "metadata": {
+        "medication_category": "IVIG",
+        "primary_diagnosis_code": "G70.00",
+        "primary_diagnosis_label": "Myasthenia gravis, generalized, without exacerbation",
+        "created_date": "2025-10-15"
+      },
+      "input": {
+        "patient": {
+          "mrn": "001234",
+          "first_name": "A",
+          "last_name": "B",
+          "dob": "1979-06-08"
+        },
+        "provider": {
+          "npi": "1234567",
+          "name": "test"
+        },
+        "order": {
+          "primary_diagnosis": "G70.00",
+          "medication_name": "IVIG",
+          "additional_diagnoses": "",
+          "weight_kg": "72",
+          "allergies": "None known",
+          "medication_history": "Pyridostigmine 60mg q6h PRN, Prednisone 10mg daily, Lisinopril 10mg daily, Omeprazole 20mg daily",
+          "patient_records": "Baseline clinic note (pre-infusion)\n\nDate: 2025-10-15\n\nVitals: BP 128/78, HR 78, RR 16, SpO2 98% RA, Temp 36.7°C\n\nExam: Ptosis bilateral, fatigable proximal weakness (4/5), speech slurred after repeated counting, no respiratory distress.\n\nLabs: CBC WNL; BMP: Na 138, K 4.1, Cl 101, HCO3 24, BUN 12, SCr 0.78, eGFR >90.\n\nIgG baseline: 10 g/L.\n\nBaseline FVC 2.8 L (predicted 4.0 L; ~70% predicted).\n\nPlan: IVIG 2 g/kg total (144 g for 72 kg) given as 0.4 g/kg/day x 5 days.\n\nPremedicate with acetaminophen + diphenhydramine."
+        }
+      },
+      "golden": {
+        "problem_list": [
+          "Need for rapid immunomodulation to reduce myasthenic symptoms",
+          "Risk of infusion-related reactions",
+          "Risk of renal dysfunction or volume overload",
+          "Risk of thromboembolic events",
+          "Potential drug-drug interactions",
+          "Patient education / adherence gap"
+        ],
+        "goals": [
+          "Primary: Achieve clinically meaningful improvement in muscle strength within 2 weeks",
+          "Safety goal: No severe infusion reaction, no acute kidney injury",
+          "Process: Complete full 2 g/kg course with documented monitoring"
+        ],
+        "interventions": [
+          "Dosing & Administration",
+          "Premedication",
+          "Infusion rates & titration",
+          "Hydration & renal protection",
+          "Monitoring during infusion",
+          "Adverse event management"
+        ],
+        "monitoring": [
+          "Before first infusion: CBC, BMP, baseline vitals",
+          "During each infusion: Vitals q15-30 min",
+          "Post-course (3-7 days): BMP to check renal function"
+        ]
+      },
+      "runs": [
+        {
+          "run_id": "run_001",
+          "timestamp": "2026-04-07T06:55:53",
+          "model": "unknown",
+          "order_db_id": 4,
+          "care_plan_text": "# CLINICAL CARE PLAN\n**Specialty Pharmacy — Pharmacist-Generated**\n\n## 1. PROBLEM LIST\n\n**1.1 Active Neurological — Primary**\n- Generalized Myasthenia Gravis (G70.00): Clinically active disease evidenced by bilateral ptosis, fatigable proximal upper extremity weakness (4/5 MRC), and dysarthria after repetitive speech. Baseline FVC 2.8 L (70% predicted), indicating subclinical respiratory compromise warranting close surveillance during IVIG course.\n\n**1.2 IVIG Therapy Initiation**\n- Initiating IVIG 2 g/kg total dose (144 g) divided as 0.4 g/kg/day (28.8 g/day) × 5 days per neuromuscular dosing standard. Baseline IgG level 10 g/L (within normal range); post-infusion IgG monitoring warranted to confirm therapeutic exposure.\n\n**1.3 Medication-Related Considerations**\n- Pyridostigmine 60 mg q6h PRN: Cholinesterase inhibitor; risk of cholinergic excess (bradycardia, excess secretions) particularly relevant during IVIG infusion periods.\n- Prednisone 10 mg daily: Long-term corticosteroid use — risk of adrenal suppression, hyperglycemia, immunosuppression, and osteoporosis.\n- Lisinopril 10 mg daily: ACE inhibitor use alongside IVIG carries a recognized risk of hypotension and flushing reactions.\n- Omeprazole 20 mg daily: Appropriate GI prophylaxis; no direct IVIG interaction of concern.\n\n**1.4 IVIG Infusion-Related Risk Factors**\n- Theoretical risk for infusion-related reactions (headache, fever, chills, flushing, hypotension, nausea), aseptic meningitis, hemolysis, thromboembolism, and renal dysfunction.\n- eGFR >90 mL/min/1.73 m² is reassuring; however, sucrose-containing IVIG products should be avoided.\n- Baseline BP 128/78 — acceptable for infusion start.\n\n## 2. GOALS\n\n**2.1 Short-Term Goals (Days 1–5)**\n- Complete all 5 IVIG infusion days (total dose 144 g) without clinically significant adverse events.\n- Maintain hemodynamic stability: SBP ≥90 mmHg, HR 50–110 bpm, SpO2 ≥95% RA.\n- Prevent infusion-related reactions through consistent premedication.\n- Maintain renal function (SCr ≤0.90 mg/dL, eGFR >90) via sucrose-free product and oral hydration.\n- Avoid precipitating myasthenic exacerbation.\n\n**2.2 Medium-Term Goals (Weeks 2–6 Post-Infusion)**\n- Achieve measurable clinical improvement in MG symptom burden at follow-up visit (target: 2–4 weeks post-completion).\n- Demonstrate improvement in respiratory reserve, targeting FVC ≥80% predicted.\n- Confirm therapeutic IgG exposure (target: ≥15–20 g/L at trough).\n- Reassess adequacy of current immunosuppressive regimen.\n\n**2.3 Patient-Centered Goals**\n- Patient will verbalize understanding of IVIG purpose, schedule, and side effects before first infusion.\n- Patient will identify early signs of infusion reactions and MG exacerbation.\n\n## 3. PHARMACIST INTERVENTIONS\n\n**3.1 Product Selection and Order Verification**\n- Verify sucrose-free IVIG product (e.g., Gamunex-C®, Privigen®).\n- Confirm regimen: IVIG 28.8 g IV daily × 5 days (0.4 g/kg/day × 72 kg).\n- Confirm product lot numbers, expiration dates, and cold-chain integrity.\n\n**3.2 Premedication Protocol**\n- Acetaminophen 650–1000 mg PO + Diphenhydramine 25–50 mg PO/IV, 30–60 min prior to each infusion.\n\n**3.3 Infusion Rate Management**\n- 0–30 min: 0.5 mg/kg/min; 30–60 min: 1.0 mg/kg/min; >60 min: titrate to max per labeling.\n- Given concurrent Lisinopril, check BP at baseline, 15 min,",
+          "truncated": true,
+          "evaluation": {
+            "facts_labeled": [
+              {"claim": "Active MG with ptosis, weakness, dysarthria — need for IVIG", "label": "CORRECT", "golden_item": "Need for rapid immunomodulation"},
+              {"claim": "Baseline FVC 2.8 L (70% predicted)", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Pyridostigmine — cholinergic excess risk during IVIG", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
+              {"claim": "Prednisone — adrenal suppression, hyperglycemia risk", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
+              {"claim": "Lisinopril + IVIG → hypotension/flushing risk", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
+              {"claim": "Omeprazole — no direct IVIG interaction", "label": "CORRECT", "golden_item": "Potential drug-drug interactions"},
+              {"claim": "Risk of infusion-related reactions (headache, fever, chills, nausea)", "label": "CORRECT", "golden_item": "Risk of infusion-related reactions"},
+              {"claim": "Risk of aseptic meningitis", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Risk of hemolysis", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Risk of thromboembolism", "label": "CORRECT", "golden_item": "Risk of thromboembolic events"},
+              {"claim": "Risk of renal dysfunction", "label": "CORRECT", "golden_item": "Risk of renal dysfunction or volume overload"},
+              {"claim": "Volume overload risk", "label": "MISSING", "golden_item": "Risk of renal dysfunction or volume overload"},
+              {"claim": "Baseline IgG 10 g/L; post-infusion IgG monitoring warranted", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Complete 5 IVIG infusion days", "label": "CORRECT", "golden_item": "Process: Complete full 2 g/kg course with documented monitoring"},
+              {"claim": "Hemodynamic targets: SBP ≥90, HR 50–110, SpO2 ≥95%", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Prevent infusion reactions via premedication", "label": "CORRECT", "golden_item": "Safety goal: No severe infusion reaction, no acute kidney injury"},
+              {"claim": "Maintain renal function (SCr ≤0.90, eGFR >90)", "label": "CORRECT", "golden_item": "Safety goal: No severe infusion reaction, no acute kidney injury"},
+              {"claim": "Clinical improvement in MG symptoms at 2–4 weeks post-infusion", "label": "INCORRECT", "golden_item": "Primary: Achieve clinically meaningful improvement in muscle strength within 2 weeks", "note": "Golden specifies within 2 weeks; care plan says 2-4 weeks post-completion"},
+              {"claim": "FVC ≥80% predicted target", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Post-infusion IgG ≥15–20 g/L target", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Reassess immunosuppressive regimen long-term", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Patient education on IVIG purpose, side effects, when to call", "label": "CORRECT", "golden_item": "Patient education / adherence gap"},
+              {"claim": "Sucrose-free IVIG product selection", "label": "CORRECT", "golden_item": "Dosing & Administration"},
+              {"claim": "Dose verification: 28.8 g/day × 5 days = 144 g", "label": "CORRECT", "golden_item": "Dosing & Administration"},
+              {"claim": "Cold-chain integrity / lot number verification", "label": "FABRICATED", "golden_item": null},
+              {"claim": "Premedication 30–60 min before each infusion", "label": "CORRECT", "golden_item": "Premedication"},
+              {"claim": "Acetaminophen 650–1000 mg + diphenhydramine 25–50 mg", "label": "CORRECT", "golden_item": "Premedication"},
+              {"claim": "Slow-start infusion rate protocol", "label": "CORRECT", "golden_item": "Infusion rates & titration"},
+              {"claim": "BP monitoring given concurrent Lisinopril", "label": "CORRECT", "golden_item": "Monitoring during infusion"},
+              {"claim": "Hydration for renal protection (mentioned in goals only)", "label": "CORRECT", "golden_item": "Hydration & renal protection"},
+              {"claim": "Adverse event management section", "label": "MISSING", "golden_item": "Adverse event management"},
+              {"claim": "Monitoring during infusion section", "label": "MISSING", "golden_item": "Monitoring during infusion"},
+              {"claim": "Pre-infusion labs: CBC, BMP, baseline vitals", "label": "MISSING", "golden_item": "Before first infusion: CBC, BMP, baseline vitals"},
+              {"claim": "During infusion: vitals q15–30 min", "label": "MISSING", "golden_item": "During each infusion: Vitals q15-30 min"},
+              {"claim": "Post-course BMP (3–7 days)", "label": "MISSING", "golden_item": "Post-course (3-7 days): BMP to check renal function"}
+            ],
+            "metrics": {
+              "TP": 13,
+              "FP": 9,
+              "FN": 5,
+              "precision": 0.59,
+              "recall": 0.72,
+              "f1": 0.65
+            },
+            "notes": "Care plan was truncated — sections on adverse event management, monitoring during infusion, and the lab schedule were cut off. This accounts for most of the FN. The only content error is the 2-4 week vs 2-week timeline for clinical improvement goal."
+          }
+        }
+      ]
+    }
+  ]
+}
