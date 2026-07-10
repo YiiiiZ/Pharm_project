@@ -11,8 +11,13 @@ import sys
 import datetime
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from prompts import PromptManager
+
 # Load .env if present
-env_path = Path(__file__).parent.parent / ".env"
+env_path = PROJECT_ROOT / ".env"
 if env_path.exists():
     for line in env_path.read_text().splitlines():
         line = line.strip()
@@ -29,6 +34,10 @@ RUN_TIMESTAMP = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
 
 
 def build_prompt(case: dict) -> str:
+    return build_rendered_prompt(case).content
+
+
+def build_rendered_prompt(case: dict):
     inp = case["input"]
     patient = inp["patient"]
     provider = inp["provider"]
@@ -37,46 +46,45 @@ def build_prompt(case: dict) -> str:
     dob = patient.get("dob", "Not provided")
     weight = order.get("weight_kg", "")
     weight_str = f"{weight} kg" if weight else "Not provided"
-
-    return f"""You are a clinical pharmacist at a specialty pharmacy generating a care plan for a patient order.
-
-PATIENT INFORMATION
--------------------
-Name: {patient.get('first_name', '')} {patient.get('last_name', '')}
-MRN: {patient.get('mrn', '')}
-Date of Birth: {dob}
-Sex: {patient.get('sex', 'Not provided')}
-Weight: {weight_str}
-Allergies: {order.get('allergies', 'None known')}
-Referring Provider: {provider.get('name', '')} (NPI: {provider.get('npi', '')})
-
-ORDER DETAILS
--------------
-Medication: {order.get('medication_name', '')}
-Primary Diagnosis (ICD-10): {order.get('primary_diagnosis', '')} — {order.get('primary_diagnosis_label', '')}
-Additional Diagnoses: {order.get('additional_diagnoses', 'None')}
-Medication History:
-{order.get('medication_history', 'None provided')}
-
-CLINICAL NOTES / PATIENT RECORDS
----------------------------------
-{order.get('patient_records', 'None provided')}
-
-Generate a clinical care plan with exactly these four labeled sections. Be specific, clinical, and actionable.
-
-1. PROBLEM LIST
-2. GOALS
-3. PHARMACIST INTERVENTIONS
-4. MONITORING PLAN
-"""
+    return PromptManager().render(
+        workflow="careplan_generation",
+        scenario="evaluation",
+        variables={
+            "patient_name": (
+                f"{patient.get('first_name', '')} "
+                f"{patient.get('last_name', '')}"
+            ).strip(),
+            "mrn": patient.get("mrn", ""),
+            "dob": dob,
+            "sex": patient.get("sex", "Not provided"),
+            "weight": weight_str,
+            "allergies": order.get("allergies", "None known"),
+            "provider_name": provider.get("name", ""),
+            "provider_npi": provider.get("npi", ""),
+            "medication_name": order.get("medication_name", ""),
+            "primary_diagnosis": order.get("primary_diagnosis", ""),
+            "primary_diagnosis_label": order.get(
+                "primary_diagnosis_label", "Not provided"
+            ),
+            "additional_diagnoses": order.get(
+                "additional_diagnoses", "None"
+            ),
+            "medication_history": order.get(
+                "medication_history", "None provided"
+            ),
+            "patient_records": order.get(
+                "patient_records", "None provided"
+            ),
+        },
+    )
 
 
 def run_case(client: anthropic.Anthropic, case: dict) -> dict:
-    prompt = build_prompt(case)
+    rendered_prompt = build_rendered_prompt(case)
     message = client.messages.create(
         model=MODEL,
         max_tokens=MAX_TOKENS,
-        messages=[{"role": "user", "content": prompt}],
+        messages=[{"role": "user", "content": rendered_prompt.content}],
     )
     care_plan_text = message.content[0].text
     stop_reason = message.stop_reason
@@ -91,6 +99,7 @@ def run_case(client: anthropic.Anthropic, case: dict) -> dict:
         "timestamp": RUN_TIMESTAMP,
         "model": MODEL,
         "max_tokens": MAX_TOKENS,
+        **rendered_prompt.metadata(),
         "stop_reason": stop_reason,
         "truncated": stop_reason == "max_tokens",
         "care_plan_text": care_plan_text,

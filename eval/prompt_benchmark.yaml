@@ -1,0 +1,39 @@
+name: careplan_prompt_benchmark_v1
+description: >
+  Frozen five-case benchmark for comparing structured care-plan prompt
+  versions. Reference evidence is held constant and derived from the existing
+  expert-authored golden criteria so this benchmark measures generation,
+  schema compliance, and evidence use rather than retrieval quality.
+source_dataset: eval/dataset.json
+cases:
+  - id: case_001
+    medication: IVIG
+    rationale: Infusion therapy with renal, thrombosis, and respiratory risks.
+  - id: case_002
+    medication: Vancomycin
+    rationale: Renal dosing, therapeutic drug monitoring, and infection clearance.
+  - id: case_004
+    medication: Methotrexate
+    rationale: Weekly dosing safety, laboratory monitoring, and reproductive risk.
+  - id: case_008
+    medication: Omalizumab
+    rationale: Weight/IgE-based biologic dosing and anaphylaxis monitoring.
+  - id: case_010
+    medication: Warfarin
+    rationale: High-risk interaction, individualized dosing, and INR monitoring.
+
+metrics:
+  parse_success_rate: Valid CarePlan JSON responses divided by attempted cases.
+  accuracy: >
+    Golden-precision proxy: generated clinical items matching at least one
+    expected criterion divided by all generated clinical items.
+  coverage: Expected criteria found anywhere in the generated plan divided by
+    all expected criteria.
+  token_cost: Total and average input/output tokens. Monetary cost is reported
+    only when explicit per-million-token prices are supplied at runtime.
+
+comparison_gates:
+  parse_success_rate_max_regression: 0.0
+  accuracy_max_regression: 0.05
+  coverage_max_regression: 0.05
+  token_total_max_increase_ratio: 0.20

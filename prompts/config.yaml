@@ -1,0 +1,40 @@
+defaults:
+  careplan_generation: current
+  careplan_review: current
+  careplan_structured: current
+  careplan_repair: current
+
+aliases:
+  careplan_generation:
+    current: v3
+  careplan_review:
+    current: v1
+  careplan_structured:
+    current: v2
+  careplan_repair:
+    current: v1
+
+versions:
+  careplan_generation:
+    v1: v1.txt
+    v2: v2.txt
+    v3: v3.txt
+  careplan_review:
+    v1: v1.txt
+  careplan_structured:
+    v1: v1.txt
+    v2: v2.txt
+    v3: v3.txt
+  careplan_repair:
+    v1: v1.txt
+
+scenarios:
+  web_order:
+    careplan_generation: v3
+  evaluation:
+    careplan_generation: v3
+    careplan_review: v1
+  structured_generation:
+    careplan_structured: current
+  careplan_repair:
+    careplan_repair: v1

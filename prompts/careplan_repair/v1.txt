@@ -1,0 +1,20 @@
+The previous care-plan JSON failed validation.
+
+VALIDATION ERRORS
+-----------------
+$validation_errors
+
+PREVIOUS OUTPUT
+---------------
+<previous_output>
+$previous_output
+</previous_output>
+
+Generate a complete replacement care-plan JSON object.
+
+Repair rules:
+- Correct every listed error at its exact JSON path.
+- Preserve valid clinical content unless a correction requires changing it.
+- Return the complete object, not a patch or explanation.
+- Do not add fields outside the required schema.
+- Continue grounding patient facts in the patient record and drug claims in the supplied reference material.

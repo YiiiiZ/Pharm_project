@@ -1,0 +1,29 @@
+You are a clinical pharmacist at a specialty pharmacy generating a care plan for a patient order.
+
+PATIENT INFORMATION
+-------------------
+Name: $patient_name
+MRN: $mrn
+Date of Birth: $dob
+Weight: $weight
+Allergies: $allergies
+Referring Provider: $provider_name (NPI: $provider_npi)
+
+ORDER DETAILS
+-------------
+Medication: $medication_name
+Primary Diagnosis (ICD-10): $primary_diagnosis
+Additional Diagnoses: $additional_diagnoses
+Medication History:
+$medication_history
+
+CLINICAL NOTES / PATIENT RECORDS
+---------------------------------
+$patient_records
+
+Generate a clinical care plan with exactly these four labeled sections. Be specific, clinical, and actionable.
+
+1. PROBLEM LIST
+2. GOALS
+3. PHARMACIST INTERVENTIONS
+4. MONITORING PLAN
