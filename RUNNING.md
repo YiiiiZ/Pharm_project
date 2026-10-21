@@ -26,7 +26,11 @@ Use Python 3.11 (matching Docker) or Python 3.12 (validated locally), install `r
 settings in `.env.example` from your own `.env`. Set a strong Django secret.
 Both `ANTHROPIC_API_KEY` (generation) and `OPENAI_API_KEY` (query embeddings) are
 needed by the worker. `VECTOR_DATABASE_URL` must point to the populated vector
-store. Existing vectors are reused; startup does not ingest or re-embed data.
+store. Existing vectors are reused. Optionally set `SPL_CHUNKS_PATH` to a prepared
+JSONL corpus: the worker indexes matching product/generic labels before retrieval,
+reuses existing vectors by content hash, and resumes incomplete indexing on retry.
+The first request for a medication may take longer. No full-corpus indexing occurs
+at startup; without this setting, populate the vector store using `rag.embed`.
 
 Before migrating an existing installation, stop the old web process and back up
 its SQLite database and vector volume. The initial migration represents the
@@ -51,7 +55,7 @@ Open `http://127.0.0.1:8000/` and sign in. Other accounts need `is_staff=True`.
 All staff have access to the internal order workspace in this MVP.
 `DJANGO_ALLOWED_HOSTS` must include any additional hostname you use.
 
-Retrieval filters by the entered medication's product-name substring. No matches
+Retrieval filters by the entered medication's product or generic-name substring. No matches
 produce a visible failure instead of silently generating without evidence.
 Use a product name present in the index; automatic brand/generic alias resolution
 is deferred. Clinical notes are not sent to the embedding provider.
@@ -133,28 +137,66 @@ user.user_permissions.add(Permission.objects.get(
     content_type__app_label="care", codename="review_careplan"))
 ```
 
-## Local approval demo
+## Live local pipeline demo
 
 `DJANGO_DEMO=true` uses a separate `data/demo.sqlite3` database, regardless of
-`DB_PATH`, and separate session cookies. Intake and regeneration are disabled.
-All seeded plans/evidence are fictional; no model or retrieval calls are made.
+`DB_PATH`, and separate session cookies. The demo now supports the full live flow:
+patient intake → durable queue → medication-label indexing/retrieval → LangGraph
+routing and Claude generation → schema validation → patient/citation checks and
+bounded repair → **Waiting for pharmacist review**. It never auto-approves a plan.
+
+The current portal is http://127.0.0.1:8000/. Sign in, click **Load fictional
+example**, inspect or edit the patient details, then click **Generate care plan**.
+The example uses metformin, which is present in the local label corpus. The next
+page refreshes as stages change and retains the progress history, evidence,
+structured draft and check report. Retrieval covers indication, dosage and safety
+queries and deduplicates their evidence by content hash. Review controls appear only on a completed
+draft. A medication with no matching label evidence fails visibly without
+calling the generation model. Label matching is substring-based, not terminology
+or formulation reconciliation; review the retrieved product/formulation carefully.
+
+Real API calls are made and billed: OpenAI embeds label/query text; Anthropic
+receives the submitted patient snapshot and retrieved evidence. Use fictional
+patient details in this demo. The older seeded approval examples remain available;
+their evidence/plans are fictional and were not generated through the live pipeline.
+
+To restart locally, activate a Python 3.11/3.12 environment with requirements
+installed. Load your `.env` into the shell, then run:
 
 ```sh
-DJANGO_DEMO=true python manage.py migrate
-DJANGO_DEMO=true python manage.py seed_approval_demo --password YOUR_DEMO_PASSWORD
-DJANGO_DEMO=true python manage.py runserver 127.0.0.1:8000
+set -a
+. ./.env
+set +a
+export DJANGO_DEMO=true
+export SPL_CHUNKS_PATH="$PWD/data/rag/spl_chunks.jsonl"
+docker compose up -d vector_db
+python manage.py migrate
+python manage.py runserver 127.0.0.1:8000
 ```
 
-Open http://127.0.0.1:8000/ on this computer. Sign in as `pharmacist` with the
-chosen password. The seed command adds three fresh drafts each time, retaining
-previous demo decisions. This is a local portal, not a publicly hosted site.
+Use `VECTOR_DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5433/spl_vectors`
+for local processes. In a second shell with the same environment, run
+`python manage.py run_generation_worker`. Run only one worker with SQLite.
+The prepared corpus must already exist at `SPL_CHUNKS_PATH`; unset this variable
+when using a previously populated vector store without a local corpus.
+On a fresh demo database create a staff account using `createsuperuser` (existing
+local accounts remain available). `seed_approval_demo --password YOUR_DEMO_PASSWORD`
+is optional and creates only the older fictional approval examples.
 
-The current demo was started with Gunicorn in daemon mode. Its PID is in
-`data/demo-server.pid`; access/error logs are in `data/demo-access.log` and
-`data/demo-error.log`. Stop that process before restarting on the same port.
+The current web server runs in Gunicorn daemon mode, with PID
+`data/demo-server.pid` and logs `data/demo-access.log`, `data/demo-error.log`.
+The current background worker PID is `data/demo-worker.pid`, with log
+`data/demo-worker.log`. Stop those processes before starting replacements; avoid
+interrupting an active job. The vector database runs as the compose `vector_db`
+service and retains its named volume. These local files and `.env` are ignored
+by Git. This portal is local to this computer, not publicly hosted.
 
-Review verification: `python manage.py test care.test_reviews care.test_jobs care.test_audit`.
+Verification:
 
+```sh
+python manage.py test care.test_reviews care.test_jobs care.test_audit
+python -m unittest rag.test_embedding_cache
+```
 
 ### Additional local staff account
 

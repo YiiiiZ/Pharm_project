@@ -18,9 +18,11 @@
 <div class="container py-5" style="max-width:760px">
   <div class="mb-4">
     <h4 class="fw-bold mb-0">New Patient Order</h4>
-    <p class="text-muted small mb-0">Specialty Pharmacy Care Plan Generator</p>
+    <p class="text-muted small mb-0">Patient intake → Label retrieval → Care plan → Checks → Pharmacist review</p>
   </div>
 
+  {% if demo %}<div class="alert alert-info">Live pipeline demo — use fictional patient information. Generation uses the configured APIs. Plans remain drafts until pharmacist review.<br><a href="?example=1" class="btn btn-outline-primary btn-sm mt-2">Load fictional example</a></div>{% endif %}
+  <p>Enter the patient, medication and prescriber details below. Required fields are marked *.</p>
   <form method="post" action="{% url 'logout' %}" class="mb-3">{% csrf_token %}<button type="submit" class="btn btn-outline-secondary btn-sm">Sign out</button></form>
   <form method="post">
     {% csrf_token %}
@@ -28,12 +30,13 @@
     {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
     {% for field in form.visible_fields %}
     <div class="mb-3">
-      <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
       {{ field }}
+      {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
       {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
     </div>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit order</button>
+    <button type="submit" class="btn btn-primary">Generate care plan</button>
     <p class="text-muted mt-3">Generation runs in the background. You will see its status on the next page.</p>
   </form>
   {% if recent_orders %}<div class="mt-4"><h5>Recent orders</h5><ul>

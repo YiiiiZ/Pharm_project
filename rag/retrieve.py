@@ -7,9 +7,7 @@ search in pgvector. Results are over-fetched and deduplicated by
 content_sha256, since repackaged labels can produce near-identical
 top hits for the same clinical text (see README.md).
 
-This module is not yet wired into the live Django generation request;
-callers pass its output as the `reference_material` argument to
-care.structured_llm.generate_structured_care_plan.
+The background worker passes retrieved evidence to the structured generation graph.
 
 Example:
     python -m rag.retrieve "vancomycin renal dosing" --top-k 5
@@ -53,8 +51,8 @@ def retrieve_chunks(
     filters = []
     params: list = [embedding]
     if product_name:
-        filters.append("product_name ILIKE %s")
-        params.append(f"%{product_name}%")
+        filters.append("(strpos(lower(coalesce(product_name, '')), lower(%s)) > 0 OR strpos(lower(coalesce(generic_name, '')), lower(%s)) > 0)")
+        params.extend([product_name, product_name])
     where_clause = f"WHERE {' AND '.join(filters)}" if filters else ""
     params.append(top_k * OVERFETCH_FACTOR)
 

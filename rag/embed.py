@@ -7,8 +7,8 @@ hashes (repackaged labels repeat identical clinical text), so ~23% of
 chunks are skipped and reuse an already-embedded vector instead of
 paying to embed the same text twice.
 
-Idempotent: chunk hashes already present in the table are skipped, so
-re-running after an interruption only embeds what's missing.
+Idempotent: existing chunk IDs are skipped. New labels with already embedded
+content reuse the stored vector while retaining their own metadata.
 
 Example:
     python -m rag.embed data/rag/spl_chunks.jsonl
@@ -55,16 +55,23 @@ def embed_corpus(
     client: OpenAI,
     batch_size: int = DEFAULT_BATCH_SIZE,
     limit: int | None = None,
+    product_name: str | None = None,
 ) -> dict:
     with connect() as conn:
         init_schema(conn)
         done_hashes = existing_content_hashes(conn)
+        done_ids = {row[0] for row in conn.execute("SELECT chunk_id FROM spl_chunk_embeddings").fetchall()}
 
         chunks_by_hash: dict[str, list[dict]] = {}
         for chunk in iter_chunks(input_path):
+            meta = chunk["metadata"]
+            if product_name and not any(product_name.casefold() in str(meta.get(key) or "").casefold() for key in ("product_name", "generic_name")):
+                continue
+            if chunk["chunk_id"] in done_ids:
+                continue
             chunks_by_hash.setdefault(chunk["content_sha256"], []).append(chunk)
 
-        to_embed = [h for h in chunks_by_hash if h not in done_hashes]
+        to_embed = list(chunks_by_hash)
         if limit is not None:
             to_embed = to_embed[:limit]
 
@@ -77,12 +84,22 @@ def embed_corpus(
         }
 
         for batch_hashes in batched(to_embed, batch_size):
-            texts = [chunks_by_hash[h][0]["text"] for h in batch_hashes]
-            response = client.embeddings.create(model=MODEL, input=texts)
+            cached = dict(conn.execute(
+                "SELECT DISTINCT ON (content_sha256) content_sha256, embedding FROM spl_chunk_embeddings WHERE content_sha256 = ANY(%s)",
+                (batch_hashes,),
+            ).fetchall())
+            missing = [h for h in batch_hashes if h not in cached]
+            if missing:
+                texts = [chunks_by_hash[h][0]["text"] for h in missing]
+                response = client.embeddings.create(model=MODEL, input=texts)
+                if len(response.data) != len(missing):
+                    raise ValueError("Incomplete embedding response")
+                for item in response.data:
+                    cached[missing[item.index]] = item.embedding
 
             with conn.cursor() as cur:
-                for content_hash, item in zip(batch_hashes, response.data):
-                    vector = item.embedding
+                for content_hash in batch_hashes:
+                    vector = cached[content_hash]
                     for chunk in chunks_by_hash[content_hash]:
                         meta = chunk["metadata"]
                         cur.execute(
@@ -115,7 +132,7 @@ def embed_corpus(
                         stats["rows_written"] += 1
             conn.commit()
 
-            stats["newly_embedded"] += len(batch_hashes)
+            stats["newly_embedded"] += len(missing)
             if stats["newly_embedded"] % 1000 < batch_size:
                 print(
                     f"Embedded {stats['newly_embedded']}/{len(to_embed)} "
@@ -133,12 +150,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "input", type=Path, nargs="?", default=Path("data/rag/spl_chunks.jsonl")
     )
+    parser.add_argument("--product-name", help="Index only matching product or generic names")
     parser.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE)
     parser.add_argument(
         "--limit",
         type=int,
         default=None,
-        help="Only embed the first N unvisited unique chunks (testing)",
+        help="Only process the first N missing content groups (testing)",
     )
     return parser.parse_args()
 
@@ -151,6 +169,7 @@ def main() -> None:
         client=client,
         batch_size=args.batch_size,
         limit=args.limit,
+        product_name=args.product_name,
     )
     print(json.dumps(stats, indent=2))
 

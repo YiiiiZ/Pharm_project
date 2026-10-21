@@ -18,14 +18,33 @@ from .forms import OrderForm
 from .services import submit_order, retry_order, review_care_plan
 
 
+STAGE_LABELS = {
+    "queued": "Order saved — waiting for worker",
+    "evidence_preparation": "Preparing and caching medication label embeddings",
+    "routing": "Selecting generation workflow",
+    "retrieval": "Retrieving drug-label evidence",
+    "generation": "Generating structured care plan",
+    "validation": "Validating plan structure",
+    "verification": "Checking patient facts and citation IDs",
+    "repair": "Repairing flagged issues",
+    "needs_review": "Waiting for pharmacist review",
+}
+
+
 @staff_member_required(login_url="login")
 def order_form(request):
-    if settings.DEMO_MODE:
-        if request.method != "GET":
-            return HttpResponseNotAllowed(["GET"])
-        return render(request, "care/demo.html", {"orders": Order.objects.order_by("-created_at")})
-    form = OrderForm(request.POST if request.method == "POST" else None,
-                     initial={"request_key": uuid.uuid4()})
+    initial = {"request_key": uuid.uuid4()}
+    if settings.DEMO_MODE and request.GET.get("example") == "1":
+        initial.update({
+            "mrn": str(100000 + uuid.uuid4().int % 900000),
+            "first_name": "Alex", "last_name": "Demo", "dob": "1980-01-01",
+            "provider_npi": "9999999999", "provider_name": "Fictional Provider",
+            "primary_diagnosis": "E11.9", "medication_name": "metformin",
+            "weight_kg": "72", "allergies": "Penicillin",
+            "medication_history": "Metformin immediate-release 500 mg orally twice daily with meals.",
+            "patient_records": "Fictional training case. Type 2 diabetes; HbA1c 7.8%; eGFR 85 mL/min/1.73 m2. No reported adverse effects. Confirm all details before clinical use.",
+        })
+    form = OrderForm(request.POST if request.method == "POST" else None, initial=initial)
     if request.method == "POST" and form.is_valid():
         try:
             order = submit_order(form.cleaned_data)
@@ -37,7 +56,7 @@ def order_form(request):
             if existing:
                 return redirect("care_plan", pk=existing.order_id)
             form.add_error(None, "Another submission changed this record. Please check and submit again.")
-    return render(request, "care/form.html", {"form": form, "recent_orders": Order.objects.select_related("patient").order_by("-created_at")[:20]})
+    return render(request, "care/form.html", {"form": form, "demo": settings.DEMO_MODE, "recent_orders": Order.objects.select_related("patient").order_by("-created_at")[:20]})
 
 
 @staff_member_required(login_url="login")
@@ -47,9 +66,11 @@ def care_plan(request, pk):
     review = getattr(job, "review", None) if job else None
     return render(request, "care/care_plan.html", {
         "order": order, "job": job, "retry_key": uuid.uuid4(),
+        "stage_label": STAGE_LABELS.get(job.stage, job.stage.replace("_", " ").capitalize()) if job else "",
+        "pipeline_events": [{**event, "label": STAGE_LABELS.get(event["stage"], event["stage"].replace("_", " ").capitalize())} for event in job.events] if job else [],
         "review": review, "demo": settings.DEMO_MODE,
         "can_review": request.user.has_perm("care.review_careplan"),
-        "can_retry": not settings.DEMO_MODE and job and (job.status == "failed" or (review and review.decision != "approved")),
+        "can_retry": job and (job.status == "failed" or (review and review.decision != "approved")),
         "monitoring_items": [item["monitoring"] for item in (job.plan or {}).get("interventions", []) if item.get("monitoring")] if job else [],
         "active": job is not None and job.status in ("queued", "running"),
     })
@@ -77,7 +98,7 @@ def download_care_plan(request, pk):
             return HttpResponse("A draft is not ready for download.", status=409)
         text = render_plan(job.plan, getattr(job, "review", None))
         if settings.DEMO_MODE:
-            text = "DEMO — FICTIONAL DATA — NOT FOR CLINICAL USE\n\n" + text
+            text = "DEMO — NOT FOR CLINICAL USE\n\n" + text
     else:
         text = order.care_plan
     response = HttpResponse(text, content_type="text/plain; charset=utf-8")
@@ -97,8 +118,6 @@ def job_status(request, pk):
 @staff_member_required(login_url="login")
 @require_POST
 def retry_generation(request, pk):
-    if settings.DEMO_MODE:
-        return HttpResponse("Generation is disabled in this approval demo.", status=409)
     order = get_object_or_404(Order, pk=pk)
     try:
         key = uuid.UUID(request.POST.get("request_key", ""))

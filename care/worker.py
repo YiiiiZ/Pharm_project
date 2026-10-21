@@ -2,6 +2,8 @@
 from dataclasses import asdict
 from datetime import timedelta
 import logging
+import os
+from pathlib import Path
 
 from django.utils import timezone
 
@@ -45,13 +47,27 @@ def run_job(job):
     try:
         patient = job.input_snapshot
         record_progress(job, "retrieval")
+        corpus_path = os.environ.get("SPL_CHUNKS_PATH")
+        if corpus_path:
+            from openai import OpenAI
+            from rag.embed import embed_corpus
+            record_progress(job, "evidence_preparation")
+            embed_corpus(input_path=Path(corpus_path), client=OpenAI(timeout=60, max_retries=1), product_name=patient["medication_name"])
+            record_progress(job, "retrieval")
         # Do not send identifying patient fields to the embedding provider.
-        query = f"{patient['medication_name']} {patient['primary_diagnosis']} dosage warnings monitoring contraindications"
-        chunks = retrieve_chunks(query, product_name=patient["medication_name"])
+        chunks = []
+        seen = set()
+        for topic in ("indications and usage", "dosage and administration", "warnings precautions monitoring contraindications"):
+            query = f"{patient['medication_name']} {topic}"
+            for chunk in retrieve_chunks(query, product_name=patient["medication_name"], top_k=3):
+                if chunk.content_sha256 not in seen:
+                    seen.add(chunk.content_sha256)
+                    chunks.append(chunk)
         if not chunks:
             raise ValueError("No matching drug-label evidence was found")
         job.evidence = [asdict(chunk) for chunk in chunks]
         GenerationJob.objects.filter(pk=job.pk, status="running").update(evidence=job.evidence)
+        record_progress(job, "routing")
         graph = build_care_plan_graph(
             provider="anthropic", evaluator=make_evaluator(patient, job.evidence),
             audit_order=job.order, audit_run_group_id=job.pk,
@@ -82,6 +98,6 @@ def run_job(job):
         # Persist a safe message, not a provider response or patient information.
         logger.error("Generation job %s failed (%s)", job.pk, type(exc).__name__)
         GenerationJob.objects.filter(pk=job.pk, status="running").update(
-            status="failed", error=("No matching drug-label evidence was found. Check the medication name." if str(exc) == "No matching drug-label evidence was found" else "Generation failed. Check worker configuration and availability, then retry."),
+            status="failed", stage="failed", events=job.events + [{"stage": "failed", "at": timezone.now().isoformat()}], error=("No matching drug-label evidence was found. Check the medication name." if str(exc) == "No matching drug-label evidence was found" else "Generation failed. Check worker configuration and availability, then retry."),
             completed_at=timezone.now(), updated_at=timezone.now(),
         )

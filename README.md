@@ -10,6 +10,10 @@ The order page polls job status, displays the draft and evidence, and allows
 retrying failed jobs. All application pages and audit endpoints require a
 Django staff account and POST forms enforce CSRF protection.
 
+The local demo now supports intake through **Waiting for pharmacist review**,
+with a fictional-example button and live progress history. It uses the configured
+APIs and optionally caches medication-specific label embeddings from a local corpus.
+
 **Start here: [RUNNING.md](RUNNING.md).** It describes migrations, staff-account
 creation, the worker, configuration, and interrupted-job recovery.
 

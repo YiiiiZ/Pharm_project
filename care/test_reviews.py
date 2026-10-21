@@ -106,7 +106,10 @@ class ReviewTests(TestCase):
             call_command("seed_approval_demo", password="test-only")
 
     @override_settings(DEMO_MODE=True)
-    def test_demo_disables_live_submission_and_retry(self):
-        self.assertEqual(self.client.post("/", {}).status_code, 405)
+    def test_demo_enables_intake_and_keeps_review_gate(self):
+        self.assertEqual(self.client.post("/", {}).status_code, 200)
         self.assertEqual(self.client.post(f"/order/{self.order.pk}/retry/", {}).status_code, 409)
-        self.assertContains(self.client.get("/"), "Fictional plans only")
+        self.assertContains(self.client.get("/?example=1"), "metformin")
+        self.assertContains(self.client.get("/"), "Generate care plan")
+        GenerationJob.objects.filter(pk=self.job.pk).update(status="failed")
+        self.assertEqual(self.client.post(f"/order/{self.order.pk}/retry/", {"request_key": str(uuid.uuid4())}).status_code, 302)

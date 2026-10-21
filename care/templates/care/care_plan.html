@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  {% if demo %}<div class="alert alert-info">DEMO — fictional data, not for clinical use.</div>{% endif %}
+  {% if demo %}<div class="alert alert-info">DEMO — not for clinical use.</div>{% endif %}
   <!-- Patient summary -->
   <div class="card mb-3 p-4">
     <div class="row g-2 small">
@@ -58,8 +58,15 @@
   {% if job %}
   <div class="card p-4 mb-3" role="status">
     <strong>{% if review %}{{ review.get_decision_display }}{% else %}{{ job.get_status_display }}{% endif %}</strong>
-    {% if active %}<span>Stage: {{ job.stage|capfirst }}</span>{% endif %}
+    {% if active %}<span>Stage: {{ stage_label }}</span>{% endif %}
     <small class="text-muted">Job {{ job.pk }}</small>
+    <h5 class="mt-3">Generation pipeline</h5>
+    <p class="small text-muted">Order → Label retrieval → Generation → Validation → Verification / repair → Pharmacist review</p>
+    <ol class="small">
+      <li>Patient information and order saved</li>
+      {% for event in pipeline_events %}<li>{{ event.label }}</li>{% empty %}<li>Order saved — waiting for worker</li>{% endfor %}
+    </ol>
+    {% if job.status == "needs_review" and not review %}<p class="mb-0"><strong>Waiting for pharmacist review.</strong> Generation is complete; no approval has been recorded.</p>{% endif %}
     {% if active %}<p class="mt-2">This page checks for progress every three seconds.</p>{% endif %}
     {% if job.error %}<p class="text-danger">{{ job.error }}</p>{% endif %}
     {% if can_retry %}

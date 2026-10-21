@@ -5,7 +5,7 @@ from unittest.mock import patch
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
-from django.test import TestCase, Client
+from django.test import TestCase, Client, override_settings
 from django.utils import timezone
 
 from rag.retrieve import RetrievedChunk, format_reference_material
@@ -58,6 +58,20 @@ class JobTests(TestCase):
         self.assertIn("[chunk-1]", generate.call_args.kwargs["reference_material"])
         self.assertContains(self.client.get(f"/order/{order.pk}/"), "pharmacist must review")
         self.assertContains(self.client.get(f"/order/{order.pk}/download/"), "DRAFT")
+
+    @override_settings(DEMO_MODE=True)
+    def test_demo_submission_reaches_review_with_visible_pipeline(self):
+        response = self.client.post("/", self.data)
+        self.assertEqual(response.status_code, 302)
+        self.run_with_plan()
+        job = GenerationJob.objects.get()
+        self.assertEqual(job.status, "needs_review")
+        self.assertFalse(hasattr(job, "review"))
+        page = self.client.get(response.url)
+        self.assertContains(page, "Waiting for pharmacist review.")
+        self.assertContains(page, "Retrieving drug-label evidence")
+        self.assertContains(page, "Generating structured care plan")
+        self.assertContains(page, "Checking patient facts and citation IDs")
 
     def test_real_adapter_records_job_group(self):
         from types import SimpleNamespace

@@ -23,7 +23,7 @@ def make_evaluator(patient, evidence):
                 if not ids or not set(ids).issubset(allowed_ids):
                     findings.append(HallucinationFinding(
                         path=f"$.{section}[{index}].source_ids",
-                        message="Every item must cite IDs from the supplied label evidence.",
+                        message="Every item must cite IDs from the supplied label evidence. If no supplied passage supports this item, remove the unsupported recommendation and retain patient facts in patient_summary. Never attach an unrelated citation just to pass this check.",
                         risk_level="medium",
                     ))
         return HallucinationReport(
