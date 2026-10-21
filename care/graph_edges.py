@@ -15,17 +15,6 @@ from .generation_loop import HallucinationFinding
 from .graph_nodes import MAX_FORMAT_RETRIES, MAX_REPAIR_RETRIES
 from .graph_state import CarePlanState, WorkflowStatus
 
-# Paths that contain only factual/numerical values the auto_fix node can
-# patch directly from patient_data. Everything else is a reasoning finding
-# that requires regeneration.
-_NUMERICAL_KEYWORDS: frozenset[str] = frozenset({
-    "weight", "weight_kg",
-    "primary_diagnosis", "diagnosis",
-    "mrn", "dob", "date_of_birth",
-    "lab", "scr", "creatinine", "egfr",
-})
-
-
 # ---------------------------------------------------------------------------
 # After format_check
 # ---------------------------------------------------------------------------
@@ -37,6 +26,9 @@ def route_after_format(state: CarePlanState) -> str:
     parse failed, retries remaining → "generate"  (next prompt version)
     parse failed, retries exhausted → "end"        (FAILED)
     """
+    if state["status"] == WorkflowStatus.FAILED:
+        return "end"
+
     if state["status"] == WorkflowStatus.VERIFYING:
         return "verify"
 
@@ -61,6 +53,9 @@ def route_after_verify(state: CarePlanState) -> str:
     repair retries exhausted      → "end"       (FAILED)
     """
     status = state["status"]
+
+    if status == WorkflowStatus.FAILED:
+        return "end"
 
     if status == WorkflowStatus.SUCCESS:
         return "end"
@@ -89,11 +84,11 @@ def _is_numerical(finding: HallucinationFinding) -> bool:
     """Return True if this finding can be auto-corrected from patient_data.
 
     A finding is numerical when its path references a factual patient field
-    (weight, diagnosis code, MRN, lab values). Reasoning findings reference
+    (weight, diagnosis code, MRN). Reasoning findings reference
     clinical sections (problems, goals, interventions, monitoring).
     """
     path_lower = finding.path.lower()
-    return any(kw in path_lower for kw in _NUMERICAL_KEYWORDS)
+    return path_lower in {"$.patient_summary.weight_kg", "$.patient_summary.primary_diagnosis", "$.patient_summary.mrn"}
 
 
 def _all_numerical(findings: list[HallucinationFinding]) -> bool:

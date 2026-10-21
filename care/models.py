@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.conf import settings
 
 
 class Provider(models.Model):
@@ -128,3 +129,66 @@ class GenerationAudit(models.Model):
             f"{self.workflow} {self.provider}/{self.model} "
             f"{self.run_id} [{self.status}]"
         )
+
+
+class GenerationJob(models.Model):
+    """A durable queue entry and immutable generation result for one order."""
+
+    class Status(models.TextChoices):
+        QUEUED = "queued", "Queued"
+        RUNNING = "running", "Running"
+        NEEDS_REVIEW = "needs_review", "Ready for pharmacist review"
+        FAILED = "failed", "Failed"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    request_key = models.UUIDField(unique=True)
+    order = models.ForeignKey(Order, on_delete=models.PROTECT, related_name="jobs")
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.QUEUED)
+    stage = models.CharField(max_length=40, default="queued")
+    input_snapshot = models.JSONField(default=dict)
+    evidence = models.JSONField(default=list)
+    plan = models.JSONField(null=True, blank=True)
+    verification = models.JSONField(default=dict)
+    events = models.JSONField(default=list)
+    error = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    started_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["order"],
+                condition=models.Q(status__in=["queued", "running"]),
+                name="one_active_generation_per_order",
+            ),
+        ]
+        indexes = [models.Index(fields=["status", "created_at"])]
+
+
+class ReviewDecision(models.Model):
+    class Decision(models.TextChoices):
+        APPROVED = "approved", "Approved"
+        REJECTED = "rejected", "Rejected"
+        CHANGES_REQUESTED = "changes_requested", "Changes requested"
+
+    job = models.OneToOneField(GenerationJob, on_delete=models.PROTECT, related_name="review")
+    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    reviewer_name = models.CharField(max_length=200)
+    decision = models.CharField(max_length=20, choices=Decision.choices)
+    comments = models.TextField(blank=True)
+    plan_sha256 = models.CharField(max_length=64)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        permissions = [("review_careplan", "Can approve or reject care plans")]
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding:
+            raise ValueError("Review decisions cannot be changed; review a new generation instead.")
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise ValueError("Review decisions cannot be deleted.")

@@ -9,3 +9,5 @@ PyYAML==6.0.3
 pydantic>=2.12,<3
 pytest>=9,<10
 pytest-asyncio>=1.4,<2
+psycopg[binary]>=3.2,<4
+pgvector>=0.3,<1

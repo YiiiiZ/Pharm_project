@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Staff sign in — Specialty Pharmacy</title><link rel="icon" href="data:,">
+</head>
+<body style="font-family:system-ui;max-width:400px;margin:60px auto;padding:20px"><h1>Staff sign in</h1><p>Use an authorized staff account.</p>
+<form method="post">{% csrf_token %}{{ form.as_p }}<input type="hidden" name="next" value="{{ next }}"><button type="submit">Sign in</button></form>
+{% if user.is_authenticated and not user.is_staff %}<p>This account does not have staff access.</p>{% endif %}</body></html>

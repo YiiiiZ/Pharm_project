@@ -11,4 +11,4 @@ RUN mkdir -p /data
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py migrate --run-syncdb && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate --fake-initial && gunicorn pharm_project.wsgi:application --bind 0.0.0.0:8000 --workers 1"]

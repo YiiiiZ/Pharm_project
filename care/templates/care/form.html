@@ -12,6 +12,7 @@
                      letter-spacing: .08em; color: #6c757d; margin-bottom: .75rem; }
     #loading { display: none; }
   </style>
+<link rel="icon" href="data:,">
 </head>
 <body>
 <div class="container py-5" style="max-width:760px">
@@ -20,106 +21,25 @@
     <p class="text-muted small mb-0">Specialty Pharmacy Care Plan Generator</p>
   </div>
 
-  <form method="post" id="orderForm">
+  <form method="post" action="{% url 'logout' %}" class="mb-3">{% csrf_token %}<button type="submit" class="btn btn-outline-secondary btn-sm">Sign out</button></form>
+  <form method="post">
     {% csrf_token %}
-
-    <!-- Provider -->
-    <div class="card mb-3 p-4">
-      <div class="section-title">Referring Provider</div>
-      <div class="row g-3">
-        <div class="col-md-7">
-          <label class="form-label">Provider Name</label>
-          <input type="text" name="provider_name" class="form-control" required placeholder="Dr. Jane Smith">
-        </div>
-        <div class="col-md-5">
-          <label class="form-label">NPI</label>
-          <input type="text" name="provider_npi" class="form-control" required placeholder="1234567890" maxlength="10">
-        </div>
-      </div>
+    {{ form.request_key }}{{ form.request_key.errors }}
+    {% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
+    {% for field in form.visible_fields %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
     </div>
-
-    <!-- Patient -->
-    <div class="card mb-3 p-4">
-      <div class="section-title">Patient</div>
-      <div class="row g-3">
-        <div class="col-md-4">
-          <label class="form-label">First Name</label>
-          <input type="text" name="first_name" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Last Name</label>
-          <input type="text" name="last_name" class="form-control" required>
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">MRN</label>
-          <input type="text" name="mrn" class="form-control" required placeholder="000123">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Date of Birth</label>
-          <input type="date" name="dob" class="form-control">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Weight (kg)</label>
-          <input type="text" name="weight_kg" class="form-control" placeholder="72">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label">Allergies</label>
-          <input type="text" name="allergies" class="form-control" placeholder="NKDA or list allergies">
-        </div>
-      </div>
-    </div>
-
-    <!-- Order -->
-    <div class="card mb-3 p-4">
-      <div class="section-title">Order Details</div>
-      <div class="row g-3">
-        <div class="col-md-6">
-          <label class="form-label">Medication Name</label>
-          <input type="text" name="medication_name" class="form-control" required placeholder="IVIG">
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Primary Diagnosis (ICD-10)</label>
-          <input type="text" name="primary_diagnosis" class="form-control" required placeholder="G70.01">
-        </div>
-        <div class="col-12">
-          <label class="form-label">Additional Diagnoses <span class="text-muted">(one ICD-10 per line)</span></label>
-          <textarea name="additional_diagnoses" class="form-control" rows="2" placeholder="I10&#10;K21.0"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- Clinical -->
-    <div class="card mb-3 p-4">
-      <div class="section-title">Clinical Information</div>
-      <div class="row g-3">
-        <div class="col-12">
-          <label class="form-label">Medication History <span class="text-muted">(one entry per line)</span></label>
-          <textarea name="medication_history" class="form-control" rows="3"
-            placeholder="Pyridostigmine 60 mg PO q6h PRN&#10;Prednisone 10 mg PO daily"></textarea>
-        </div>
-        <div class="col-12">
-          <label class="form-label">Patient Records / Clinical Notes</label>
-          <textarea name="patient_records" class="form-control" rows="6"
-            placeholder="Paste clinical notes, history, labs, etc."></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div id="loading" class="alert alert-info d-flex align-items-center gap-2">
-      <div class="spinner-border spinner-border-sm" role="status"></div>
-      Generating care plan — this may take 15–30 seconds...
-    </div>
-
-    <button type="submit" class="btn btn-primary px-5" id="submitBtn">Generate Care Plan</button>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit order</button>
+    <p class="text-muted mt-3">Generation runs in the background. You will see its status on the next page.</p>
   </form>
+  {% if recent_orders %}<div class="mt-4"><h5>Recent orders</h5><ul>
+  {% for order in recent_orders %}<li><a href="{% url 'care_plan' order.pk %}">Order #{{ order.pk }} — {{ order.medication_name }}</a> (MRN {{ order.patient.mrn }})</li>{% endfor %}
+  </ul></div>{% endif %}
 </div>
-
-<script>
-  document.getElementById("orderForm").addEventListener("submit", function () {
-    document.getElementById("loading").style.display = "flex";
-    document.getElementById("submitBtn").disabled = true;
-    document.getElementById("submitBtn").textContent = "Generating…";
-  });
-</script>
+<style>input:not([type=hidden]), textarea {display:block; width:100%; padding:.5rem; border:1px solid #ccc; border-radius:4px;} textarea {height:90px;}</style>
 </body>
 </html>

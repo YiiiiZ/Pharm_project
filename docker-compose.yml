@@ -9,6 +9,42 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-dev-secret-key-change-in-prod}
       - DB_PATH=/data/db.sqlite3
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/login/')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  worker:
+    build: .
+    command: python manage.py run_generation_worker
+    volumes:
+      - db_data:/data
+    environment:
+      - DB_PATH=/data/db.sqlite3
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-claude-sonnet-4-6}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - VECTOR_DATABASE_URL=postgresql://postgres:postgres@vector_db:5432/spl_vectors
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY:-dev-secret-key-change-in-prod}
+    depends_on:
+      web:
+        condition: service_healthy
+      vector_db:
+        condition: service_started
+
+  vector_db:
+    image: pgvector/pgvector:pg16
+    environment:
+      - POSTGRES_DB=spl_vectors
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - vector_db_data:/var/lib/postgresql/data
 
 volumes:
   db_data:
+  vector_db_data:

@@ -128,6 +128,8 @@ def generate_structured_care_plan_with_retry(
     model: str | None = None,
     validator: Validator = validate_care_plan,
     max_retries: int = 2,
+    audit_enabled: bool = False,
+    audit_order: Any | None = None,
 ) -> CarePlanRetryResult:
     """Run the retry loop using the project's structured-output adapters.
 

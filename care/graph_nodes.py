@@ -12,6 +12,7 @@ a fake client or evaluator without touching LangGraph at all.
 from __future__ import annotations
 
 import json
+import os
 from typing import Any, Callable
 
 from .care_plan_schema import validate_care_plan
@@ -31,14 +32,18 @@ MAX_REPAIR_RETRIES = 2
 # route_node — no I/O, no dependencies
 # ---------------------------------------------------------------------------
 
-def route_node(state: CarePlanState) -> dict:
+def route_node(state: CarePlanState, *, provider: str | None = None) -> dict:
     """Assess patient complexity and select the initial prompt version + model.
 
     Simple patients (≤1 diagnosis, ≤2 medications, no allergy history) route
     to the lighter prompt and model; everything else routes to the stronger
     complex path. See router.assess_complexity for the full rules.
     """
-    strategy = assess_complexity(state["patient_data"])
+    options = {}
+    if provider:
+        model = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6") if provider == "anthropic" else os.environ.get("OPENAI_MODEL", "gpt-5.5")
+        options = {"simple_model": model, "complex_model": model}
+    strategy = assess_complexity(state["patient_data"], **options)
     return {
         "routing_strategy": strategy,
         "current_prompt_version": strategy.prompt_version,
@@ -55,6 +60,8 @@ def make_generate_node(
     *,
     provider: str = "anthropic",
     client: Any | None = None,
+    audit_order: Any | None = None,
+    audit_run_group_id: Any | None = None,
 ) -> Callable[[CarePlanState], dict]:
     """Return a generate node bound to the given LLM provider and client.
 
@@ -83,8 +90,14 @@ def make_generate_node(
                 prompt_version=state["current_prompt_version"],
                 repair_instructions=state["accumulated_feedback"] or None,
                 client=client,
+                audit_enabled=audit_order is not None,
+                audit_order=audit_order,
+                audit_run_group_id=audit_run_group_id,
+                audit_attempt_number=attempt,
             )
             return {
+                "verification_report": None,
+                "final_output": None,
                 "llm_output": plan.model_dump_json(),
                 "parsed_output": plan.model_dump(mode="json"),
                 "generate_retry_count": attempt,
@@ -102,6 +115,8 @@ def make_generate_node(
             }
             updated_log = state["error_log"] + [error]
             return {
+                "verification_report": None,
+                "final_output": None,
                 "llm_output": None,
                 "parsed_output": None,
                 "generate_retry_count": attempt,
@@ -111,7 +126,7 @@ def make_generate_node(
                 ),
                 "error_log": updated_log,
                 "accumulated_feedback": _build_feedback(updated_log),
-                "status": WorkflowStatus.FORMAT_ERROR,
+                "status": WorkflowStatus.FAILED if state["format_retry_count"] + 1 >= MAX_FORMAT_RETRIES else WorkflowStatus.FORMAT_ERROR,
             }
 
     return generate_node
@@ -135,7 +150,7 @@ def format_check_node(state: CarePlanState) -> dict:
         return {"status": WorkflowStatus.VERIFYING}
 
     if not state.get("llm_output"):
-        return {"status": WorkflowStatus.FORMAT_ERROR}
+        return {"status": WorkflowStatus.FAILED if state["format_retry_count"] >= MAX_FORMAT_RETRIES else WorkflowStatus.FORMAT_ERROR}
 
     result = validate_care_plan(state["llm_output"])
 
@@ -164,7 +179,7 @@ def format_check_node(state: CarePlanState) -> dict:
         ),
         "error_log": updated_log,
         "accumulated_feedback": _build_feedback(updated_log),
-        "status": WorkflowStatus.FORMAT_ERROR,
+        "status": WorkflowStatus.FAILED if state["format_retry_count"] + 1 >= MAX_FORMAT_RETRIES else WorkflowStatus.FORMAT_ERROR,
     }
 
 
@@ -191,7 +206,7 @@ def make_verify_node(
     def verify_node(state: CarePlanState) -> dict:
         report = evaluator(state["llm_output"] or "")
 
-        if report.valid:
+        if report.valid and not report.escalate_to_pharmacist and not any(f.risk_level == "high" for f in report.findings):
             return {
                 "verification_report": report,
                 "final_output": state["llm_output"],
@@ -225,7 +240,7 @@ def make_verify_node(
             "repair_retry_count": state["repair_retry_count"] + 1,
             "error_log": updated_log,
             "accumulated_feedback": _build_feedback(updated_log),
-            "status": WorkflowStatus.REPAIRING,
+            "status": WorkflowStatus.FAILED if state["repair_retry_count"] + 1 >= MAX_REPAIR_RETRIES else WorkflowStatus.REPAIRING,
         }
 
     return verify_node
@@ -242,8 +257,7 @@ def auto_fix_node(state: CarePlanState) -> dict:
     wrong ICD-10 code, wrong MRN). These are factual values we can correct
     directly from patient_data without another LLM call.
 
-    Always sets status=SUCCESS — if the values are in patient_data, they are
-    authoritative; remaining clinical reasoning is considered acceptable.
+    The patched output returns to schema validation and verification.
     """
     import copy
     import json as _json
@@ -268,9 +282,9 @@ def auto_fix_node(state: CarePlanState) -> dict:
     fixed_json = _json.dumps(data, indent=2)
     return {
         "llm_output": fixed_json,
-        "parsed_output": data,
-        "final_output": fixed_json,
-        "status": WorkflowStatus.SUCCESS,
+        "parsed_output": None,
+        "final_output": None,
+        "status": WorkflowStatus.VERIFYING,
     }
 
 

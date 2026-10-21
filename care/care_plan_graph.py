@@ -12,6 +12,7 @@ Call save_graph_diagram() to write the Mermaid diagram to a file.
 from __future__ import annotations
 
 from typing import Any
+from functools import partial
 
 from langgraph.graph import END, StateGraph
 
@@ -32,14 +33,15 @@ def build_care_plan_graph(
     provider: str = "anthropic",
     client: Any | None = None,
     evaluator: Evaluator | None = None,
+    audit_order: Any | None = None,
+    audit_run_group_id: Any | None = None,
 ):
     """Compile and return the care-plan StateGraph.
 
     Args:
         provider:  "anthropic" or "openai"
         client:    Pre-built LLM client (optional; created from env vars if absent)
-        evaluator: Hallucination evaluator; defaults to a pass-through that
-                   always returns valid so the graph can be tested without an LLM
+        evaluator: Hallucination evaluator; must be supplied to execute verification
 
     Graph shape:
         route ──► generate ──► format_check ──[route_after_format]──► verify
@@ -50,15 +52,15 @@ def build_care_plan_graph(
                     │                                                      │
                    END ◄──────────────── [success / escalated / exhausted]─┤
                                                                            │
-                                    auto_fix ──► END ◄── [all numerical] ──┘
+                                    auto_fix → format_check ← [all numerical] ──┘
     """
-    _evaluator = evaluator or _passthrough_evaluator
+    _evaluator = evaluator or _missing_evaluator
 
     builder = StateGraph(CarePlanState)
 
     # ---- nodes ----
-    builder.add_node("route", route_node)
-    builder.add_node("generate", make_generate_node(provider=provider, client=client))
+    builder.add_node("route", partial(route_node, provider=provider))
+    builder.add_node("generate", make_generate_node(provider=provider, client=client, audit_order=audit_order, audit_run_group_id=audit_run_group_id))
     builder.add_node("format_check", format_check_node)
     builder.add_node("verify", make_verify_node(_evaluator))
     builder.add_node("auto_fix", auto_fix_node)
@@ -67,7 +69,7 @@ def build_care_plan_graph(
     builder.set_entry_point("route")
     builder.add_edge("route", "generate")
     builder.add_edge("generate", "format_check")
-    builder.add_edge("auto_fix", END)
+    builder.add_edge("auto_fix", "format_check")
 
     # ---- conditional edge: after format_check ----
     builder.add_conditional_edges(
@@ -140,6 +142,5 @@ def make_initial_state(
 # Internal
 # ---------------------------------------------------------------------------
 
-def _passthrough_evaluator(output: str) -> HallucinationReport:
-    """Default evaluator for testing: always returns valid with no findings."""
-    return HallucinationReport(valid=True, hallucination_count=0)
+def _missing_evaluator(output: str) -> HallucinationReport:
+    raise RuntimeError("A verification evaluator is required to execute the graph")

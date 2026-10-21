@@ -10,6 +10,8 @@ from care.models import GenerationAudit, Order, Patient, Provider
 
 class AuditRecorderTests(TestCase):
     def setUp(self):
+        from django.contrib.auth import get_user_model
+        self.client.force_login(get_user_model().objects.create_user(username="auditor", is_staff=True))
         provider = Provider.objects.create(
             npi="1234567890",
             name="Dr. Test",

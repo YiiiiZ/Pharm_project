@@ -1,5 +1,32 @@
 # Specialty Pharmacy Care Plan Generator
 
+## Connected MVP (October 2026)
+
+The Django form now queues a durable database job instead of calling the LLM
+inside the request. A separate `run_generation_worker` process retrieves label
+evidence, runs the LangGraph structured-generation workflow, and saves the input
+snapshot, evidence, plan, limited verification report, and progress events.
+The order page polls job status, displays the draft and evidence, and allows
+retrying failed jobs. All application pages and audit endpoints require a
+Django staff account and POST forms enforce CSRF protection.
+
+**Start here: [RUNNING.md](RUNNING.md).** It describes migrations, staff-account
+creation, the worker, configuration, and interrupted-job recovery.
+
+This minimum implementation deliberately keeps SQLite for application records
+and the existing PostgreSQL vector store. Chat tools remain standalone mocks.
+Verification checks patient facts and citation IDs, **not clinical correctness
+or whether a cited passage actually supports a claim**. Every output remains a
+draft until an authorized pharmacist records approval. Pharmacists can also reject
+a plan or request changes; reviewer, time, and comments are retained per version.
+
+The module inventory below describes the earlier development checkpoint and
+standalone tooling. Where it differs, the connected MVP and RUNNING.md take
+precedence. In particular, the former synchronous web flow and unauthenticated
+audit endpoint are no longer the active application path.
+
+## Earlier development checkpoint
+
 An internal Django prototype for generating pharmacist-reviewed specialty
 pharmacy care plans from patient records and drug-label evidence.
 
@@ -43,7 +70,15 @@ generated plan requires qualified pharmacist review.
   - 74,952 clinical sections
   - 91,357 chunks
   - Zero parse failures
-- JSONL output ready for embedding and vector-database ingestion
+- JSONL corpus embedded into pgvector with `text-embedding-3-small`, deduped by content hash. See "Embeddings and retrieval" below
+
+### Embeddings and retrieval
+
+- All 91,357 chunks embedded with OpenAI `text-embedding-3-small` (1536 dimensions), deduped by `content_sha256` before calling the API. The corpus has 70,662 unique content hashes, so about 23% of chunks reuse an already-embedded vector for repackaged-label text instead of paying to embed it twice
+- Storage is a dedicated `vector_db` Postgres 16 + pgvector service (`docker-compose.yml`), separate from the app's operational SQLite database. See "Why a separate vector store" below
+- Query-time retrieval (`rag/retrieve.py`) embeds the query, runs a cosine-distance nearest-neighbor search, and dedupes results by `content_sha256` before returning the top-k chunks
+- Idempotent indexing: `rag/embed.py` skips content hashes already present, so an interrupted run can be safely re-run
+- Not yet wired into the live Django generation request. `rag/retrieve.py` output has to be passed manually as the `reference_material` argument to `generate_structured_care_plan`. See "Remaining work"
 
 ### Generation quality infrastructure
 
@@ -117,9 +152,9 @@ layer.
 - Authentication, authorization, audit-access logging, and production security controls
 - PDF upload and text extraction
 - CSV reporting/export
-- Embedding generation and vector-database storage
-- Runtime semantic/hybrid retrieval and reranking
+- Hybrid (keyword + semantic) retrieval and reranking on top of the pgvector semantic search
 - Injection of retrieved label chunks into the live Django generation request
+- Migration of the operational database from SQLite to Postgres, and consolidation with the `vector_db` pgvector store into one Postgres instance
 - Migration of the web UI from free text to structured care-plan JSON
 - Persistence of retrieval results, citations, and verification results
 - Authentication and authorization for the audit-log API
@@ -134,15 +169,16 @@ See [DESIGN.md](DESIGN.md) for the intended product scope. Some design choices i
 
 - Python 3.11 in Docker
 - Django 5.0
-- SQLite
+- SQLite (operational database, patients/providers/orders)
+- PostgreSQL 16 + pgvector (dedicated `vector_db` service; SPL chunk embeddings only, see "Embeddings and retrieval")
 - Anthropic and OpenAI Python SDKs
+- OpenAI `text-embedding-3-small` for retrieval embeddings
 - Pydantic 2
 - LangGraph 1.x (multi-step orchestration pipeline)
 - OpenAI Agents SDK 0.17.x (pharmacist query interface)
 - PyYAML
 - Bootstrap 5 via CDN
-- JSONL as the current RAG interchange format
-- Vector database not yet selected
+- JSONL as the RAG chunk-preparation interchange format
 
 ## Run with Docker
 
@@ -254,7 +290,7 @@ not yet connected end to end:
 ```text
 Patient record and medication
         ↓
-Semantic/hybrid retrieval from SPL chunks       not yet implemented
+Semantic retrieval from SPL chunks (pgvector)    implemented standalone, not wired to the request
         ↓
 Patient record + retrieved reference chunks
         ↓
@@ -268,6 +304,8 @@ Validation-feedback repair, maximum 2 retries    implemented
         ↓
 Grounding checks and pharmacist approval         partial/manual
 ```
+
+Hybrid (keyword + semantic) retrieval and reranking are still not implemented; see "Remaining work".
 
 ## LLM generation audit log
 
@@ -610,12 +648,12 @@ Each JSONL record contains:
 - Section code, title, parent section, and effective date
 - Source archive and XML filename for citation traceability
 
-The derived `data/` output is ignored by Git. Embed `text`, use `chunk_id` as
-the vector point ID, and store `metadata` plus `content_sha256` as the vector
-database payload. Filter retrieval by product/generic name, document type,
-label status/version, and section when appropriate. Deduplicate final search
-results by `content_sha256` because repackaged labels can contain identical
-clinical text.
+The derived `data/` output is ignored by Git. `text` is embedded, `chunk_id`
+is the vector point ID, and `metadata` plus `content_sha256` are stored as
+the row payload. Retrieval filters by product/generic name, document type,
+label status/version, and section when a filter is supplied, and dedupes
+final results by `content_sha256` because repackaged labels can contain
+identical clinical text.
 
 The generated May 2026 prescription corpus currently exists locally at:
 
@@ -625,6 +663,84 @@ data/rag/spl_chunks.jsonl.manifest.json
 ```
 
 It is derived data and is intentionally not committed.
+
+## Embeddings and retrieval (pgvector)
+
+`rag/embed.py` and `rag/retrieve.py` turn the chunk JSONL above into a
+searchable vector index.
+
+### Model choice
+
+Embeddings use OpenAI `text-embedding-3-small` (1536 dimensions). Reasoning:
+
+- The project already authenticates against OpenAI for the structured-output
+  adapter and the Agents SDK query interface, so this adds no new vendor
+- At this corpus size (91,357 chunks) the cost and latency difference
+  against `text-embedding-3-large` is a few dollars and not worth the
+  storage/latency tradeoff for a prototype; embedding the full corpus with
+  `-small` costs on the order of $1 to $2 one time
+- Retrieval quality has not been benchmarked against alternatives yet;
+  swapping the model later only requires re-running `rag.embed`, since
+  chunk hashes make re-indexing idempotent
+
+### Why a separate vector store
+
+`vector_db` in `docker-compose.yml` is its own Postgres 16 + pgvector
+service, not the app's operational SQLite database. This is a scoped
+tradeoff, not the target end state: `DESIGN.md` calls for a single
+Postgres database, and running two data stores for one product means two
+things to back up and a harder audit story for PHI-adjacent data. The
+split exists only because the Django MVP is still on SQLite; migrating the
+operational database to Postgres and merging the two is tracked in
+"Remaining work".
+
+### Indexing
+
+Bring up the vector store and embed the corpus:
+
+```bash
+docker compose up -d vector_db
+python -m rag.embed data/rag/spl_chunks.jsonl
+```
+
+`rag/embed.py` dedupes by `content_sha256` before calling the embedding
+API: the corpus has 91,357 chunks but only 70,662 unique content hashes,
+so about 23% of chunks reuse an already-embedded vector instead of being
+embedded twice. Indexing is idempotent: content hashes already present in
+`spl_chunk_embeddings` are skipped, so an interrupted run can be re-run
+safely. Test against a handful of chunks first:
+
+```bash
+python -m rag.embed data/rag/spl_chunks.jsonl --limit 20
+```
+
+### Retrieval
+
+```bash
+python -m rag.retrieve "vancomycin renal dosing" --top-k 5
+python -m rag.retrieve "vancomycin renal dosing" --top-k 5 --product-name Vancomycin
+```
+
+Programmatically:
+
+```python
+from rag.retrieve import retrieve_chunks, format_reference_material
+
+chunks = retrieve_chunks("vancomycin renal dosing and trough monitoring", top_k=5)
+reference_material = format_reference_material(chunks)
+```
+
+`retrieve_chunks` embeds the query, runs a cosine-distance nearest-neighbor
+search (`embedding <=> query_embedding` in pgvector), over-fetches by 3x,
+and dedupes the results by `content_sha256` before returning the top-k.
+
+### What's not done yet
+
+`reference_material` still has to be passed by the caller. `rag/retrieve.py`
+is not called from the Django view, the LangGraph pipeline, or the
+structured-generation orchestrator. See "Remaining work" for the wiring
+that's still needed, plus hybrid/keyword retrieval and reranking, which
+this module doesn't do.
 
 ## Experimental care-plan verification
 
@@ -1075,6 +1191,10 @@ prompts/
 rag/
   prepare_spl.py             SPL XML cleaning and section-aware chunking
   tests.py                   Chunking tests
+  vector_store.py            pgvector connection, schema, and index setup
+  embed.py                   Corpus embedding CLI (text-embedding-3-small, content-hash dedup)
+  retrieve.py                Query-time retrieval CLI and reference-material formatting
+  test_retrieve.py           Live-stack retrieval round-trip tests (skipped without credentials)
 DESIGN.md                    Target product design
 care_plan_graph.md           Mermaid source for the LangGraph pipeline diagram
 care_plan_graph.png          Rendered LangGraph pipeline diagram
@@ -1092,6 +1212,7 @@ Dockerfile                   Application image
 | `OPENAI_MODEL` | No | OpenAI model override; defaults to `gpt-5.5` in the structured adapter |
 | `DJANGO_SECRET_KEY` | Production | Django cryptographic signing key |
 | `DB_PATH` | No | SQLite path; defaults to `data/db.sqlite3` locally |
+| `VECTOR_DATABASE_URL` | `rag.embed` and `rag.retrieve` | Postgres + pgvector connection string; see `.env.example` |
 
 ## Verification
 
@@ -1132,6 +1253,14 @@ Run the query interface routing tests (requires `OPENAI_API_KEY`; skipped automa
 
 ```bash
 OPENAI_API_KEY=... python3.11 -m pytest care/test_query_routing.py -v -s
+```
+
+Run the retrieval round-trip tests (requires `OPENAI_API_KEY` and `VECTOR_DATABASE_URL` against a running `vector_db`; skipped automatically if either is unset):
+
+```bash
+docker compose up -d vector_db
+OPENAI_API_KEY=... VECTOR_DATABASE_URL=postgresql://postgres:postgres@localhost:5433/spl_vectors \
+  python -m pytest rag/test_retrieve.py -v
 ```
 
 Each test prints the responding agent name and final reply so routing decisions

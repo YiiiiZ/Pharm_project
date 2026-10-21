@@ -92,7 +92,7 @@ def generate_openai_care_plan(
             raise StructuredOutputError(
                 "The openai package is required for the OpenAI provider."
             ) from exc
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), timeout=120, max_retries=1)
 
     selected_model = model or os.environ.get(
         "OPENAI_MODEL", DEFAULT_OPENAI_MODEL
@@ -201,7 +201,7 @@ def generate_anthropic_care_plan(
     """Generate and parse a CarePlan with Claude Structured Outputs."""
     if client is None:
         client = anthropic.Anthropic(
-            api_key=os.environ.get("ANTHROPIC_API_KEY")
+            api_key=os.environ.get("ANTHROPIC_API_KEY"), timeout=120, max_retries=1
         )
 
     selected_model = model or os.environ.get(
