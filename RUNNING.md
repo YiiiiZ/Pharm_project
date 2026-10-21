@@ -154,3 +154,18 @@ The current demo was started with Gunicorn in daemon mode. Its PID is in
 `data/demo-error.log`. Stop that process before restarting on the same port.
 
 Review verification: `python manage.py test care.test_reviews care.test_jobs care.test_audit`.
+
+
+### Additional local staff account
+
+The current local demo also has this account:
+
+- Username: `yizheng`
+- Login: http://127.0.0.1:8000/login/
+- Access: active staff account with `care.review_careplan` permission, allowing
+  approval, rejection, and requests for changes.
+- Database: the isolated `data/demo.sqlite3` demo database.
+
+Use the password configured locally for this account. Login credentials are not
+recorded in this repository. The account was created locally; cloning the
+repository or running `seed_approval_demo` does not recreate `yizheng`.
